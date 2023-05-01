@@ -52,17 +52,21 @@ public class LinkTable {
 
                 if(IMAGE.equals("")){
                     IMAGE = doc.select("img[class]").attr("src");
-                    if(IMAGE.equals("")){
-                        con = doc.select("meta[name=author]").attr("content");
-                        IMAGE = "https://".concat(con).concat(".com").concat(doc.select("img").attr("src").substring(2));
+                    if(LINK.contains("google.com")){
+                        IMAGE = "https://pbs.twimg.com/profile_images/770139154898382848/ndFg-IDH_400x400.jpg";
+                        if(IMAGE.equals("")){
+                            con = doc.select("meta[name=author]").attr("content");
+                            IMAGE = "https://".concat(con).concat(".com").concat(doc.select("img").attr("src").substring(2));
+                        }
                     }
                 }
-
             } catch (Exception e) {
                 TITLE = LINK;
                 IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
                 CONTENTS = LINK;
             }
+        }else {
+            LINK = "유효하지 않은 링크";
         }
     }
 }

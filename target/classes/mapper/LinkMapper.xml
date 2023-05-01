@@ -7,15 +7,15 @@
         values (#{link})
     </insert>
     <insert id="save_tci" parameterType="String">
-        insert into T_link(LINK, TITLE, CONTENTS, IMAGE)
-        values (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE})
+        insert into T_link(LINK, TITLE, CONTENTS, IMAGE, M_ID)
+        values (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE}, #{M_ID})
     </insert>
     <insert id="signin" parameterType="user">
         insert into T_USER_LINKTREE(M_ID, M_PWD)
         values (#{M_ID}, #{M_PWD})
     </insert>
     <select id="show" resultType="link">
-        SELECT * FROM T_link
+        SELECT * FROM T_link WHERE M_ID = #{M_ID}
     </select>
     <select id="login" parameterType="user" resultType="user">
         SELECT * FROM T_USER_LINKTREE WHERE M_ID = #{M_ID} AND M_PWD = #{M_PWD}

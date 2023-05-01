@@ -26,7 +26,6 @@ public class LinkController {
         if(!(linkTable.getLINK().contains("https://")) || !(linkTable.getLINK().contains("http://"))){
             linkTable.setLINK("http://".concat(linkTable.getLINK()));
         }
-        System.out.println(linkTable);
         linkService.save(linkTable);
         return "redirect:/member/list";
     }
@@ -38,8 +37,9 @@ public class LinkController {
     }
 
     @GetMapping("/list")
-    public String findAll(Model model){
-        List<LinkTable> linkTableList = linkService.findAll();
+    public String findAll(Model model, HttpSession session){
+        String mId = (String) session.getAttribute("M_ID");
+        List<LinkTable> linkTableList = linkService.findAll(mId);
         model.addAttribute("linkList", linkTableList);
         return "list";
     }
@@ -65,11 +65,19 @@ public class LinkController {
         boolean loginrs = linkService.login(userDTO);
         if(loginrs){
             session.setAttribute("M_ID",userDTO.getM_ID());
-            return "list";
+            return "redirect:/member/list";
         }else {
-            return "/";
-
+            return "redirect:/";
         }
-
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.setAttribute("M_ID", null);
+        session.setMaxInactiveInterval(0);
+        return "redirect:/";
+    }
+
+
+
 }

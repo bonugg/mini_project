@@ -32,7 +32,7 @@
             font-family: sans-serif;
             border-radius: 20px;
             width: 20%;
-            height: 5%;
+            height: 45px;
         }
         input[type="submit"] {
             font-family: sans-serif;
@@ -45,6 +45,14 @@
             margin-left:20px;
             margin-top: 50px;
             cursor:pointer;
+        }
+        h3{
+            text-align: right;
+            margin-top: 1%;
+            margin-right: 0.5%;
+            font-family: sans-serif;
+            color: white;
+            border-radius: 5px;
         }
         .img_td {
             border-bottom-left-radius: 10px;
@@ -95,14 +103,28 @@
             vertical-align: top;
             padding: 10px
         }
+        .logout_btn{
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            background-color:black;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: sans-serif;
+            padding: 10px;
+            float: right;
+            margin-right: 1%;
+        }
     </style>
 </head>
 <body>
-<h2>${sessionScope.M_ID}님의 링크트리</h2>
-<button onclick="logout()">logout</button>
-<div style="text-align: center">
+<h3>${sessionScope.M_ID}님의 링크트리&nbsp&nbsp</h3>
+<button onclick="logout()" class="logout_btn">Logout</button>
+<div align="center" style="margin-left: 5%">
     <form action="/member/add" method="post">
         <input type="text" name="LINK" placeholder="link">
+        <input type="hidden" name="M_ID" value="${sessionScope.M_ID}" >
         <input type="submit" value="ADD">
     </form>
 </div>

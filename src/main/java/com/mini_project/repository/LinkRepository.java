@@ -25,13 +25,14 @@ public class LinkRepository extends HttpServlet {//DB연관 클래스
     public void save(LinkTable link){
         LinkTable linkTable = new LinkTable();
         linkTable.link_rs(link.getLINK());
+        linkTable.setM_ID(link.getM_ID());
         if(!(linkTable.getLINK().equals("유효하지 않은 링크"))){
             oracleSqlSessionTemplate.insert("links.save_tci", linkTable);
         }else {
         }
     }
-    public List<LinkTable> findAll(){
-        return oracleSqlSessionTemplate.selectList("links.show");
+    public List<LinkTable> findAll(String mId){
+        return oracleSqlSessionTemplate.selectList("links.show", mId);
     }
     public void delete(int ID) {
         oracleSqlSessionTemplate.delete("links.delete", ID);

@@ -7,7 +7,7 @@
             background-color: #1c1c1c;
             color: #fff;
         }
-        input[type="text"] {
+        input[type="text"], input[type="password"] {
             background-color: #000;
             color: #fff;
             border: none;
@@ -35,18 +35,10 @@
 <div style="text-align: center; margin-top: 15%">
     <form action="/member/login" method="post">
         <input type="text" name="M_ID" placeholder="ID"><br>
-        <input type="text" name="M_PWD" placeholder="PASSWD"><br>
+        <input type="password" name="M_PWD" placeholder="PASSWD"><br>
         <input type="submit" value="로그인">
         <input type="button" onclick="location.href='/member/signin'" value="회원가입" style="margin-left: 15px">
     </form>
 </div>
-<table align="center" style="margin-top: 10%">
-    <tr>
-        <td>
-            <a href="/member/list" style="text-align:center">링크추가</a>
-        </td>
-    </tr>
-</table>
-
 </body>
 </html>

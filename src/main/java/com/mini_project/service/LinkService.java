@@ -16,8 +16,8 @@ public class LinkService {
     public void save(LinkTable linkTable) {
         linkRepository.save(linkTable);
     }
-    public List<LinkTable> findAll(){
-        return linkRepository.findAll();
+    public List<LinkTable> findAll(String mId){
+        return linkRepository.findAll(mId);
     }
 
     public void delete(int ID) {
