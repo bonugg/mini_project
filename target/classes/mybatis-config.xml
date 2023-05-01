@@ -3,6 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="com.mini_project.dto.LinkDTO" alias="link"></typeAlias>
+    <typeAlias type="com.mini_project.dto.LinkTable" alias="link"></typeAlias>
   </typeAliases>
 </configuration>

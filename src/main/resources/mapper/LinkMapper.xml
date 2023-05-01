@@ -13,7 +13,7 @@
     <select id="show" resultType="link">
         SELECT * FROM T_link
     </select>
-    <delete id="delete" parameterType="String">
-        DELETE FROM T_link WHERE LINK=#{LINK}
+    <delete id="delete" parameterType="int">
+        DELETE FROM T_link WHERE ID=#{ID}
     </delete>
 </mapper>

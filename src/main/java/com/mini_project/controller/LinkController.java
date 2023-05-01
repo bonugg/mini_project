@@ -1,6 +1,6 @@
 package com.mini_project.controller;
 
-import com.mini_project.dto.LinkDTO;
+import com.mini_project.dto.LinkTable;
 import com.mini_project.service.LinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,24 +16,27 @@ public class LinkController {
     private final LinkService linkService;
 
     @GetMapping("/add")
-    public String saveForm(@RequestParam("link") String link){
-        System.out.println(link);
-        linkService.save(link);
+    public String saveForm(){
+        return "redirect:/member/list";
+    }
+    @PostMapping("/add")
+    public String save(@ModelAttribute LinkTable linkTable){
+        linkService.save(linkTable);
         return "redirect:/member/list";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("link") String link){
-        linkService.delete(link);
-        return "redirect:/member/list";
-    }
+   @GetMapping("/delete")
+   public String delete(@RequestParam("ID") int ID){
+        linkService.delete(ID);
+       return "redirect:/member/list";
+   }
 
-    @GetMapping("/list")
-    public String findAll(Model model){
-        List<LinkDTO> linkDTOList = linkService.findAll();
-        model.addAttribute("linkList", linkDTOList);
-        return "list";
-    }
+   @GetMapping("/list")
+   public String findAll(Model model){
+       List<LinkTable> linkTableList = linkService.findAll();
+       model.addAttribute("linkList", linkTableList);
+       return "list";
+   }
 
 
 }

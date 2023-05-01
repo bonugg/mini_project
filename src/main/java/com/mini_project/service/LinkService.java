@@ -1,6 +1,6 @@
 package com.mini_project.service;
 
-import com.mini_project.dto.LinkDTO;
+import com.mini_project.dto.LinkTable;
 import com.mini_project.repository.LinkRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,14 @@ import java.util.List;
 public class LinkService {
     private final LinkRepository linkRepository;
 
-    public void save(String linkDTO) {
-        linkRepository.save(linkDTO);
+    public void save(LinkTable linkTable) {
+        linkRepository.save(linkTable);
     }
-    public List<LinkDTO> findAll(){
+    public List<LinkTable> findAll(){
         return linkRepository.findAll();
     }
 
-    public void delete(String link) {
-        linkRepository.delete(link);
+    public void delete(int ID) {
+        linkRepository.delete(ID);
     }
 }

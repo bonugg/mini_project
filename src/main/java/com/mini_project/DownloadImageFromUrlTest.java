@@ -19,7 +19,7 @@ public class DownloadImageFromUrlTest {
         String url = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 
         Pattern p = Pattern.compile(url);
-        String http = "https://www.google.com/search?q=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%97%90%EC%84%9C+%EC%9E%90%EB%B0%94%EB%A1%9C+%EA%B0%92+%EC%A0%84%EB%8B%AC&oq=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%97%90%EC%84%9C+%EC%9E%90%EB%B0%94%EB%A1%9C+%EA%B0%92+%EC%A0%84%EB%8B%AC&aqs=chrome..69i57.10551j0j7&sourceid=chrome&ie=UTF-8";
+        String http = "https://www.google.com/search?q=%E3%85%8E%E3%85%87&oq=%E3%85%8E%E3%85%87&aqs=chrome..69i57.2838j0j7&sourceid=chrome&ie=UTF-8";
         //String http = "https://www.youtube.com/watch?v=TW7pqu0M9kA";
 
         String title;

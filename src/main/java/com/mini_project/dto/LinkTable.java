@@ -12,16 +12,16 @@ import java.util.regex.Pattern;
 @Getter
 @Setter
 @ToString
-public class LinkDTO {
+public class LinkTable {
     private String LINK;
     private String TITLE;
     private String CONTENTS;
     private String IMAGE;
+    private int ID;
+
 
     public void link_rs(String link){
-        System.out.println(link);
-        System.out.println("");
-        this.LINK = link;
+        LINK = link;
         String url = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 
         Pattern p = Pattern.compile(url);
@@ -38,26 +38,29 @@ public class LinkDTO {
 
                 doc = Jsoup.connect(exportUrl).header("User-Agent" , "Mozilla/5.0").get();
 
-                this.TITLE = doc.select("meta[property=og:title]").attr("content");  // 제목
-                this.CONTENTS = doc.select("meta[property=og:description]").attr("content"); // 내용
-                this.IMAGE = doc.select("meta[property=og:image]").attr("content"); // 이미지
+                TITLE = doc.select("meta[property=og:title]").attr("content");  // 제목
+                CONTENTS = doc.select("meta[property=og:description]").attr("content"); // 내용
+                IMAGE = doc.select("meta[property=og:image]").attr("content"); // 이미지
 
-                if(this.IMAGE.equals("")){
-                    this.IMAGE = doc.select("img[class]").attr("src");
-                    if(this.IMAGE.equals("")){
+                if (TITLE.equals("")) {
+                    TITLE = doc.select("title").html();
+                }
+                if(CONTENTS.equals("")){
+                    CONTENTS = link;
+                }
+
+                if(IMAGE.equals("")){
+                    IMAGE = doc.select("img[class]").attr("src");
+                    if(IMAGE.equals("")){
                         con = doc.select("meta[name=author]").attr("content");
-                        this.IMAGE = "https://".concat(con).concat(".com").concat(doc.select("img").attr("src").substring(2));
+                        IMAGE = "https://".concat(con).concat(".com").concat(doc.select("img").attr("src").substring(2));
                     }
                 }
 
-                if(this.CONTENTS.equals("")){
-                    this.CONTENTS = link;
-                }
-
             } catch (Exception e) {
-                this.TITLE = this.LINK;
-                this.IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
-                this.CONTENTS = this.LINK;
+                TITLE = LINK;
+                IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+                CONTENTS = LINK;
             }
         }
     }
