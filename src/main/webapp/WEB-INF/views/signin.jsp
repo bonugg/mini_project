@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>링크트리</title>
+    <title>회원가입</title>
     <style>
         body {
             background-color: #1c1c1c;
@@ -33,11 +33,11 @@
 </head>
 <body>
 <div style="text-align: center; margin-top: 15%">
-    <form action="/member/login" method="post">
+    <form action="/member/signin" method="post">
         <input type="text" name="M_ID" placeholder="ID"><br>
         <input type="text" name="M_PWD" placeholder="PASSWD"><br>
-        <input type="submit" value="로그인">
-        <input type="button" onclick="location.href='/member/signin'" value="회원가입" style="margin-left: 15px">
+        <input type="submit" value="회원가입">
+        <input type="button" onclick="location.href='../..'" value="취소" style="margin-left: 15px">
     </form>
 </div>
 <table align="center" style="margin-top: 10%">

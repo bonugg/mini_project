@@ -4,5 +4,6 @@
 <configuration>
   <typeAliases>
     <typeAlias type="com.mini_project.dto.LinkTable" alias="link"></typeAlias>
+    <typeAlias type="com.mini_project.dto.UserDTO" alias="user"></typeAlias>
   </typeAliases>
 </configuration>

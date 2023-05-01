@@ -3,15 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="links">
     <insert id="save" parameterType="String">
-    insert into T_link(LINK)
-    values (#{link})
+        insert into T_link(LINK)
+        values (#{link})
     </insert>
     <insert id="save_tci" parameterType="String">
         insert into T_link(LINK, TITLE, CONTENTS, IMAGE)
         values (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE})
     </insert>
+    <insert id="signin" parameterType="user">
+        insert into T_USER_LINKTREE(M_ID, M_PWD)
+        values (#{M_ID}, #{M_PWD})
+    </insert>
     <select id="show" resultType="link">
         SELECT * FROM T_link
+    </select>
+    <select id="login" parameterType="user" resultType="user">
+        SELECT * FROM T_USER_LINKTREE WHERE M_ID = #{M_ID} AND M_PWD = #{M_PWD}
     </select>
     <delete id="delete" parameterType="int">
         DELETE FROM T_link WHERE ID=#{ID}

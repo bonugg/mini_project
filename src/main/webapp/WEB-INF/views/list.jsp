@@ -98,6 +98,8 @@
     </style>
 </head>
 <body>
+<h2>${sessionScope.M_ID}님의 링크트리</h2>
+<button onclick="logout()">logout</button>
 <div style="text-align: center">
     <form action="/member/add" method="post">
         <input type="text" name="LINK" placeholder="link">
@@ -122,6 +124,9 @@
     const deleteID = (ID) => {
         console.log(ID)
         location.href = "/member/delete?ID="+ID;
+    }
+    const logout = () => {
+        location.href = "/member/logout";
     }
 </script>
 </html>

@@ -18,6 +18,7 @@ public class LinkTable {
     private String CONTENTS;
     private String IMAGE;
     private int ID;
+    private String M_ID;
 
 
     public void link_rs(String link){
