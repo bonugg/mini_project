@@ -27,6 +27,7 @@ public class LinkController {
 
    @GetMapping("/delete")
    public String delete(@RequestParam("ID") int ID){
+       System.out.println(ID);
         linkService.delete(ID);
        return "redirect:/member/list";
    }
@@ -35,6 +36,7 @@ public class LinkController {
    public String findAll(Model model){
        List<LinkTable> linkTableList = linkService.findAll();
        model.addAttribute("linkList", linkTableList);
+       System.out.println(linkTableList);
        return "list";
    }
 

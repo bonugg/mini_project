@@ -45,7 +45,7 @@ public class LinkTable {
                 if (TITLE.equals("")) {
                     TITLE = doc.select("title").html();
                 }
-                if(CONTENTS.equals("")){
+                if(CONTENTS.equals("") || CONTENTS.contains("<head>")){
                     CONTENTS = link;
                 }
 

@@ -17,7 +17,6 @@ public class LinkRepository {//DB연관 클래스
         oracleSqlSessionTemplate.insert("links.save_tci", linkTable);
     }
     public List<LinkTable> findAll(){
-        System.out.println(oracleSqlSessionTemplate.selectList("links.show"));
         return oracleSqlSessionTemplate.selectList("links.show");
     }
     public void delete(int ID) {
