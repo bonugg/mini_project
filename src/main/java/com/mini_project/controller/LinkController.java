@@ -2,8 +2,14 @@ package com.mini_project.controller;
 
 import com.mini_project.dto.LinkTable;
 import com.mini_project.dto.UserDTO;
+import com.mini_project.service.KakaoService;
 import com.mini_project.service.LinkService;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LinkController {
     private final LinkService linkService;
+    private final KakaoService kakaoService;
 
     @GetMapping("/add")
     public String saveForm(){
@@ -78,6 +85,10 @@ public class LinkController {
         return "redirect:/";
     }
 
-
-
+    @ResponseBody
+    @GetMapping("/kakao")
+    public void  kakaoCallback(@RequestParam String code){
+        String access_Token = kakaoService.getKakaoAccessToken(code);
+        kakaoService.createKakaoUser(access_Token);
+    }
 }

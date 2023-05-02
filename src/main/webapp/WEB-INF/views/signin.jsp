@@ -40,13 +40,6 @@
         <input type="button" onclick="location.href='../..'" value="취소" style="margin-left: 15px">
     </form>
 </div>
-<table align="center" style="margin-top: 10%">
-    <tr>
-        <td>
-            <a href="/member/list" style="text-align:center">링크추가</a>
-        </td>
-    </tr>
-</table>
 
 </body>
 </html>
