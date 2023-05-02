@@ -19,7 +19,7 @@ public class DownloadImageFromUrlTest {
         String url = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 
         Pattern p = Pattern.compile(url);
-        String http = "https://www.google.com/search?q=%EC%9D%B4%EB%AF%B8%EC%A7%80&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiGzMavqtP-AhVW-mEKHbIyD1AQ_AUoAXoECAEQAw&biw=1749&bih=894&dpr=1#imgrc=3bPYTaav1zN1YM";
+        String http = "https://coupang.com/";
         //String http = "https://www.notion.so/12-Stored-Sub-Program-c3903c369f5547d28aa3b649d02dd49c";
 
         String title;

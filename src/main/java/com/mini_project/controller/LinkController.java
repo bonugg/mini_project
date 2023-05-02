@@ -4,12 +4,7 @@ import com.mini_project.dto.LinkTable;
 import com.mini_project.dto.UserDTO;
 import com.mini_project.service.KakaoService;
 import com.mini_project.service.LinkService;
-import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +25,7 @@ public class LinkController {
     }
     @PostMapping("/add")
     public String save(@ModelAttribute LinkTable linkTable){
-        if(!(linkTable.getLINK().contains("https://")) || !(linkTable.getLINK().contains("http://"))){
+        if(!(linkTable.getLINK().contains("https://")) && !(linkTable.getLINK().contains("http://"))){
             linkTable.setLINK("http://".concat(linkTable.getLINK()));
         }
         linkService.save(linkTable);
@@ -91,4 +86,11 @@ public class LinkController {
         String access_Token = kakaoService.getKakaoAccessToken(code);
         kakaoService.createKakaoUser(access_Token);
     }
+
+    @RequestMapping(value="/")
+    public String page() throws Exception {
+        return "index";
+
+    }
+
 }

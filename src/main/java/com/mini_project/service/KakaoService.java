@@ -8,8 +8,12 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @Service
 public class KakaoService {
+    private static final Logger log = LogManager.getLogger(KakaoService.class);
     public String getKakaoAccessToken(String code) {
         String access_Token = "";
         String refresh_Token = "";
