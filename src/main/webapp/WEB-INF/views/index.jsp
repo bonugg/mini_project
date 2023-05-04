@@ -33,9 +33,16 @@
 </head>
 <body>
 <div style="text-align: center; margin-top: 15%">
-    <form action="/login" method="post">
+    <form action="/loginProcess" method="post">
         <input type="text" name="M_ID" placeholder="ID"><br>
         <input type="password" name="M_PWD" placeholder="PASSWD"><br>
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+            <font color="red">
+                <p>Your login attempt was not successful due to <br/>
+                        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+                <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+            </font>
+        </c:if>
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}">
         <input type="submit" value="로그인">
         <input type="button" onclick="location.href='/member/signin'" value="회원가입" style="margin-left: 15px">

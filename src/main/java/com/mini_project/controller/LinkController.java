@@ -5,10 +5,19 @@ import com.mini_project.dto.UserDTO;
 import com.mini_project.service.KakaoService;
 import com.mini_project.service.LinkService;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -18,6 +27,13 @@ import java.util.List;
 public class LinkController {
     private final LinkService linkService;
     private final KakaoService kakaoService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @GetMapping("/add")
     public String saveForm(){
@@ -53,24 +69,10 @@ public class LinkController {
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute UserDTO userDTO){
+        userDTO.setM_PWD(passwordEncoder.encode(userDTO.getM_PWD()));
+        System.out.println(userDTO);
         linkService.signin(userDTO);
         return "redirect:/";
-    }
-
-    @GetMapping("/login")
-    public String login(){
-        return "redirect:/member/list";
-    }
-
-    @PostMapping("/login")
-    public String login(@ModelAttribute UserDTO userDTO, HttpSession session){
-        boolean loginrs = linkService.login(userDTO);
-        if(loginrs){
-            session.setAttribute("M_ID",userDTO.getM_ID());
-            return "redirect:/member/list";
-        }else {
-            return "redirect:/";
-        }
     }
 
     @GetMapping("/logout")
@@ -90,7 +92,5 @@ public class LinkController {
     @RequestMapping(value="/")
     public String page() throws Exception {
         return "index";
-
     }
-
 }

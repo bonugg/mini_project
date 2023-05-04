@@ -2,6 +2,7 @@ package com.mini_project.service;
 
 import com.mini_project.dto.LinkTable;
 import com.mini_project.dto.UserDTO;
+import com.mini_project.dto.UserVO;
 import com.mini_project.repository.LinkRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,9 @@ public class LinkService {
             return true;
         }else
             return false;
+    }
+
+    public UserVO test(String id){
+        return linkRepository.test(id);
     }
 }

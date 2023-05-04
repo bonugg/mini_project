@@ -2,6 +2,7 @@ package com.mini_project.repository;
 
 import com.mini_project.dto.LinkTable;
 import com.mini_project.dto.UserDTO;
+import com.mini_project.dto.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,9 @@ public class LinkRepository extends HttpServlet {//DB연관 클래스
 
     public UserDTO login(UserDTO userDTO) {
         return oracleSqlSessionTemplate.selectOne("links.login", userDTO);
+    }
+
+    public UserVO test(String id) {
+        return oracleSqlSessionTemplate.selectOne("links.getUserById",id);
     }
 }
