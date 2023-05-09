@@ -18,7 +18,7 @@ public class SecurityConfig {
             .formLogin()
                 .loginPage("/login")    // GET 요청
                 .loginProcessingUrl("/auth")    // POST 요청
-                .usernameParameter("email")
+                .usernameParameter("id")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/");
 

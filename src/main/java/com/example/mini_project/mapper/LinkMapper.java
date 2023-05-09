@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface LinkMapper {
-    List<LinkTable> getLinkList(Long id); // 링크 리스트 가져오기
+    List<LinkTable> getLinkList(String id); // 링크 리스트 가져오기
 
     void addLink(LinkTable linkTable); // 링크 추가
 

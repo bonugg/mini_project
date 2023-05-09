@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserVo userVo = userService.getUserById(id);
         userVo.setPassword(null);
         model.addAttribute("user", userVo);
@@ -74,7 +74,7 @@ public class UserController {
 
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserVo userVo = userService.getUserById(id);
         model.addAttribute("user", userVo);
         return "editPage";
@@ -82,7 +82,7 @@ public class UserController {
 
     @PostMapping("/update")
     public String edit(UserVo userVo) { // 회원 정보 수정
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userVo.setId(id);
         userService.edit(userVo);
         return "redirect:/";
@@ -90,7 +90,7 @@ public class UserController {
 
     @PostMapping("/delete")
     public String withdraw(HttpSession session) { // 회원 탈퇴
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (id != null) {
             userService.withdraw(id);
         }

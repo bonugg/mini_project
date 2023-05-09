@@ -13,7 +13,7 @@ public class LinkService {
     @Autowired
         private LinkMapper linkMapper;
 
-    public List<LinkTable> getLinkList(Long id) {
+    public List<LinkTable> getLinkList(String id) {
         return linkMapper.getLinkList(id);
     }
 

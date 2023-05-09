@@ -20,7 +20,7 @@ public class UserService {
         return userMapper.getUserList();
     }
 
-    public UserVo getUserById(Long id) {
+    public UserVo getUserById(String id) {
         return userMapper.getUserById(id);
     }
 
@@ -40,7 +40,7 @@ public class UserService {
         userMapper.updateUser(userVo);
     }
 
-    public void withdraw(Long id) { // 회원 탈퇴
+    public void withdraw(String id) { // 회원 탈퇴
         userMapper.deleteUser(id);
     }
 

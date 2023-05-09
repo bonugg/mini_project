@@ -10,16 +10,16 @@
     <!-- 회원가입 -->
     <insert id="insertUser">
         INSERT INTO T_MEMBER_LINK
-            (name, username, email, password, address, phone, website, company)
+            (id, name, username, email, password, address, phone)
         VALUES
-            (#{name}, #{username}, #{email}, #{password}, #{address}, #{phone}, #{website}, #{company})
+            (#{id}, #{name}, #{username}, #{email}, #{password}, #{address}, #{phone})
     </insert>
 
     <!-- 회원 정보 가져오기 -->
     <select id="getUserByEmail" resultType="com.example.mini_project.vo.UserVo">
         SELECT *
         FROM T_MEMBER_LINK
-        WHERE email = #{email}
+        WHERE id = #{email}
     </select>
 
     <select id="getUserById" resultType="com.example.mini_project.vo.UserVo">
@@ -36,9 +36,7 @@
             email = #{email},
             password = #{password},
             address = #{address},
-            phone = #{phone},
-            website = #{website},
-            company = #{company}
+            phone = #{phone}
         WHERE id = #{id}
     </update>
 

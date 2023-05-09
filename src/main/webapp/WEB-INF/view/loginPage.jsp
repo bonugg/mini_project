@@ -40,11 +40,18 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
             <div>
-                <input type="text" name="email" placeholder="Email"/>
+                <input type="text" name="id" placeholder="아이디"/>
             </div>
             <div>
-                <input type="password" name="password" placeholder="Password"/>
+                <input type="password" name="password" placeholder="비밀번호"/>
             </div>
+
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+            <font color="red">
+                <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+                <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+            </font>
+        </c:if>
 
             <button type="submit">로그인</button>
             <button type="button" onclick="location.href='signup'" style="margin-left: 10px">회원가입</button>

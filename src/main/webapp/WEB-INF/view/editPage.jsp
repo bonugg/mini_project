@@ -63,14 +63,6 @@
             Phone<br><br>
             <input type="text" name="phone" value="${user.phone}"/>
         </p>
-        <p>
-            Website<br><br>
-            <input type="text" name="website" value="${user.website}"/>
-        </p>
-        <p>
-            Company<br><br>
-            <input type="text" name="company" value="${user.company}"/>
-        </p>
 
         <button type="submit">저장하기</button>
     </form>

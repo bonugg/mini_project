@@ -40,28 +40,26 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
         <div>
-            <input type="text" name="name" placeholder="Name"/>
+            <input type="text" name="id" placeholder="아이디" style="width: 11.5%">
+            <button type="button" onclick= "checkID('id')" style="width: 60px">체크</button>
         </div>
         <div>
-            <input type="text" name="username" placeholder="*Username"/>
+            <input type="text" name="name" placeholder="이름"/>
         </div>
         <div>
-            <input type="text" name="email" placeholder="*Email"/>
+            <input type="text" name="username" placeholder="닉네임"/>
         </div>
         <div>
-            <input type="password" name="password" placeholder="Password"/>
+            <input type="text" name="email" placeholder="이메일"/>
         </div>
         <div>
-            <input type="text" name="address" placeholder="Address"/>
+            <input type="password" name="password" placeholder="비밀번호"/>
         </div>
         <div>
-            <input type="text" name="phone" placeholder="Phone"/>
+            <input type="text" name="address" placeholder="주소"/>
         </div>
         <div>
-            <input type="text" name="website" placeholder="Website"/>
-        </div>
-        <div>
-            <input type="text" name="company" placeholder="Company"/>
+            <input type="text" name="phone" placeholder="번호"/>
         </div>
 
         <button type="submit">회원가입</button>
@@ -69,4 +67,10 @@
     </form>
 </div>
 </body>
+<script>
+    const checkID = (LID) => {
+        console.log(LID)
+        location.href = "/delete_link?LID="+LID;
+    }
+</script>
 </html>

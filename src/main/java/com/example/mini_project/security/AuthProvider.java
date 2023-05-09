@@ -23,16 +23,16 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String email = (String) authentication.getPrincipal(); // 로그인 창에 입력한 email
+        String id = (String) authentication.getPrincipal(); // 로그인 창에 입력한 username
         String password = (String) authentication.getCredentials(); // 로그인 창에 입력한 password
 
         PasswordEncoder passwordEncoder = userService.passwordEncoder();
         UsernamePasswordAuthenticationToken token;
-        UserVo userVo = userService.getUserByEmail(email);
+        UserVo userVo = userService.getUserByEmail(id);
 
         if (userVo != null && passwordEncoder.matches(password, userVo.getPassword())) { // 일치하는 user 정보가 있는지 확인
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("USER")); // 권한 부여
+            roles.add(new SimpleGrantedAuthority("ROLE_ USER")); // 권한 부여
 
             token = new UsernamePasswordAuthenticationToken(userVo.getId(), null, roles);
 //            userVo.setPassword(null);
@@ -41,7 +41,7 @@ public class AuthProvider implements AuthenticationProvider {
             return token;
         }
 
-        throw new BadCredentialsException("No such user or wrong password.");
+        throw new BadCredentialsException("아이디 또는 비밀번호를 찾을 수 없습니다");
     }
 
     @Override
