@@ -1,5 +1,7 @@
 package com.example.mini_project.controller;
 
+import com.example.mini_project.link.LinkTable;
+import com.example.mini_project.service.LinkService;
 import com.example.mini_project.service.UserService;
 import com.example.mini_project.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LinkService linkService;
+
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model) { //로그인 성공 시 출력 페이지
         Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserVo userVo = userService.getUserById(id);
         userVo.setPassword(null);
         model.addAttribute("user", userVo);
+        List<LinkTable> linkTableList = linkService.getLinkList(id);
+        model.addAttribute("linkList", linkTableList);
+        System.out.println(linkTableList);
         return "home";
     }
 
