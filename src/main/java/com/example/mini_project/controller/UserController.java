@@ -33,7 +33,6 @@ public class UserController {
         model.addAttribute("user", userVo);
         List<LinkTable> linkTableList = linkService.getLinkList(id);
         model.addAttribute("linkList", linkTableList);
-        System.out.println(linkTableList);
         return "home";
     }
 
