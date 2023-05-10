@@ -7,6 +7,7 @@
 <title>Home</title>
     <style>
         body {
+            font-size: 0px;
             background-color: #1c1c1c;
             color: #fff;
         }
@@ -22,6 +23,8 @@
             border-spacing: 0px;
             border-radius: 10px;
             box-shadow: 5px 5px 5px 5px black;
+            width: 570px;
+            table-layout: fixed;
         }
         input[type="text"] {
             background-color: #000;
@@ -52,7 +55,7 @@
             margin-right: 0.5%;
             font-family: sans-serif;
             color: white;
-            border-radius: 5px;
+            font-size: 20px;
         }
         .img_td {
             border-bottom-left-radius: 10px;
@@ -69,7 +72,6 @@
             overflow:hidden;
             white-space: nowrap;
             width: 350px;
-            max-width: 350px;
             color: black;
             font-size: 15px;
             font-weight: bold;
@@ -80,6 +82,7 @@
             border-bottom-right-radius: 10px;
             border-top-right-radius:10px;
             padding: 10px;
+            width: 50px;
         }
         .del_button {
             cursor: pointer;
@@ -98,7 +101,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             width: 350px;
-            max-width: 350px;
             font-size: 5px;
             vertical-align: top;
             padding: 10px
@@ -119,24 +121,24 @@
     </style>
 </head>
 <body>
-    <h3>${user.username}님 환영합니다</h3>
+    <h3>${user.name}님 환영합니다</h3>
 
     <button type="button" onclick="location.href='update'" class="user_btn">수정하기</button>
 
-    <form action="/logout" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <button type="submit" class="user_btn">로그아웃</button>
-    </form>
+<%--    <form action="/logout" method="post">--%>
+<%--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+<%--        <button type="submit" class="user_btn">로그아웃</button>--%>
+<%--    </form>--%>
 
-    <form action="/delete" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <button type="submit" class="user_btn">탈퇴하기</button>
-    </form>
-    <h3>&nbsp;</h3>
+<%--    <form action="/delete" method="post">--%>
+<%--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+<%--        <button type="submit" class="user_btn">탈퇴하기</button>--%>
+<%--    </form>--%>
+<%--    <h3>&nbsp;</h3>--%>
     <div align="center">
         <form action="/add" method="post">
             <input type="text" name="LINK" placeholder="link">
-            <input type="hidden" name="ID" value="${user.id}" >
+            <input type="hidden" name="ID" value="${user.email}" >
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <input type="submit" value="ADD">
         </form>

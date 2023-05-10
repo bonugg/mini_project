@@ -1,6 +1,7 @@
 package com.example.mini_project.controller;
 
 import com.example.mini_project.link.LinkTable;
+import com.example.mini_project.oauth.SessionUser;
 import com.example.mini_project.service.LinkService;
 import com.example.mini_project.service.UserService;
 import com.example.mini_project.vo.UserVo;
@@ -25,13 +26,26 @@ public class UserController {
     @Autowired
     private LinkService linkService;
 
+    @Autowired
+    private HttpSession httpSession;
+
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserVo userVo = userService.getUserById(id);
-        userVo.setPassword(null);
-        model.addAttribute("user", userVo);
-        List<LinkTable> linkTableList = linkService.getLinkList(id);
+        if((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null){
+            String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            System.out.println(id);
+            UserVo userVo = userService.getUserById(id);
+            userVo.setPassword(null);
+            model.addAttribute("user", userVo);
+            List<LinkTable> linkTableList = linkService.getLinkList(id);
+            model.addAttribute("linkList", linkTableList);
+            return "home";
+        }
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        System.out.println(user.getEmail());
+        System.out.println(user.getName());
+        model.addAttribute("user", user);
+        List<LinkTable> linkTableList = linkService.getLinkList(user.getEmail());
         model.addAttribute("linkList", linkTableList);
         return "home";
     }

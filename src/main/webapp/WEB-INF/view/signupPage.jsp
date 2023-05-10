@@ -7,7 +7,7 @@
     <title>Sign Up</title>
     <style>
         .div_inner {
-            width: 280px;
+            width: 320px;
             height: 85px;
             margin: auto;
         }
@@ -38,8 +38,9 @@
             border: none;
             border-radius: 20px;
             height: 45px;
-            width: 145px;
+            width: 140px;
             cursor:pointer;
+            margin-left: 10px;
         }
         button[disabled='disabled']{
             font-family: sans-serif;
@@ -48,7 +49,7 @@
             border: none;
             border-radius: 20px;
             height: 45px;
-            width: 145px;
+            width: 140px;
             cursor:default;
         }
     </style>
@@ -60,7 +61,7 @@
 
         <div class="div_inner">
             <input type="text" name="id" placeholder="아이디" style="width: 195px">
-            <button type="button" onclick= "buttonable()" style="width: 60px; margin-left: 5px;">체크</button>
+            <button type="button" onclick= "buttonable()" style="width: 80px; margin-left: 5px;">체크</button>
             <h6>5~10글자 사이 특수문자 불가능</h6>
         </div>
         <div class="div_inner">
@@ -84,9 +85,9 @@
             <input type="text" name="phone" placeholder="번호"/>
         </div>
 
-        <div class="div_inner" style="text-align: center; width: 313px">
-        <button disabled="disabled" type="submit" id="signin" style="margin-left: 18px; border: none;border-radius: 20px;height: 45px;width: 145px;">회원가입</button>
-        <button type="button" onclick="location.href='../..'" style="margin-left: 5px">취소</button>
+        <div class="div_inner">
+        <button disabled="disabled" type="submit" id="signin" style="border: none;border-radius: 20px;height: 45px;width: 140px;">회원가입</button>
+        <button type="button" onclick="location.href='../..'">취소</button>
         </div>
     </form>
 </div>

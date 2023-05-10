@@ -15,9 +15,9 @@ public class LinkService {
 
     public List<LinkTable> getLinkList(String id) {
         return linkMapper.getLinkList(id);
-    }
+    } //링크리스트 출력
 
-    public void addLink(LinkTable linkTable) { // 회원 가입
+    public void addLink(LinkTable linkTable) { // 링크추가
         linkTable.link_rs(linkTable.getLINK());
         System.out.println(linkTable);
         linkMapper.addLink(linkTable);
@@ -25,5 +25,5 @@ public class LinkService {
 
     public void delLink(int LID){
         linkMapper.delLink(LID);
-    }
+    } //링크삭제
 }

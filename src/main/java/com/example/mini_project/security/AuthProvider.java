@@ -35,8 +35,6 @@ public class AuthProvider implements AuthenticationProvider {
             roles.add(new SimpleGrantedAuthority("ROLE_USER")); // 권한 부여
 
             token = new UsernamePasswordAuthenticationToken(userVo.getId(), null, roles);
-//            userVo.setPassword(null);
-//            token.setDetails(userVo);
 
             return token;
         }

@@ -13,6 +13,10 @@
             margin: auto;
             margin-bottom: 30px;
         }
+        .div_outter {
+            text-align: center;
+            margin-top: 15%;
+        }
         body {
             font-size:0px;
             background-color: #1c1c1c;
@@ -42,7 +46,7 @@
     </style>
 </head>
 <body>
-<div style="text-align: center; margin-top: 15%">
+<div class="div_outter">
     <form action="/auth" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
@@ -63,7 +67,7 @@
             <button type="submit" style="margin-top: 15px">로그인</button>
             <button type="button" onclick="location.href='signup'" style="margin-left: 10px">회원가입</button>
         <br><br>
-        <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+        <a style="font-size: 15px" href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
     </form>
 </div>
 </body>
