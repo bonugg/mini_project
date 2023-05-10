@@ -4,7 +4,7 @@ import com.example.mini_project.link.LinkTable;
 import com.example.mini_project.oauth.SessionUser;
 import com.example.mini_project.service.LinkService;
 import com.example.mini_project.service.UserService;
-import com.example.mini_project.vo.UserVo;
+import com.example.mini_project.oauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -32,18 +32,19 @@ public class UserController {
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
         if((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null){
-            String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            System.out.println(id);
-            UserVo userVo = userService.getUserById(id);
-            userVo.setPassword(null);
-            model.addAttribute("user", userVo);
-            List<LinkTable> linkTableList = linkService.getLinkList(id);
+            String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            System.out.println(email);
+            User user = userService.getUserByEmail(email);
+            user.setPassword(null);
+            model.addAttribute("user", user);
+            List<LinkTable> linkTableList = linkService.getLinkList(email);
             model.addAttribute("linkList", linkTableList);
             return "home";
         }
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        System.out.println(user.toString());
         System.out.println(user.getEmail());
-        System.out.println(user.getName());
+        System.out.println(user.getUsername());
         model.addAttribute("user", user);
         List<LinkTable> linkTableList = linkService.getLinkList(user.getEmail());
         model.addAttribute("linkList", linkTableList);
@@ -52,7 +53,7 @@ public class UserController {
 
     @GetMapping("/userList")
     public String getUserList(Model model) {
-        List<UserVo> userList = userService.getUserList();
+        List<User> userList = userService.getUserList();
         model.addAttribute("list", userList);
         return "userListPage";
     }
@@ -74,9 +75,9 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signup(UserVo userVo) { // 회원 가입
+    public String signup(User user) { // 회원 가입
         try {
-            userService.signup(userVo);
+            userService.signup(user);
         } catch (DuplicateKeyException e) {
             return "redirect:/signup?error_code=-1";
         } catch (Exception e) {
@@ -88,25 +89,25 @@ public class UserController {
 
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserVo userVo = userService.getUserById(id);
-        model.addAttribute("user", userVo);
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.getUserByEmail(email);
+        model.addAttribute("user", user);
         return "editPage";
     }
 
     @PostMapping("/update")
-    public String edit(UserVo userVo) { // 회원 정보 수정
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userVo.setId(id);
-        userService.edit(userVo);
+    public String edit(User user) { // 회원 정보 수정
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setEmail(email);
+        userService.edit(user);
         return "redirect:/";
     }
 
     @PostMapping("/delete")
     public String withdraw(HttpSession session) { // 회원 탈퇴
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (id != null) {
-            userService.withdraw(id);
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (email != null) {
+            userService.withdraw(email);
         }
         SecurityContextHolder.clearContext();
         return "redirect:/";

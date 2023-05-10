@@ -121,24 +121,24 @@
     </style>
 </head>
 <body>
-    <h3>${user.name}님 환영합니다</h3>
+    <h3>${user.username}님 환영합니다</h3>
 
     <button type="button" onclick="location.href='update'" class="user_btn">수정하기</button>
 
-<%--    <form action="/logout" method="post">--%>
-<%--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
-<%--        <button type="submit" class="user_btn">로그아웃</button>--%>
-<%--    </form>--%>
+    <form action="/logout" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <button type="submit" class="user_btn">로그아웃</button>
+    </form>
 
-<%--    <form action="/delete" method="post">--%>
-<%--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
-<%--        <button type="submit" class="user_btn">탈퇴하기</button>--%>
-<%--    </form>--%>
-<%--    <h3>&nbsp;</h3>--%>
+    <form action="/delete" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <button type="submit" class="user_btn">탈퇴하기</button>
+    </form>
+    <h3>&nbsp;</h3>
     <div align="center">
         <form action="/add" method="post">
             <input type="text" name="LINK" placeholder="link">
-            <input type="hidden" name="ID" value="${user.email}" >
+            <input type="hidden" name="EMAIL" value="${user.email}" >
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <input type="submit" value="ADD">
         </form>

@@ -1,56 +1,55 @@
 package com.example.mini_project.oauth;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Entity
-@Table(name="tbl_boards")
-public class User{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+@Table(name="T_MEMBER_LINK")
+public class User {
+    @Column
     private String name;
-
     @Column(nullable = false)
+    private String username;
+    @Id
     private String email;
-
+    @Column
+    private String password;
+    @Column
+    private String address;
+    @Column
+    private String phone;
+    @Column
+    private String provider;
     @Column
     private String picture;
-
-    /*
     @Enumerated(EnumType.STRING)
-    JPA로 데이터베이스로 저장할 때 Enum 값을 어떤 형태로 저장할지를 결정함
-    기본적으로는 int로 된 숫자가 저장된다.
-    숫자로 저장되면 데이터베이스로 확인할 때 그 값이 무슨 코드를 의미하는지 알 수 가 없다.
-    그래서 문자열로 저장될 수 있도록 선언
-     */
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, Role role) {
+    public User(String name, String username, String email, String password, String address, String phone, String provider, String picture, Role role) {
         this.name = name;
+        this.username = username;
         this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.provider = provider;
         this.picture = picture;
         this.role = role;
     }
 
-    public User update(String name, String picture) {
-        this.name = name;
+    public User update(String username, String picture, String provider) {
+        this.username = username;
         this.picture = picture;
-
+        this.provider = provider;
         return this;
     }
-
     public String getRoleKey() {
         return this.role.getKey();
     }

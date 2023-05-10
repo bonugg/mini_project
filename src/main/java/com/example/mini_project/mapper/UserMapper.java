@@ -1,16 +1,16 @@
 package com.example.mini_project.mapper;
 
-import com.example.mini_project.vo.UserVo;
+import com.example.mini_project.oauth.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    List<UserVo> getUserList(); // User 테이블 가져오기
-    void insertUser(UserVo userVo); // 회원 가입
-    UserVo getUserByEmail(String email); // 회원 정보 가져오기
-    UserVo getUserById(String id);
-    void updateUser(UserVo userVo); // 회원 정보 수정
-    void deleteUser(String id); // 회원 탈퇴
+    List<User> getUserList(); // User 테이블 가져오기
+    void insertUser(User user); // 회원 가입
+    User getUserByEmail(String email); // 회원 정보 가져오기
+    User getUserById(String id);
+    void updateUser(User user); // 회원 정보 수정
+    void deleteUser(String email); // 회원 탈퇴
 }

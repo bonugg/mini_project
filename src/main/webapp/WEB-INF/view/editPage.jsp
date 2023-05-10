@@ -57,10 +57,6 @@
             <input type="text" name="username" value="${user.username}"/>
             <h6>2~6글자 사이 특수문자 불가능</h6>
         </div>
-        <div class="div_inner">
-            <h6>이메일</h6>
-            <input type="text" name="email" value="${user.email}"/>
-        </div>
         <div class="div_inner" style="margin-bottom: 15px">
             <h6>비밀번호</h6>
             <input type="password" name="password" placeholder="비밀번호"/>

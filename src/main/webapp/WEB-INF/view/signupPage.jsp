@@ -60,9 +60,13 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         <div class="div_inner">
-            <input type="text" name="id" placeholder="아이디" style="width: 195px">
+            <input type="text" name="email" placeholder="이메일" style="width: 195px">
             <button type="button" onclick= "buttonable()" style="width: 80px; margin-left: 5px;">체크</button>
             <h6>5~10글자 사이 특수문자 불가능</h6>
+        </div>
+        <div class="div_inner">
+            <input type="password" name="password" placeholder="비밀번호"/>
+            <h6>8~13글자 사이 특수문자 포함</h6>
         </div>
         <div class="div_inner">
             <input type="text" name="name" placeholder="이름"/>
@@ -72,18 +76,12 @@
             <h6>2~6글자 사이 특수문자 불가능</h6>
         </div>
         <div class="div_inner">
-            <input type="text" name="email" placeholder="이메일"/>
-        </div>
-        <div class="div_inner">
-            <input type="password" name="password" placeholder="비밀번호"/>
-            <h6>8~13글자 사이 특수문자 포함</h6>
-        </div>
-        <div class="div_inner">
             <input type="text" name="address" placeholder="주소"/>
         </div>
         <div class="div_inner">
             <input type="text" name="phone" placeholder="번호"/>
         </div>
+            <input type="hidden" name="provider" value="linktree"/>
 
         <div class="div_inner">
         <button disabled="disabled" type="submit" id="signin" style="border: none;border-radius: 20px;height: 45px;width: 140px;">회원가입</button>

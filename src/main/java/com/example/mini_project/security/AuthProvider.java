@@ -1,7 +1,7 @@
 package com.example.mini_project.security;
 
 import com.example.mini_project.service.UserService;
-import com.example.mini_project.vo.UserVo;
+import com.example.mini_project.oauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,18 +23,18 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String id = (String) authentication.getPrincipal(); // 로그인 창에 입력한 username
+        String email = (String) authentication.getPrincipal(); // 로그인 창에 입력한 email
         String password = (String) authentication.getCredentials(); // 로그인 창에 입력한 password
 
         PasswordEncoder passwordEncoder = userService.passwordEncoder();
         UsernamePasswordAuthenticationToken token;
-        UserVo userVo = userService.getUserByEmail(id);
+        User user = userService.getUserByEmail(email);
 
-        if (userVo != null && passwordEncoder.matches(password, userVo.getPassword())) { // 일치하는 user 정보가 있는지 확인
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) { // 일치하는 user 정보가 있는지 확인
             List<GrantedAuthority> roles = new ArrayList<>();
             roles.add(new SimpleGrantedAuthority("ROLE_USER")); // 권한 부여
 
-            token = new UsernamePasswordAuthenticationToken(userVo.getId(), null, roles);
+            token = new UsernamePasswordAuthenticationToken(user.getEmail(), null, roles);
 
             return token;
         }

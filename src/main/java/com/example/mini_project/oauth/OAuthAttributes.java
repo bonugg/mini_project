@@ -2,22 +2,25 @@ package com.example.mini_project.oauth;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Map;
 
 @Getter
+@ToString
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
-    private String name;
+    private String username;
     private String email;
     private String picture;
+    private String provider;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture){
+    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String username, String email, String picture){
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.picture = picture;
     }
@@ -32,7 +35,7 @@ public class OAuthAttributes {
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes){
         return OAuthAttributes.builder()
-                .name((String) attributes.get("name"))
+                .username((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
                 .attributes(attributes)
@@ -44,7 +47,7 @@ public class OAuthAttributes {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
         return OAuthAttributes.builder()
-                .name((String) response.get("name"))
+                .username((String) response.get("name"))
                 .email((String) response.get("email"))
                 .picture((String) response.get("profile_image"))
                 .attributes(response)
@@ -54,10 +57,15 @@ public class OAuthAttributes {
 
     public User toEntity(){
         return User.builder()
-                .name(name)
+                .username(username)
                 .email(email)
                 .picture(picture)
+                .provider(provider)
                 .role(Role.USER)
                 .build();
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 }

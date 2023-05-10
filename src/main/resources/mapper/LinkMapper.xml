@@ -5,12 +5,12 @@
     <select id="getLinkList" resultType="com.example.mini_project.link.LinkTable">
         SELECT *
         FROM T_LINK
-        WHERE ID= #{id}
+        WHERE email= #{email}
     </select>
     <!-- 링크추가 -->
     <insert id="addLink" parameterType="com.example.mini_project.link.LinkTable">
-        INSERT INTO T_LINK(LINK, TITLE, CONTENTS, IMAGE, ID)
-        VALUES (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE}, #{ID})
+        INSERT INTO T_LINK(LINK, TITLE, CONTENTS, IMAGE, EMAIL)
+        VALUES (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE}, #{EMAIL})
     </insert>
     <delete id="delLink" parameterType="int">
         DELETE FROM T_LINK WHERE LID=#{LID}

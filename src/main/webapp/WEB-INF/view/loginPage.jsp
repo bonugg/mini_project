@@ -51,7 +51,7 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
             <div class="div_inner">
-                <input type="text" name="id" placeholder="아이디"/>
+                <input type="text" name="email" placeholder="아이디"/>
             </div>
             <div class="div_inner" style="margin-bottom: 15px">
                 <input type="password" name="password" placeholder="비밀번호"/>
