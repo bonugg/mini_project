@@ -10,12 +10,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated();
 
         http
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")    // GET 요청
                 .loginProcessingUrl("/auth")    // POST 요청
                 .usernameParameter("id")
@@ -23,10 +23,10 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/");
 
         http
-            .logout()
+                .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/");
 
         return http.build();
     }
- }
+}

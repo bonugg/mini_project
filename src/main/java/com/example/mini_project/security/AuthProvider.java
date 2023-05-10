@@ -32,7 +32,7 @@ public class AuthProvider implements AuthenticationProvider {
 
         if (userVo != null && passwordEncoder.matches(password, userVo.getPassword())) { // 일치하는 user 정보가 있는지 확인
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("ROLE_ USER")); // 권한 부여
+            roles.add(new SimpleGrantedAuthority("ROLE_USER")); // 권한 부여
 
             token = new UsernamePasswordAuthenticationToken(userVo.getId(), null, roles);
 //            userVo.setPassword(null);
