@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Home</title>
     <style>
         body {
             font-size: 0px;
@@ -22,7 +22,7 @@
             margin-top: 50px;
             border-spacing: 0px;
             border-radius: 10px;
-            box-shadow: 5px 5px 5px 5px black;
+            box-shadow: 1px 1px 5px 2px black;
             width: 570px;
             table-layout: fixed;
         }
@@ -33,7 +33,7 @@
             padding: 10px;
             font-size: 16px;
             font-family: sans-serif;
-            border-radius: 20px;
+            border-radius: 10px;
             width: 20%;
             height: 30px;
         }
@@ -42,7 +42,7 @@
             background-color: #000;
             color: #fff;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             height: 50px;
             width:100px;
             margin-left:20px;
@@ -109,53 +109,59 @@
             cursor: pointer;
             border: none;
             color: #fff;
-            font-weight: bold;
             background-color:black;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 5px;
             font-family: sans-serif;
             padding: 10px;
             float: right;
-            margin-right: 1%;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-    <h3>${user.username}님 환영합니다</h3>
+<h3>${user.username}님 환영합니다</h3>
 
-    <button type="button" onclick="location.href='update'" class="user_btn">수정하기</button>
+<c:if test="${user.name != null}">
+    <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
+</c:if>
 
-    <form action="/logout" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <button type="submit" class="user_btn">로그아웃</button>
-    </form>
-
+<c:if test="${user.name != null}">
     <form action="/delete" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <button type="submit" class="user_btn">탈퇴하기</button>
     </form>
-    <h3>&nbsp;</h3>
-    <div align="center">
-        <form action="/add" method="post">
-            <input type="text" name="LINK" placeholder="link">
-            <input type="hidden" name="EMAIL" value="${user.email}" >
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-            <input type="submit" value="ADD">
-        </form>
-    </div>
+</c:if>
 
-    <c:forEach var="item" items="${linkList}">
-        <table align="center" border="1" onClick="window.open('${item.LINK}')" style="cursor:pointer;">
-            <tr>
-                <td rowspan="2" class="img_td"><img src="${item.IMAGE}" class="img_list"/></td>
-                <td class="title_td">${item.TITLE}</td>
-                <td rowspan="2" class="del_td"><button onclick="deleteID('${item.LID}')" class="del_button">DEL</button></td>
-            </tr>
-            <tr>
-                <td class="contents_td">${item.CONTENTS}</td>
-            </tr>
-        </table>
-    </c:forEach>
+<form action="/logout" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <button type="submit" class="user_btn">로그아웃</button>
+</form>
+
+
+
+<h3>&nbsp;</h3>
+<div align="center">
+    <form action="/add" method="post">
+        <input type="text" name="LINK" placeholder="link">
+        <input type="hidden" name="NO" value="${user.no}" >
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <input type="submit" value="ADD">
+    </form>
+</div>
+
+<c:forEach var="item" items="${linkList}">
+    <table align="center" border="1" onClick="window.open('${item.LINK}')" style="cursor:pointer;">
+        <tr>
+            <td rowspan="2" class="img_td"><img src="${item.IMAGE}" class="img_list"/></td>
+            <td class="title_td">${item.TITLE}</td>
+            <td rowspan="2" class="del_td"><button onclick="deleteID('${item.LID}')" class="del_button">DEL</button></td>
+        </tr>
+        <tr>
+            <td class="contents_td">${item.CONTENTS}</td>
+        </tr>
+    </table>
+</c:forEach>
 
 </body>
 <script>

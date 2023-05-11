@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mini_project.mapper.LinkMapper">
     <!-- Link 테이블 가져오기 -->
-    <select id="getLinkList" resultType="com.example.mini_project.links.LinkTable">
+    <select id="getLinkList" resultType="com.example.mini_project.link_user.LinkTable">
         SELECT *
         FROM T_LINK
-        WHERE email= #{email}
+        WHERE NO= #{no}
     </select>
     <!-- 링크추가 -->
-    <insert id="addLink" parameterType="com.example.mini_project.links.LinkTable">
-        INSERT INTO T_LINK(LINK, TITLE, CONTENTS, IMAGE, EMAIL)
-        VALUES (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE}, #{EMAIL})
+    <insert id="addLink" parameterType="com.example.mini_project.link_user.LinkTable">
+        INSERT INTO T_LINK(LINK, TITLE, CONTENTS, IMAGE, NO)
+        VALUES (#{LINK}, #{TITLE}, #{CONTENTS}, #{IMAGE}, #{NO})
     </insert>
     <delete id="delLink" parameterType="int">
         DELETE FROM T_LINK WHERE LID=#{LID}

@@ -8,14 +8,24 @@
     <title>Login</title>
     <style>
         .div_inner {
-            width: 320px;
-            height: 50px;
-            margin: auto;
-            margin-bottom: 30px;
+            width : 320px;
+            height : 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
         .div_outter {
-            text-align: center;
-            margin-top: 15%;
+            width :400px;
+            height : 450px;
+            background-color: #1c1c1c;
+            box-shadow: 1px 1px 5px 2px black;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         body {
             font-size:0px;
@@ -29,19 +39,21 @@
             padding: 10px;
             font-size: 16px;
             font-family: sans-serif;
-            border-radius: 20px;
-            width: 280px;
+            border-radius: 10px;
+            width: 220px;
             height: 27px;
+            margin-top: 3.7%;
         }
         button[type="submit"], button[type="button"] {
             font-family: sans-serif;
             background-color: #000;
             color: #fff;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             height: 40px;
-            width: 145px;
+            width: 115px;
             cursor:pointer;
+            margin-top: 1.5%;
         }
     </style>
 </head>
@@ -49,28 +61,33 @@
 <div class="div_outter">
     <form action="/auth" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="div_inner">
+            <input type="text" name="email" placeholder="아이디"/>
 
-            <div class="div_inner">
-                <input type="text" name="email" placeholder="아이디"/>
-            </div>
-            <div class="div_inner" style="margin-bottom: 15px">
-                <input type="password" name="password" placeholder="비밀번호"/>
-            </div>
+            <input type="password" name="password" placeholder="비밀번호" style="margin-bottom: 9px"/>
 
-        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-            <font color="red" style="font-size: 2px">
-                <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
-                <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
-            </font>
-        </c:if>
+            <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+                <font color="red" style="font-size: 2px">
+                    <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+                    <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+                </font>
+            </c:if>
 
-            <button type="submit" style="margin-top: 15px">로그인</button>
+            <button type="submit" style="margin-top: 9px">로그인</button>
             <button type="button" onclick="location.href='signup'" style="margin-left: 10px">회원가입</button>
-        <br><br>
+
+            <h3 style="font-size: 15px; margin-top: 20px;">OR</h3>
+
+            <a style="font-size: 15px" href="/oauth2/authorization/google" class="btn btn-success active" role="button">
+                <img src="https://ifh.cc/g/R1T8tk.png" alt="구글 로그인 이미지" width="245" height="55px" style="border-radius: 20px;"></a>
+            <a style="font-size: 15px" href="/oauth2/authorization/kakao" class="btn btn-success active" role="button">
+                <img src="https://i.ibb.co/gj6bLHT/kakao-login-medium-narrow-1.png" alt="kakao-login-medium-narrow-1" alt="카카오 로그인 이미지" width="238" height="48px"
+                     style="border-radius: 5px; margin-bottom: 3px"></a>
+            <a style="font-size: 15px" href="/oauth2/authorization/naver" class="btn btn-success active" role="button">
+                <img src="https://i.ibb.co/PYLVg85/btn-G-official.png" alt="kakao-login-medium-narrow-1" alt="네이버 로그인 이미지" width="238" height="48" style="border-radius: 5px;"></a>
+        </div>
     </form>
-    <div class="div_inner" style="margin-top: 30px">
-        <a style="font-size: 15px" href="/oauth2/authorization/google" class="btn btn-success active" role="button"><img src="https://ifh.cc/g/R1T8tk.png" alt="구글 로그인 이미지"></a>
-    </div>
+
 </div>
 </body>
 </html>

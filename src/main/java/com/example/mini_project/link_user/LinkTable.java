@@ -1,4 +1,4 @@
-package com.example.mini_project.links;
+package com.example.mini_project.link_user;
 
 import lombok.Data;
 import org.jsoup.Jsoup;
@@ -14,7 +14,7 @@ public class LinkTable {
     private String CONTENTS;
     private String IMAGE;
     private int LID;
-    private String EMAIL;
+    private long NO;
 
 
     public void link_rs(String link){

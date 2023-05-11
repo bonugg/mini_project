@@ -1,5 +1,6 @@
-package com.example.mini_project.oauth;
+package com.example.mini_project.link_user;
 
+import com.example.mini_project.oauth.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,11 +12,14 @@ import javax.persistence.*;
 @Entity
 @Table(name="T_MEMBER_LINK")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long no;
     @Column
     private String name;
     @Column(nullable = false)
     private String username;
-    @Id
+    @Column
     private String email;
     @Column
     private String password;

@@ -7,9 +7,24 @@
     <title>Sign Up</title>
     <style>
         .div_inner {
-            width: 320px;
-            height: 85px;
-            margin: auto;
+            width : 330px;
+            height : 515px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .div_outter {
+            width :400px;
+            height : 600px;
+            background-color: #1c1c1c;
+            box-shadow: 1px 1px 5px 2px black;
+            border-radius: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         h6{
             font-size: 1px;
@@ -27,65 +42,63 @@
             border: none;
             padding: 10px;
             font-family: sans-serif;
-            border-radius: 20px;
+            border-radius: 10px;
             width: 280px;
-            height: 27px;
+            height: 25px;
+            margin-bottom: 20px;
         }
         button[type="button"] {
             font-family: sans-serif;
             background-color: #000;
             color: #fff;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             height: 45px;
-            width: 140px;
+            width: 145px;
             cursor:pointer;
             margin-left: 10px;
+            margin-top: 10px;
         }
         button[disabled='disabled']{
             font-family: sans-serif;
             background-color: #000;
             color: #1c1c1c;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             height: 45px;
-            width: 140px;
+            width: 145px;
             cursor:default;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-<div style="text-align: center; margin-top: 8%">
+<div class="div_outter">
     <form action="/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         <div class="div_inner">
-            <input type="text" name="email" placeholder="이메일" style="width: 195px">
+            <input type="text" name="email" placeholder="이메일" style="width: 195px; margin-bottom: 0px">
             <button type="button" onclick= "buttonable()" style="width: 80px; margin-left: 5px;">체크</button>
-            <h6>5~10글자 사이 특수문자 불가능</h6>
-        </div>
-        <div class="div_inner">
-            <input type="password" name="password" placeholder="비밀번호"/>
-            <h6>8~13글자 사이 특수문자 포함</h6>
-        </div>
-        <div class="div_inner">
+            <h6 style="margin-bottom: 20px">5~10글자 사이 특수문자 불가능</h6>
+
+            <input type="password" name="password" placeholder="비밀번호" style="margin-bottom: 0px"/>
+            <h6 style="margin-bottom: 20px">8~13글자 사이 특수문자 포함</h6>
+
             <input type="text" name="name" placeholder="이름"/>
-        </div>
-        <div class="div_inner">
-            <input type="text" name="username" placeholder="닉네임"/>
-            <h6>2~6글자 사이 특수문자 불가능</h6>
-        </div>
-        <div class="div_inner">
+
+            <input type="text" name="username" placeholder="닉네임" style="margin-bottom: 0px"/>
+            <h6 style="margin-bottom: 20px">2~6글자 사이 특수문자 불가능</h6>
+
             <input type="text" name="address" placeholder="주소"/>
-        </div>
-        <div class="div_inner">
+
             <input type="text" name="phone" placeholder="번호"/>
-        </div>
+
             <input type="hidden" name="provider" value="linktree"/>
 
-        <div class="div_inner">
-        <button disabled="disabled" type="submit" id="signin" style="border: none;border-radius: 20px;height: 45px;width: 140px;">회원가입</button>
-        <button type="button" onclick="location.href='../..'">취소</button>
+
+            <button disabled="disabled" type="submit" id="signin" style="border: none;border-radius: 10px;height: 45px;width: 145px;">회원가입</button>
+            <button type="button" onclick="location.href='../..'">취소</button>
         </div>
     </form>
 </div>

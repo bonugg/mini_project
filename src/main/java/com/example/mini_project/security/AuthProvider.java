@@ -1,6 +1,6 @@
 package com.example.mini_project.security;
 
-import com.example.mini_project.oauth.User;
+import com.example.mini_project.link_user.User;
 import com.example.mini_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

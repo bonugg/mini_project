@@ -1,6 +1,6 @@
 package com.example.mini_project.controller;
 
-import com.example.mini_project.links.LinkTable;
+import com.example.mini_project.link_user.LinkTable;
 import com.example.mini_project.service.LinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

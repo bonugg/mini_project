@@ -1,8 +1,8 @@
 package com.example.mini_project.controller;
 
-import com.example.mini_project.links.LinkTable;
-import com.example.mini_project.oauth.SessionUser;
-import com.example.mini_project.oauth.User;
+import com.example.mini_project.link_user.LinkTable;
+import com.example.mini_project.link_user.SessionUser;
+import com.example.mini_project.link_user.User;
 import com.example.mini_project.service.LinkService;
 import com.example.mini_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +31,18 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-
         if( httpSession.getAttribute("user") == null){
             String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userService.getUserByEmail(email);
+            User user = userService.getUserByEmailAndProvider(email, "linktree");
             user.setPassword(null);
             model.addAttribute("user", user);
-            List<LinkTable> linkTableList = linkService.getLinkList(email);
+            List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
             model.addAttribute("linkList", linkTableList);
             return "home";
         }else {
             SessionUser user = (SessionUser) httpSession.getAttribute("user");
             model.addAttribute("user", user);
-            List<LinkTable> linkTableList = linkService.getLinkList(user.getEmail());
+            List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
             model.addAttribute("linkList", linkTableList);
             return "home";
         }
