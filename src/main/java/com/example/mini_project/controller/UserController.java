@@ -5,7 +5,6 @@ import com.example.mini_project.link_user.SessionUser;
 import com.example.mini_project.link_user.User;
 import com.example.mini_project.oauth.UserRepository;
 import com.example.mini_project.service.LinkService;
-import com.example.mini_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,7 +35,6 @@ public class UserController {
     public String home(Model model) { //로그인 성공 시 출력 페이지
         if( httpSession.getAttribute("user") == null){
             String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            System.out.println(email);
             User user = userRepository.findByEmailAndProvider(email, "linktree").get();
             user.setPassword(null);
             model.addAttribute("user", user);
