@@ -9,7 +9,7 @@
     <style>
         .div_inner {
             width : 320px;
-            height : 400px;
+            height : 580px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -18,7 +18,7 @@
         }
         .div_outter {
             width :400px;
-            height : 450px;
+            height : 630px;
             background-color: #1c1c1c;
             box-shadow: 1px 1px 5px 2px black;
             border-radius: 15px;
@@ -62,6 +62,8 @@
     <form action="/auth" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="div_inner">
+            <img src="https://i.ibb.co/QKJH7jN/Link-Tree.png
+            " style="width: 150px; height: 150px; border-radius: 100px; margin-bottom: 30px;">
             <input type="text" name="email" placeholder="아이디"/>
 
             <input type="password" name="password" placeholder="비밀번호" style="margin-bottom: 9px"/>

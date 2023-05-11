@@ -65,6 +65,9 @@
 <div class="div_outter">
     <form action="/update" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="hidden" name="no" value="${user.no}"/>
+        <input type="hidden" name="provider" value="${user.provider}"/>
+        <input type="hidden" name="role" value="${user.role}"/>
 
         <div class="div_inner">
             <h6>이름</h6>
