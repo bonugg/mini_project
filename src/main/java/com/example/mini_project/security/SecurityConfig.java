@@ -35,7 +35,9 @@ public class SecurityConfig {
         http
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);   
 
         http
                 .oauth2Login()
@@ -44,7 +46,7 @@ public class SecurityConfig {
                 .userInfoEndpoint() //로그인 성공 후 사용자정보를 가져옴
                 .userService(customOAuth2UserService) //사용자정보를 처리할 때 사용
                 .and()
-                .failureUrl("/")
+                .failureUrl("/login")
         ;
         return http.build();
     }

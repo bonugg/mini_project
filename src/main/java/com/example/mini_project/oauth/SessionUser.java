@@ -6,6 +6,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Getter
+@ToString
 public class SessionUser implements Serializable {
     private String username;
     private String email;

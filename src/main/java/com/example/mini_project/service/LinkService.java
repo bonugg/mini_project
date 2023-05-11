@@ -1,6 +1,6 @@
 package com.example.mini_project.service;
 
-import com.example.mini_project.link.LinkTable;
+import com.example.mini_project.links.LinkTable;
 import com.example.mini_project.mapper.LinkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

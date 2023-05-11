@@ -1,10 +1,10 @@
 package com.example.mini_project.controller;
 
-import com.example.mini_project.link.LinkTable;
+import com.example.mini_project.links.LinkTable;
 import com.example.mini_project.oauth.SessionUser;
+import com.example.mini_project.oauth.User;
 import com.example.mini_project.service.LinkService;
 import com.example.mini_project.service.UserService;
-import com.example.mini_project.oauth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -31,24 +31,22 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        if((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null){
+
+        if( httpSession.getAttribute("user") == null){
             String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            System.out.println(email);
             User user = userService.getUserByEmail(email);
             user.setPassword(null);
             model.addAttribute("user", user);
             List<LinkTable> linkTableList = linkService.getLinkList(email);
             model.addAttribute("linkList", linkTableList);
             return "home";
+        }else {
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            model.addAttribute("user", user);
+            List<LinkTable> linkTableList = linkService.getLinkList(user.getEmail());
+            model.addAttribute("linkList", linkTableList);
+            return "home";
         }
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        System.out.println(user.toString());
-        System.out.println(user.getEmail());
-        System.out.println(user.getUsername());
-        model.addAttribute("user", user);
-        List<LinkTable> linkTableList = linkService.getLinkList(user.getEmail());
-        model.addAttribute("linkList", linkTableList);
-        return "home";
     }
 
     @GetMapping("/userList")

@@ -1,4 +1,4 @@
-package com.example.mini_project.link;
+package com.example.mini_project.links;
 
 import lombok.Data;
 import org.jsoup.Jsoup;

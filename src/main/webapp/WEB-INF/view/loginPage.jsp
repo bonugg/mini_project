@@ -67,8 +67,10 @@
             <button type="submit" style="margin-top: 15px">로그인</button>
             <button type="button" onclick="location.href='signup'" style="margin-left: 10px">회원가입</button>
         <br><br>
-        <a style="font-size: 15px" href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
     </form>
+    <div class="div_inner" style="margin-top: 30px">
+        <a style="font-size: 15px" href="/oauth2/authorization/google" class="btn btn-success active" role="button"><img src="https://ifh.cc/g/R1T8tk.png" alt="구글 로그인 이미지"></a>
+    </div>
 </div>
 </body>
 </html>

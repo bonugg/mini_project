@@ -1,6 +1,6 @@
 package com.example.mini_project.mapper;
 
-import com.example.mini_project.link.LinkTable;
+import com.example.mini_project.links.LinkTable;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
