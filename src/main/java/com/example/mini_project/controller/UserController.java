@@ -15,11 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,8 +35,8 @@ public class UserController {
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
         if( httpSession.getAttribute("user") == null){
-            String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userRepository.findByEmailAndProvider(email, "linktree").get();
+            String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userRepository.findByIdAndProvider(id, "linktree").get();
             user.setPassword(null);
             model.addAttribute("user", user);
             List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
@@ -87,10 +88,19 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @ResponseBody
+    @RequestMapping(value="/idCheck", method=RequestMethod.POST)
+    public int IdCheck(@RequestBody String id) throws Exception {
+        int count = 0;
+        if(id != null)
+            count = userRepository.idCheck(id);
+        return count;
+    }
+
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userRepository.findByEmailAndProvider(email, "linktree").get();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByIdAndProvider(id, "linktree").get();
         user = userRepository.findById(user.getNo()).get();
         model.addAttribute("user", user);
         return "editPage";
@@ -98,8 +108,6 @@ public class UserController {
 
     @PostMapping("/update")
     public String edit(User user) { // 회원 정보 수정
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user.setEmail(email);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/";
@@ -107,8 +115,8 @@ public class UserController {
 
     @PostMapping("/delete")
     public String withdraw() { // 회원 탈퇴
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userRepository.findByEmailAndProvider(email, "linktree").get();
+        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByIdAndProvider(id, "linktree").get();
         userRepository.deleteById(user.getNo());
         SecurityContextHolder.clearContext();
         return "redirect:/";

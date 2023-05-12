@@ -21,14 +21,14 @@ public class SecurityConfig {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()
+                .antMatchers("/login", "/signup", "/idCheck").permitAll()
                 .anyRequest().authenticated();
 
         http
                 .formLogin()
                 .loginPage("/login")    // GET 요청
                 .loginProcessingUrl("/auth")    // POST 요청
-                .usernameParameter("email")
+                .usernameParameter("id")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/");
 

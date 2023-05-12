@@ -18,7 +18,8 @@ public class LinkService {
 
     public void addLink(LinkTable linkTable) { // 링크추가
         linkTable.link_rs(linkTable.getLINK());
-        linkMapper.addLink(linkTable);
+        if(!(linkTable.getLINK().equals("유효하지 않은 링크")))
+            linkMapper.addLink(linkTable);
     }
 
     public void delLink(int LID){

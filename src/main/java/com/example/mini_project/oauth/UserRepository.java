@@ -8,5 +8,8 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmailAndProvider(String email, String provider);
+    Optional<User> findByIdAndProvider(String id, String provider);
     Optional<User> findById(long id);
+    @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LINK T WHERE T.EMAIL = :email", nativeQuery = true)
+    int idCheck(String email);
 }

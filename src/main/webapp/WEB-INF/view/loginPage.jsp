@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="ko">
@@ -28,7 +29,7 @@
             transform: translate(-50%, -50%);
         }
         body {
-            font-size:0px;
+            font-size:0;
             background-color: #1c1c1c;
             color: #fff;
         }
@@ -40,8 +41,8 @@
             font-size: 16px;
             font-family: sans-serif;
             border-radius: 10px;
-            width: 220px;
-            height: 27px;
+            width: 237px;
+            height: 40px;
             margin-top: 3.7%;
         }
         button[type="submit"], button[type="button"] {
@@ -55,6 +56,10 @@
             cursor:pointer;
             margin-top: 1.5%;
         }
+        button[type="submit"]:hover, button[type="button"]:hover{
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +69,7 @@
         <div class="div_inner">
             <img src="https://i.ibb.co/QKJH7jN/Link-Tree.png
             " style="width: 150px; height: 150px; border-radius: 100px; margin-bottom: 30px;">
-            <input type="text" name="email" placeholder="아이디"/>
+            <input type="text" name="id" placeholder="아이디"/>
 
             <input type="password" name="password" placeholder="비밀번호" style="margin-bottom: 9px"/>
 

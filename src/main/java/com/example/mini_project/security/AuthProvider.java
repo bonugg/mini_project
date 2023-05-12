@@ -26,18 +26,18 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         try {
-            String email = (String) authentication.getPrincipal(); // 로그인 창에 입력한 email
+            String id = (String) authentication.getPrincipal(); // 로그인 창에 입력한 id
             String password = (String) authentication.getCredentials(); // 로그인 창에 입력한 password
 
             PasswordEncoder passwordEncoder = passwordEncoder();
             UsernamePasswordAuthenticationToken token;
-            User user = userRepository.findByEmailAndProvider(email, "linktree").get();
+            User user = userRepository.findByIdAndProvider(id, "linktree").get();
 
             if (user != null && passwordEncoder.matches(password, user.getPassword())) { // 일치하는 user 정보가 있는지 확인
                 List<GrantedAuthority> roles = new ArrayList<>();
                 roles.add(new SimpleGrantedAuthority("ROLE_USER")); // 권한 부여
 
-                token = new UsernamePasswordAuthenticationToken(user.getEmail(), null, roles);
+                token = new UsernamePasswordAuthenticationToken(user.getId(), null, roles);
 
                 return token;
             }

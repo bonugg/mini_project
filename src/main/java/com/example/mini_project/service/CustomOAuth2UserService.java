@@ -30,10 +30,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         String registratrionId = userRequest.getClientRegistration().getRegistrationId();
+        //구글or카카오or네이버 텍스트 추출
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
-
         OAuthAttributes attributes = OAuthAttributes.of(registratrionId, userNameAttributeName, oAuth2User.getAttributes());
         attributes.setProvider(registratrionId);
+        //provider를 추출한 텍스트로 세팅
 
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user));
