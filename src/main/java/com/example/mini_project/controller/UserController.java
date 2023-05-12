@@ -89,7 +89,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/idCheck", method=RequestMethod.POST)
+    @RequestMapping(value="/idCheck", method=RequestMethod.POST) //아이디 중복체크
     public int IdCheck(@RequestBody String id) throws Exception {
         int count = 0;
         if(id != null)
@@ -101,6 +101,7 @@ public class UserController {
     public String editPage(Model model) { // 회원 정보 수정 페이지
         String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepository.findByIdAndProvider(id, "linktree").get();
+        System.out.println(userRepository.findById(user.getNo()).get());
         user = userRepository.findById(user.getNo()).get();
         model.addAttribute("user", user);
         return "editPage";
@@ -120,5 +121,30 @@ public class UserController {
         userRepository.deleteById(user.getNo());
         SecurityContextHolder.clearContext();
         return "redirect:/";
+    }
+
+    @GetMapping("/user_search")
+    public String userSearchPage(long no, String username, Model model) { // 검색 리스트 출력 페이지
+
+        User user = userRepository.findById(no).get();
+        user.setPassword(null);
+        model.addAttribute("user", user);
+
+        List<User> userList = userRepository.findByUsernameContaining(username);
+        model.addAttribute("userList", userList);
+        return "search";
+    }
+
+    @GetMapping("/user_link")
+    public String showUserLink(@RequestParam("no") long no,@RequestParam("uno") long uno, Model model){
+        User user = userRepository.findById(uno).get();
+        user.setPassword(null);
+        model.addAttribute("user", user);
+        System.out.println(user);
+
+        List<LinkTable> linkTableList = linkService.getLinkList(no);
+        model.addAttribute("linkList", linkTableList);
+        System.out.println(linkTableList);
+        return "showUserLink";
     }
 }
