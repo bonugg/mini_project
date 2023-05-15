@@ -4,6 +4,7 @@ import com.example.mini_project.link_user.LinkTable;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface LinkMapper {
@@ -12,4 +13,6 @@ public interface LinkMapper {
     void addLink(LinkTable linkTable); // 링크 추가
 
     void delLink(int LID); // 링크 삭제
+
+    List<Map<String, Object>>autocomplete(Map<String, Object> paramMap) throws Exception;
 }

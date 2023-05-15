@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,9 +12,7 @@
     <style>
         body {
             margin: 0;
-            font-size: 0px;
             background-color: #1c1c1c;
-            color: #fff;
         }
 
         td {
@@ -241,7 +242,8 @@
                     <tr>
                         <form class="search-form" action="/user_search" method="get">
                             <input type="hidden" name="no" value="${user.no}">
-                            <td style="background-color: #000;"><input class="search-input" type="text" name="username" placeholder="유저를 검색하세요"></td>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <td style="background-color: #000;"><input class="search-input" type="text" name="username" id="autoComplete" placeholder="유저를 검색하세요"></td>
                             <td style="background-color: #000;"><button class="search-btn" type="submit">S</button></td>
                         </form>
                     </tr>
@@ -263,14 +265,10 @@
             <button type="submit" class="user_btn">로그아웃</button>
         </form>
             </span>
-
         </ul>
-
     </nav>
-
 </header>
-<h3>&nbsp;</h3>
-<div style="margin-top: 100px; text-align: center;">
+<div style="margin-top: 40px; text-align: center;">
     <form action="/add" method="post">
         <input type="text" name="LINK" placeholder="link" class="input_link">
         <input type="hidden" name="NO" value="${user.no}">
@@ -300,5 +298,41 @@
         console.log(LID)
         location.href = "/delete_link?LID=" + LID;
     }
+
+    $('#autoComplete').autocomplete({
+        source : function(request, response) { //source: 입력시 보일 목록
+            $.ajax({
+                url : "/get/test"
+                , type : "POST"
+                , dataType: "JSON"
+                , data : {value: request.term}	// 검색 키워드
+                , success : function(data){ 	// 성공
+                    response(
+                        $.map(data.resultList, function(item) {
+                            return {
+                                label : item.USERNAME    	// 목록에 표시되는 값
+                                , value : item.USERNAME 		// 선택 시 input창에 표시되는 값
+                                , idx : item.NO // index
+                            };
+                        })
+                    );    //response
+                }
+                ,error : function(){ //실패
+                    alert("오류가 발생했습니다.");
+                }
+            });
+        }
+        ,focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌
+            return false;
+        }
+        ,minLength: 1// 최소 글자수
+        ,autoFocus : true // true == 첫 번째 항목에 자동으로 초점이 맞춰짐
+        ,delay: 100	//autocomplete 딜레이 시간(ms)
+        ,select : function(evt, ui) {
+            // 아이템 선택시 실행 ui.item 이 선택된 항목을 나타내는 객체, lavel/value/idx를 가짐
+            console.log(ui.item.label);
+            console.log(ui.item.idx);
+        }
+    });
 </script>
 </html>

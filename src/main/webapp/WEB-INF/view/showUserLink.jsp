@@ -15,6 +15,7 @@
         }
 
         td {
+            background-color: white;
             border-left: none;
             border-right: none;
             border-top: none;
@@ -22,11 +23,24 @@
         }
 
         table {
-            margin-top: 50px;
+            margin-top: 40px;
             border-spacing: 0px;
             border-radius: 10px;
             box-shadow: 1px 1px 5px 2px black;
-            width: 300px;
+            width: 570px;
+            table-layout: fixed;
+        }
+
+        .input_link {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            font-family: sans-serif;
+            border-radius: 10px;
+            width: 20%;
+            height: 45px;
         }
 
         span {
@@ -54,26 +68,44 @@
         .img_list {
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
         }
 
         .img_td {
             border-bottom-left-radius: 10px;
-            border-top-left-radius: 10px;
-            background-color: #333;
+            border-top-left-radius: 10px
         }
 
-        .username_td {
-            width: 250px;
-            color: white;
+        .title_td {
+            background-color: white;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 350px;
+            color: black;
             font-size: 15px;
             font-weight: bold;
             text-align: center;
-            padding: 10px;
+            padding: 10px
+        }
+
+        .del_td {
             border-bottom-right-radius: 10px;
             border-top-right-radius: 10px;
-            background-color: #333;
+            padding: 10px;
+            width: 50px;
+        }
+
+        .contents_td {
+            color: black;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 350px;
+            font-size: 5px;
+            vertical-align: top;
+            padding: 10px
         }
 
         input[type="submit"] {
@@ -88,6 +120,18 @@
             cursor: pointer;
         }
 
+        .del_button {
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: sans-serif;
+            padding: 10px;
+            box-shadow: 2px 2px gray;
+        }
+
         .user_btn {
             cursor: pointer;
             border: none;
@@ -97,12 +141,17 @@
             font-size: 5px;
             font-family: sans-serif;
             padding: 7px;
+
             margin-left: 5px;
         }
 
         input[type="submit"]:hover {
             background-color: white;
             color: black;
+        }
+
+        .del_button:hover {
+            background-color: #3c3c3c;
         }
 
         .user_btn:hover {
@@ -143,7 +192,6 @@
         nav a:hover {
             color: #ccc;
         }
-
         /* 검색창 스타일링 */
         .search-form {
             margin-left: auto;
@@ -189,12 +237,13 @@
         <ul>
             <li><a href="/">LINK TREE</a></li>
             <span class="span_search">
-                <table border="1" style="width: 100px; margin-top: -4px;">
+                 <table border="1" style="width: 100px; margin-top: -4px; table-layout: auto">
                     <tr>
                         <form class="search-form" action="/user_search" method="get">
                             <input type="hidden" name="no" value="${user.no}">
-                            <td><input class="search-input" type="text" name="username" placeholder="유저를 검색하세요"></td>
-                            <td><button class="search-btn" type="submit">S</button></td>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <td style="background-color: #000;"><input class="search-input" type="text" name="username" placeholder="유저를 검색하세요"></td>
+                            <td style="background-color: #000;"><button class="search-btn" type="submit">S</button></td>
                         </form>
                     </tr>
                 </table>
@@ -221,21 +270,27 @@
     </nav>
 
 </header>
+<h3>&nbsp;</h3>
 
-<c:forEach var="item" items="${userList}">
-    <table border="1" align="center" onclick="showUserList('${item.no}', '${user.no}')">
+<c:forEach var="item" items="${linkList}">
+    <table align="center" border="1" onClick="window.open('${item.LINK}')" style="cursor:pointer;">
         <tr>
-            <td class="img_td"><img src="${item.picture}" class="img_list"/></td>
-            <td class="username_td">${item.username}</td>
+            <td rowspan="2" class="img_td"><img src="${item.IMAGE}" class="img_list"/></td>
+            <td class="title_td">${item.TITLE}</td>
+            <td rowspan="2" class="del_td">
+                <button onclick="myLinkAdd('${item.LINK}', '${item.NO}', '${user.no}')" class="del_button">my link</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="contents_td">${item.CONTENTS}</td>
         </tr>
     </table>
 </c:forEach>
+
 </body>
 <script>
-    const showUserList = (no, uno) => {
-        console.log(no);
-        console.log(uno);
-        location.href = "/user_link?no=" + no +"&uno="+ uno;
+    const myLinkAdd = (LINK ,no, uno) => {
+        location.href = "/myLinkAdd?LINK=" + LINK + "&no=" + no + "&uno=" + uno;
     }
 </script>
 </html>

@@ -15,4 +15,11 @@
     <delete id="delLink" parameterType="int">
         DELETE FROM T_LINK WHERE LID=#{LID}
     </delete>
+    <select id="autocomplete" parameterType="map" resultType="map">
+        SELECT
+            NO
+             ,USERNAME
+        FROM T_MEMBER_LINK
+        WHERE USERNAME LIKE  '%'|| #{value} || '%'
+    </select>
 </mapper>

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        if( httpSession.getAttribute("user") == null){
+        if (httpSession.getAttribute("user") == null) {
             String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = userRepository.findByIdAndProvider(id, "linktree").get();
             user.setPassword(null);
@@ -42,7 +43,7 @@ public class UserController {
             List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
             model.addAttribute("linkList", linkTableList);
             return "home";
-        }else {
+        } else {
             SessionUser user = (SessionUser) httpSession.getAttribute("user");
             model.addAttribute("user", user);
             List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
@@ -89,10 +90,10 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/idCheck", method=RequestMethod.POST) //아이디 중복체크
+    @RequestMapping(value = "/idCheck", method = RequestMethod.POST) //아이디 중복체크
     public int IdCheck(@RequestBody String id) throws Exception {
         int count = 0;
-        if(id != null)
+        if (id != null)
             count = userRepository.idCheck(id);
         return count;
     }
@@ -136,15 +137,23 @@ public class UserController {
     }
 
     @GetMapping("/user_link")
-    public String showUserLink(@RequestParam("no") long no,@RequestParam("uno") long uno, Model model){
+    public String showUserLink(@RequestParam("no") long no, @RequestParam("uno") long uno, Model model) {
+        if (no == uno) {
+            return "redirect:/";
+        }
         User user = userRepository.findById(uno).get();
         user.setPassword(null);
         model.addAttribute("user", user);
-        System.out.println(user);
 
         List<LinkTable> linkTableList = linkService.getLinkList(no);
         model.addAttribute("linkList", linkTableList);
-        System.out.println(linkTableList);
         return "showUserLink";
+    }
+
+    @RequestMapping(value = "/get/test")
+    public @ResponseBody Map<String, Object> autocomplete(@RequestParam Map<String, Object> paramMap) throws Exception {
+        List<Map<String, Object>> resultList = linkService.autocomplete(paramMap);
+        paramMap.put("resultList", resultList);
+        return paramMap;
     }
 }

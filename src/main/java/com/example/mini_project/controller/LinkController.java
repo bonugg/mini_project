@@ -28,5 +28,14 @@ public class LinkController {
         return "redirect:/";
     }
 
+    @GetMapping("/myLinkAdd")
+    public String myLinkAdd(@RequestParam("LINK") String LINK, @RequestParam("no") long no, @RequestParam("uno") long uno) {
+        LinkTable linkTable = new LinkTable();
+        linkTable.setNO(uno);
+        linkTable.setLINK(LINK);
+        linkService.addLink(linkTable);
+        return "redirect:/user_link?no="+no+"&uno="+uno;
+    }
+
 
 }
