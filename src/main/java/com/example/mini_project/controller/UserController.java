@@ -35,21 +35,11 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        if (httpSession.getAttribute("user") == null) {
-            String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userRepository.findByIdAndProvider(id, "linktree").get();
-            user.setPassword(null);
-            model.addAttribute("user", user);
-            List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
-            model.addAttribute("linkList", linkTableList);
-            return "home";
-        } else {
-            SessionUser user = (SessionUser) httpSession.getAttribute("user");
-            model.addAttribute("user", user);
-            List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
-            model.addAttribute("linkList", linkTableList);
-            return "home";
-        }
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
+        List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
+        model.addAttribute("linkList", linkTableList);
+        return "home";
     }
 
 //    @GetMapping("/userList")
@@ -100,10 +90,8 @@ public class UserController {
 
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userRepository.findByIdAndProvider(id, "linktree").get();
-        System.out.println(userRepository.findById(user.getNo()).get());
-        user = userRepository.findById(user.getNo()).get();
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        User user = userRepository.findById(sessionUser.getNo()).get();
         model.addAttribute("user", user);
         return "editPage";
     }
@@ -117,34 +105,28 @@ public class UserController {
 
     @PostMapping("/delete")
     public String withdraw() { // 회원 탈퇴
-        String id = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userRepository.findByIdAndProvider(id, "linktree").get();
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         userRepository.deleteById(user.getNo());
         SecurityContextHolder.clearContext();
         return "redirect:/";
     }
 
     @GetMapping("/user_search")
-    public String userSearchPage(long no, String username, Model model) { // 검색 리스트 출력 페이지
-
-        User user = userRepository.findById(no).get();
-        user.setPassword(null);
+    public String userSearchPage(String username, Model model) { // 검색 리스트 출력 페이지
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         model.addAttribute("user", user);
-
         List<User> userList = userRepository.findByUsernameContaining(username);
         model.addAttribute("userList", userList);
         return "search";
     }
 
     @GetMapping("/user_link")
-    public String showUserLink(@RequestParam("no") long no, @RequestParam("uno") long uno, Model model) {
-        if (no == uno) {
+    public String showUserLink(@RequestParam("no") long no, Model model) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if (user.getNo() == no) {
             return "redirect:/";
         }
-        User user = userRepository.findById(uno).get();
-        user.setPassword(null);
         model.addAttribute("user", user);
-
         List<LinkTable> linkTableList = linkService.getLinkList(no);
         model.addAttribute("linkList", linkTableList);
         return "showUserLink";

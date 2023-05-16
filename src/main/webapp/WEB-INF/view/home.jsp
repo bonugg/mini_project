@@ -241,7 +241,6 @@
                  <table border="1" style="width: 100px; margin-top: -4px; table-layout: auto">
                     <tr>
                         <form class="search-form" action="/user_search" method="get">
-                            <input type="hidden" name="no" value="${user.no}">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <td style="background-color: #000;"><input class="search-input" type="text" name="username" id="autoComplete" placeholder="유저를 검색하세요"></td>
                             <td style="background-color: #000;"><button class="search-btn" type="submit">S</button></td>

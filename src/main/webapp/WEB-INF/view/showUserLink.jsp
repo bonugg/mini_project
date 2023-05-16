@@ -240,7 +240,6 @@
                  <table border="1" style="width: 100px; margin-top: -4px; table-layout: auto">
                     <tr>
                         <form class="search-form" action="/user_search" method="get">
-                            <input type="hidden" name="no" value="${user.no}">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <td style="background-color: #000;"><input class="search-input" type="text" name="username" placeholder="유저를 검색하세요"></td>
                             <td style="background-color: #000;"><button class="search-btn" type="submit">S</button></td>
@@ -264,21 +263,16 @@
             <button type="submit" class="user_btn">로그아웃</button>
         </form>
             </span>
-
         </ul>
-
     </nav>
-
 </header>
-<h3>&nbsp;</h3>
-
 <c:forEach var="item" items="${linkList}">
     <table align="center" border="1" onClick="window.open('${item.LINK}')" style="cursor:pointer;">
         <tr>
             <td rowspan="2" class="img_td"><img src="${item.IMAGE}" class="img_list"/></td>
             <td class="title_td">${item.TITLE}</td>
             <td rowspan="2" class="del_td">
-                <button onclick="myLinkAdd('${item.LINK}', '${item.NO}', '${user.no}')" class="del_button">my link</button>
+                <button onclick="myLinkAdd('${item.LINK}','${item.NO}')" class="del_button">my link</button>
             </td>
         </tr>
         <tr>
@@ -289,8 +283,8 @@
 
 </body>
 <script>
-    const myLinkAdd = (LINK ,no, uno) => {
-        location.href = "/myLinkAdd?LINK=" + LINK + "&no=" + no + "&uno=" + uno;
+    const myLinkAdd = (LINK ,no) => {
+        location.href = "/myLinkAdd?LINK=" + LINK + "&no=" + no;
     }
 </script>
 </html>

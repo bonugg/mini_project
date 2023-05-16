@@ -192,7 +192,6 @@
                 <table border="1" style="width: 100px; margin-top: -4px;">
                     <tr>
                         <form class="search-form" action="/user_search" method="get">
-                            <input type="hidden" name="no" value="${user.no}">
                             <td><input class="search-input" type="text" name="username" placeholder="유저를 검색하세요"></td>
                             <td><button class="search-btn" type="submit">S</button></td>
                         </form>
@@ -215,15 +214,11 @@
             <button type="submit" class="user_btn">로그아웃</button>
         </form>
             </span>
-
         </ul>
-
     </nav>
-
 </header>
-
 <c:forEach var="item" items="${userList}">
-    <table border="1" align="center" onclick="showUserList('${item.no}', '${user.no}')">
+    <table border="1" align="center" onclick="showUserList('${item.no}')">
         <tr>
             <td class="img_td"><img src="${item.picture}" class="img_list"/></td>
             <td class="username_td">${item.username}</td>
@@ -232,10 +227,8 @@
 </c:forEach>
 </body>
 <script>
-    const showUserList = (no, uno) => {
-        console.log(no);
-        console.log(uno);
-        location.href = "/user_link?no=" + no +"&uno="+ uno;
+    const showUserList = (no) => {
+        location.href = "/user_link?no=" + no;
     }
 </script>
 </html>

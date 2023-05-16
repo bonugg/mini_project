@@ -1,8 +1,10 @@
 package com.example.mini_project.security;
 
+import com.example.mini_project.link_user.SessionUser;
 import com.example.mini_project.link_user.User;
 import com.example.mini_project.oauth.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,6 +24,8 @@ import java.util.NoSuchElementException;
 @Component
 @RequiredArgsConstructor
 public class AuthProvider implements AuthenticationProvider {
+    @Autowired
+    private HttpSession httpSession;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Override
@@ -38,6 +43,7 @@ public class AuthProvider implements AuthenticationProvider {
                 roles.add(new SimpleGrantedAuthority("ROLE_USER")); // 권한 부여
 
                 token = new UsernamePasswordAuthenticationToken(user.getId(), null, roles);
+                httpSession.setAttribute("user", new SessionUser(user));
 
                 return token;
             }
