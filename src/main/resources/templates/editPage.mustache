@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>정보수정</title>
+    <link rel="stylesheet" type="text/css" href="css/signin_edit_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+<div class="div_outter">
+    <div class="div_inner_2">
+        <form action="/update" method="post">
+            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+            <input type="hidden" name="no" value="{{user.no}}"/>
+            <input type="hidden" name="picture" value="https://i.ibb.co/FJ7qB94/2.png">
+            <input type="hidden" name="provider" value="{{user.provider}}"/>
+
+            <input class="input_text_passwd" style="color:gray;" type="text" readonly name="id" value="{{user.id}}"/>
+            <h6>아이디</h6>
+            <input class="input_text_passwd" style="color:gray;" type="text" readonly name="email" value="{{user.email}}"/>
+            <h6>이메일</h6>
+            <input class="input_text_passwd" style="color:gray;" type="text" readonly name="name" value="{{user.name}}"/>
+            <h6>이름</h6>
+            <input class="input_text_passwd" type="text" name="username" id="username" value="{{user.username}}" style="margin-bottom: 0px"/>
+            <h6 style="margin-bottom: 20px">닉네임<br>2~6글자 사이 특수문자 불가능</h6>
+            <input class="input_text_passwd" type="password" name="password" id="password" placeholder="비밀번호" style="margin-bottom: 0px"/>
+            <h6 style="margin-bottom: 20px">비밀번호<br>하나 이상의 영문, 숫자, 특수문자를 포함하는 8~20글자</h6>
+            <input class="input_text_passwd" type="text" name="address" value="{{#user.address}}{{user.address}}{{/user.address}}"/>
+            <h6>주소</h6>
+            <input class="input_text_passwd" type="text" name="phone" id="phone"value="{{user.phone}}"/>
+            <h6>번호</h6>
+        </form>
+        <button class="btn" type="button" id="submit" onclick="userModify()" style="margin-right: 10px">수정완료</button>
+        <button class="btn" type="button" onclick="location.href='../..'">취소</button>
+    </div>
+</div>
+<script src="js/edit.js"></script>
+</body>
+</html>

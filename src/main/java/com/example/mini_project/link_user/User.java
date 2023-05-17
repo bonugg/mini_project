@@ -1,13 +1,13 @@
 package com.example.mini_project.link_user;
 
 import com.example.mini_project.oauth.Role;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name="T_MEMBER_LINK")

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/header_style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">LINK TREE</a></li>
+            <span class="span_search">
+                 <table border="1" style="width: 100px; margin-top: -4px; table-layout: auto">
+                    <tr>
+                        <form class="search-form" action="/user_search" method="get">
+                            <td style="background-color: #000;"><input class="search-input" type="text" name="username" id="autoComplete" placeholder="유저를 검색하세요"></td>
+                            <td style="background-color: #000;"><button class="search-btn" type="submit">S</button></td>
+                        </form>
+                    </tr>
+                </table>
+                </span>
+            <span class="span_user">{{user.username}}님 환영합니다</span>
+            <span>
+                {{#user.name}}
+                    <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
+                {{/user.name}}
+            </span>
+            <span>
+                {{#user.name}}
+                    <form action="/delete" method="post">
+                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+                    <button type="submit" class="user_btn">탈퇴하기</button>
+                </form>
+                {{/user.name}}
+            </span>
+            <span>
+                <form action="/logout" method="post">
+                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+                    <button type="submit" class="user_btn">로그아웃</button>
+                </form>
+            </span>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

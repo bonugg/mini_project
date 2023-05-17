@@ -45,7 +45,6 @@ public class LinkTable {
                 if(CONTENTS.equals("") || CONTENTS.contains("<head>")){
                     CONTENTS = link;
                 }
-
                 if(IMAGE.equals("")){
                     IMAGE = doc.select("img[class]").attr("src");
                     if(LINK.contains("google.com")){
@@ -55,7 +54,13 @@ public class LinkTable {
                             IMAGE = "https://".concat(con).concat(".com").concat(doc.select("img").attr("src").substring(2));
                         }
                     }
+                    if(!(IMAGE.contains("https://")) && !(IMAGE.contains("http://"))){
+                        IMAGE ="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+                    }
                 }
+//                System.out.println(TITLE);
+//                System.out.println(CONTENTS);
+//                System.out.println(IMAGE);
             } catch (Exception e) {
                 TITLE = LINK;
                 IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";

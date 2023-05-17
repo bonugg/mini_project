@@ -1,8 +1,8 @@
 package com.example.mini_project.service;
 
-import com.example.mini_project.oauth.OAuthAttributes;
 import com.example.mini_project.link_user.SessionUser;
 import com.example.mini_project.link_user.User;
+import com.example.mini_project.oauth.OAuthAttributes;
 import com.example.mini_project.oauth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

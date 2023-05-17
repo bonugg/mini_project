@@ -1,20 +1,16 @@
 package com.example.mini_project.link_user;
 
-import com.example.mini_project.link_user.User;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.io.Serializable;
 
-@Getter
-@ToString
+@Data
 public class SessionUser implements Serializable {
     private long no;
     private String name;
     private String id;
     private String username;
     private String email;
-    private String password;
     private String address;
     private String phone;
     private String picture;

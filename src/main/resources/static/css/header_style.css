@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    background-color: #1c1c1c;
+}
+span {
+    font-family: sans-serif;
+    color: white;
+    font-size: 15px;
+    margin-top: 11.5px;
+}
+.span_user {
+    font-family: sans-serif;
+    color: white;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: auto;
+}
+.span_search {
+    font-family: sans-serif;
+    color: white;
+    margin-left: 30px;
+}
+input[type="submit"] {
+    font-family: sans-serif;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    width: 100px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.user_btn {
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+    font-size: 5px;
+    font-family: sans-serif;
+    padding: 7px;
+    margin-left: 5px;
+}
+input[type="submit"]:hover {
+    background-color: white;
+    color: black;
+}
+.user_btn:hover {
+    background-color: white;
+    color: black;
+}
+header {
+    background-color: black;
+    color: #fff;
+    padding: 7px;
+    height: 50px;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+nav li {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+nav a:hover {
+    color: #ccc;
+}
+/* 검색창 스타일링 */
+.search-form {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.search-input {
+    font-family: sans-serif;
+    background-color: white;
+    color: #000;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    font-family: sans-serif;
+    height: 10px;
+    width: 150px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.search-btn {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    height: 30px;
+    width: 40px;
+    font-size: 15px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.search-btn:hover {
+    background-color: #1c1c1c;
+    color: white;
+}

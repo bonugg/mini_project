@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="css/signin_edit_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+<div class="div_outter">
+    <div class="div_inner">
+        <form action="/signup" method="post">
+            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+            <input class="input_text_passwd" type="text" name="id" id="id" placeholder="아이디" style="width: 170px">
+            <button class="check_btn" type="button" onclick="idCheck()">체크</button>
+            <h6>하나 이상의 영문, 숫자를 포함하는 6~12글자</h6>
+
+            <input class="input_text_passwd" type="text" name="email" id="email" placeholder="이메일">
+
+            <input class="input_text_passwd" type="password" name="password" id="password" placeholder="비밀번호" style="margin-bottom: 0px"/>
+            <h6>하나 이상의 영문, 숫자, 특수문자를 포함하는 8~20글자</h6>
+
+            <input class="input_text_passwd" type="text" name="name" id="name" placeholder="이름"/>
+
+            <input class="input_text_passwd" type="text" name="username" id="username" placeholder="닉네임" style="margin-bottom: 0px"/>
+            <h6>2~6글자 사이 특수문자 불가능</h6>
+
+            <input class="input_text_passwd" type="text" name="address" placeholder="주소"/>
+
+            <input class="input_text_passwd" type="text" name="phone" id="phone" placeholder="번호"/>
+
+            <input type="hidden" name="picture" value="https://i.ibb.co/FJ7qB94/2.png">
+            <input type="hidden" name="provider" value="linktree"/>
+
+        </form>
+        <button class="btn" type="button" id="submit" disabled="disabled" onclick="registerCheck()" style="margin-right: 10px">회원가입</button>
+        <button class="btn" type="button" onclick="location.href='../..'">취소</button>
+    </div>
+</div>
+<script src="js/signin.js"></script>
+</body>
+</html>

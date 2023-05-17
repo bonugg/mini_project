@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background-color: #1c1c1c;
+}
+
+td {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+table {
+    cursor: pointer;
+    margin-top: 50px;
+    border-spacing: 0px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 2px black;
+    width: 300px;
+}
+.img_list {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+.img_td {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #333;
+}
+
+.username_td {
+    width: 250px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #333;
+}

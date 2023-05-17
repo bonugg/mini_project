@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>유저 링크보기</title>
+    <link rel="stylesheet" type="text/css" href="css/main_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+{{>header/header}}
+{{#linkList}}
+    <table align="center" border="1" onClick="window.open('{{LINK}}')">
+        <tr>
+            <td rowspan="2" class="img_td"><img src="{{IMAGE}}" class="img_list"/></td>
+            <td class="title_td">{{TITLE}}</td>
+            <td rowspan="2" class="del_td">
+                <button onclick="myLinkAdd('{{LINK}}','{{NO}}')" class="del_button">my link</button>
+            </td>
+        </tr>
+        <tr>
+            <td class="contents_td">{{CONTENTS}}</td>
+        </tr>
+    </table>
+{{/linkList}}
+<script src="js/main.js"></script>
+</body>
+</html>

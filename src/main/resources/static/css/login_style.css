@@ -1,0 +1,72 @@
+body {
+    font-size:0;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+h3{
+    font-size: 15px;
+}
+.div_outter {
+    width :400px;
+    height : 630px;
+    background-color: #1c1c1c;
+    box-shadow: 1px 1px 5px 2px black;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.div_inner {
+    width : 320px;
+    height : 545px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.input_text_passwd {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    width: 220px;
+    height: 20px;
+    margin-bottom: 8px;
+}
+.login_siginin_btn{
+    font-family: sans-serif;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 115px;
+    cursor:pointer;
+}
+.login_siginin_btn:hover{
+    background-color: white;
+    color: black;
+}
+.google_btn{
+    width: 245px;
+    height: 50px;
+    border-radius: 20px;
+    margin-bottom: 2px;
+}
+.kakao_btn{
+    width: 238px;
+    height: 45px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+}
+.naver_btn{
+    width: 238px;
+    height: 45px;
+    border-radius: 10px;
+}

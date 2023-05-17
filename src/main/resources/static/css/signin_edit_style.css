@@ -1,0 +1,92 @@
+body {
+    font-size:0;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+h6{
+    font-size: 1px;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.div_outter {
+    width :400px;
+    height : 670px;
+    background-color: #1c1c1c;
+    box-shadow: 1px 1px 5px 2px black;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.div_inner {
+    width : 300px;
+    height : 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.div_inner_2 {
+    width : 300px;
+    height : 640px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.input_text_passwd {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    width: 256px;
+    height: 20px;
+    margin-top: 10px;
+}
+.check_btn{
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 80px;
+    cursor:pointer;
+    margin-left: 5px;
+}
+.check_btn:hover{
+    background-color: white;
+    color: black;
+}
+.btn{
+    font-family: sans-serif;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    width: 135px;
+    cursor:pointer;
+    margin-top: 20px;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
+}
+button[disabled='disabled']{
+    font-family: sans-serif;
+    background-color: #000;
+    color: #1c1c1c;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    width: 135px;
+    cursor:default;
+    margin-top: 10px;
+    pointer-events: none;
+}

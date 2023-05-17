@@ -18,10 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,10 +34,11 @@ public class UserController {
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        user.setUsername(userRepository.findUsername(user.getNo()));
         model.addAttribute("user", user);
         List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
         model.addAttribute("linkList", linkTableList);
-        return "home";
+        return "mainPage";
     }
 
 //    @GetMapping("/userList")
@@ -91,8 +90,7 @@ public class UserController {
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        User user = userRepository.findById(sessionUser.getNo()).get();
-        model.addAttribute("user", user);
+        model.addAttribute("user", sessionUser);
         return "editPage";
     }
 
@@ -114,10 +112,11 @@ public class UserController {
     @GetMapping("/user_search")
     public String userSearchPage(String username, Model model) { // 검색 리스트 출력 페이지
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        user.setUsername(userRepository.findUsername(user.getNo()));
         model.addAttribute("user", user);
         List<User> userList = userRepository.findByUsernameContaining(username);
         model.addAttribute("userList", userList);
-        return "search";
+        return "searchPage";
     }
 
     @GetMapping("/user_link")
@@ -126,10 +125,11 @@ public class UserController {
         if (user.getNo() == no) {
             return "redirect:/";
         }
+        user.setUsername(userRepository.findUsername(user.getNo()));
         model.addAttribute("user", user);
         List<LinkTable> linkTableList = linkService.getLinkList(no);
         model.addAttribute("linkList", linkTableList);
-        return "showUserLink";
+        return "showUserLinkPage";
     }
 
     @RequestMapping(value = "/get/test")

@@ -17,10 +17,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                //csrf 제외
+                .csrf().ignoringAntMatchers("/idCheck", "/get/test")
+                .and()
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
+                // image 폴더를 login 없이 허용
+                .antMatchers("/images/**").permitAll()
+                // css 폴더를 login 없이 허용
+                .antMatchers("/css/**").permitAll()
+                // js 폴더를 login 없이 허용
+                .antMatchers("/js/**").permitAll()
                 .antMatchers("/login", "/signup", "/idCheck").permitAll()
                 .anyRequest().authenticated();
 
@@ -37,7 +45,7 @@ public class SecurityConfig {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);   
+                .invalidateHttpSession(true);
 
         http
                 .oauth2Login()
@@ -46,8 +54,7 @@ public class SecurityConfig {
                 .userInfoEndpoint() //로그인 성공 후 사용자정보를 가져옴
                 .userService(customOAuth2UserService) //사용자정보를 처리할 때 사용
                 .and()
-                .failureUrl("/login")
-        ;
+                .failureUrl("/login");
         return http.build();
     }
 }

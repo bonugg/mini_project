@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>유져검색</title>
+    <link rel="stylesheet" type="text/css" href="/css/search_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+{{>header/header}}
+{{#userList}}
+    <table border="1" align="center" onclick="showUserList('{{no}}')">
+        <tr>
+            <td class="img_td"><img src="{{picture}}" alt="유저 프로필 이미지뇆" class="img_list"/></td>
+            <td class="username_td">{{username}}</td>
+        </tr>
+    </table>
+{{/userList}}
+<script src="js/main.js"></script>
+</body>
+</html>
