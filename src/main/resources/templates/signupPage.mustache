@@ -6,12 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>회원가입</title>
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/signin_edit_style.css">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <body>
 <div class="div_outter">
     <div class="div_inner">
+        <img src="images/Link_Tree.png" alt="링크트리 아이콘" style="width:100px; height: 100px; border-radius: 100px; margin-bottom: 30px;">
         <form action="/signup" method="post">
             <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
             <input class="input_text_passwd" type="text" name="id" id="id" placeholder="아이디" style="width: 170px">

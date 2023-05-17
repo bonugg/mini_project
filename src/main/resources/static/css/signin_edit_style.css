@@ -1,19 +1,19 @@
 body {
     font-size:0;
-    background-color: #1c1c1c;
-    color: #fff;
+    background-color: whitesmoke;
 }
 h6{
     font-size: 1px;
     text-align: left;
     margin-left: 20px;
     margin-bottom: 10px;
+    color: gray;
 }
 .div_outter {
     width :400px;
     height : 670px;
-    background-color: #1c1c1c;
-    box-shadow: 1px 1px 5px 2px black;
+    background-color: white;
+    box-shadow: 1px 1px 5px 2px gainsboro;
     border-radius: 15px;
     position: absolute;
     top: 50%;
@@ -22,7 +22,7 @@ h6{
 }
 .div_inner {
     width : 300px;
-    height : 500px;
+    height : 630px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -39,9 +39,10 @@ h6{
     text-align: center;
 }
 .input_text_passwd {
-    background-color: #000;
-    color: #fff;
-    border: none;
+    background-color: whitesmoke;
+    color: black;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
     padding: 10px;
     font-family: sans-serif;
     border-radius: 10px;
@@ -50,8 +51,8 @@ h6{
     margin-top: 10px;
 }
 .check_btn{
-    background-color: #000;
-    color: #fff;
+    background-color: rgb(28, 18, 88);
+    color: white;
     border: none;
     border-radius: 10px;
     height: 40px;
@@ -60,13 +61,13 @@ h6{
     margin-left: 5px;
 }
 .check_btn:hover{
-    background-color: white;
-    color: black;
+    background-color: rgb(56, 43, 129);
+    color: white;
 }
 .btn{
     font-family: sans-serif;
-    background-color: #000;
-    color: #fff;
+    background-color: rgb(28, 18, 88);
+    color: white;
     border: none;
     border-radius: 10px;
     height: 45px;
@@ -75,13 +76,13 @@ h6{
     margin-top: 20px;
 }
 .btn:hover{
-    background-color: white;
-    color: black;
+    background-color: rgb(56, 43, 129);
+    color: white;
 }
 button[disabled='disabled']{
     font-family: sans-serif;
-    background-color: #000;
-    color: #1c1c1c;
+    background-color: rgb(19, 13, 58);
+    color: gray;
     border: none;
     border-radius: 10px;
     height: 45px;

@@ -5,16 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>링크트리</title>
     <link rel="stylesheet" type="text/css" href="css/main_style.css">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<body>
+<body">
 {{>header/header}}
 <div style="margin-top: 40px; text-align: center;">
     <form action="/add" method="post">
         <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-        <input type="text" name="LINK" placeholder="link" class="input_link">
+        <input type="text" name="LINK" placeholder="링크를 입력해주세요." class="input_link">
         <input type="hidden" name="NO" value="{{user.no}}">
         <input type="submit" value="ADD">
     </form>
