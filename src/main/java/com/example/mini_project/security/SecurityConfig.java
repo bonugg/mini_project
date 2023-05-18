@@ -1,5 +1,6 @@
 package com.example.mini_project.security;
 
+import com.example.mini_project.handler.LoginSuccessHandler;
 import com.example.mini_project.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,16 +30,17 @@ public class SecurityConfig {
                 .antMatchers("/css/**").permitAll()
                 // js 폴더를 login 없이 허용
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/login", "/signup", "/idCheck").permitAll()
+                .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck").permitAll()
                 .anyRequest().authenticated();
 
         http
                 .formLogin()
-                .loginPage("/login")    // GET 요청
+                .loginPage("/")    // GET 요청
+                .successHandler(new LoginSuccessHandler("/"))
+                .permitAll()
                 .loginProcessingUrl("/auth")    // POST 요청
                 .usernameParameter("id")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/");
+                .passwordParameter("password");
 
         http
                 .logout()
@@ -50,7 +52,8 @@ public class SecurityConfig {
         http
                 .oauth2Login()
                 .loginPage("/login")
-                .defaultSuccessUrl("/") // 로그인 성공 시 이동
+                .successHandler(new LoginSuccessHandler("/"))
+                .permitAll()
                 .userInfoEndpoint() //로그인 성공 후 사용자정보를 가져옴
                 .userService(customOAuth2UserService) //사용자정보를 처리할 때 사용
                 .and()

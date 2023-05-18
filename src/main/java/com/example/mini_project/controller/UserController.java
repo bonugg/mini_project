@@ -13,11 +13,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,12 +37,29 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
+        if(httpSession.getAttribute("user") != null){
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            user.setUsername(userRepository.findUsername_str(user.getNo()));
+            model.addAttribute("user", user);
+        }
+        List<LinkTable> linkTableList = linkService.getbestLinkList();
+        model.addAttribute("linkBestList", linkTableList);
+        List<LinkTable> linkTableList_2 = linkService.getdateLinkList();
+        for(int i = 0; i< linkTableList_2.size(); i++){
+            linkTableList_2.get(i).setUsername(userRepository.findByUsername(linkTableList_2.get(i).getNO()));
+        }
+        model.addAttribute("linkDateList", linkTableList_2);
+        return "homePage";
+    }
+
+    @GetMapping("/iduser_link")
+    public String showiduserlink(Model model) { //로그인 성공 시 출력 페이지
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        user.setUsername(userRepository.findUsername(user.getNo()));
+        user.setUsername(userRepository.findUsername_str(user.getNo()));
         model.addAttribute("user", user);
         List<LinkTable> linkTableList = linkService.getLinkList(user.getNo());
         model.addAttribute("linkList", linkTableList);
-        return "mainPage";
+        return "showIdUserLinkPage";
     }
 
 //    @GetMapping("/userList")
@@ -49,10 +70,13 @@ public class UserController {
 //    }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken)
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            String referrer = request.getHeader("Referer");
+            request.getSession().setAttribute("prevPage", referrer);
             return "loginPage";
+        }
         return "redirect:/";
     }
 
@@ -111,9 +135,11 @@ public class UserController {
 
     @GetMapping("/user_search")
     public String userSearchPage(String username, Model model) { // 검색 리스트 출력 페이지
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        user.setUsername(userRepository.findUsername(user.getNo()));
-        model.addAttribute("user", user);
+        if(httpSession.getAttribute("user") != null) {
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            user.setUsername(userRepository.findUsername_str(user.getNo()));
+            model.addAttribute("user", user);
+        }
         List<User> userList = userRepository.findByUsernameContaining(username);
         model.addAttribute("userList", userList);
         return "searchPage";
@@ -121,12 +147,14 @@ public class UserController {
 
     @GetMapping("/user_link")
     public String showUserLink(@RequestParam("no") long no, Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if (user.getNo() == no) {
-            return "redirect:/";
+        if(httpSession.getAttribute("user") != null) {
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            if (user.getNo() == no) {
+                return "redirect:/iduser_link";
+            }
+            user.setUsername(userRepository.findUsername_str(user.getNo()));
+            model.addAttribute("user", user);
         }
-        user.setUsername(userRepository.findUsername(user.getNo()));
-        model.addAttribute("user", user);
         List<LinkTable> linkTableList = linkService.getLinkList(no);
         model.addAttribute("linkList", linkTableList);
         return "showUserLinkPage";
@@ -134,7 +162,9 @@ public class UserController {
 
     @RequestMapping(value = "/get/test")
     public @ResponseBody Map<String, Object> autocomplete(@RequestParam Map<String, Object> paramMap) throws Exception {
+        System.out.println(paramMap);
         List<Map<String, Object>> resultList = linkService.autocomplete(paramMap);
+        System.out.println(resultList);
         paramMap.put("resultList", resultList);
         return paramMap;
     }

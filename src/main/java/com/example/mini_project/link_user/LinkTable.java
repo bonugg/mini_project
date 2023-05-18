@@ -15,6 +15,8 @@ public class LinkTable {
     private String IMAGE;
     private int LID;
     private long NO;
+    private String DATE;
+    private String username;
 
 
     public void link_rs(String link){
@@ -23,6 +25,7 @@ public class LinkTable {
 
         Pattern p = Pattern.compile(url);
         String con = "";
+        System.out.println(LINK);
 
         Matcher matcher = p.matcher(link); // 게시글 내용이 들어있는 변수 넣으세요
         if( matcher.find() ) {
@@ -38,9 +41,15 @@ public class LinkTable {
                 TITLE = doc.select("meta[property=og:title]").attr("content");  // 제목
                 CONTENTS = doc.select("meta[property=og:description]").attr("content"); // 내용
                 IMAGE = doc.select("meta[property=og:image]").attr("content"); // 이미지
+                System.out.println(TITLE);
+                System.out.println(CONTENTS);
+                System.out.println(IMAGE);
 
                 if (TITLE.equals("")) {
                     TITLE = doc.select("title").html();
+                    if(TITLE.equals("")) {
+                        TITLE=LINK;
+                    }
                 }
                 if(CONTENTS.equals("") || CONTENTS.contains("<head>")){
                     CONTENTS = link;

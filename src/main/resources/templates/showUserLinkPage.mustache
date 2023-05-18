@@ -18,7 +18,9 @@
             <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
             <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
             <td rowspan="2" class="del_td">
+                {{#user.username}}
                 <button onclick="myLinkAdd('{{LINK}}','{{NO}}')" class="del_button">my link</button>
+                {{/user.username}}
             </td>
         </tr>
         <tr>

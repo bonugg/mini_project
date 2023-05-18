@@ -28,6 +28,9 @@
             {{#user.username}}
             <span class="span_user">{{user.username}}님</span>
             <span>
+                <button type="button" onclick="location.href='iduser_link'" class="user_btn">내 링크보기</button>
+            </span>
+            <span>
                 {{#user.name}}
                     <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
                 {{/user.name}}
@@ -45,6 +48,16 @@
                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
                     <button type="submit" class="user_btn">로그아웃</button>
                 </form>
+            </span>
+            {{/user.username}}
+            {{^user.username}}
+                <span class="span_user">로그인해주세요.</span>
+                </span>
+                <span>
+                    <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
+                </span>
+                <span>
+                    <button type="button" onclick="location.href='signup'" class="user_btn">회원가입</button>
             </span>
             {{/user.username}}
         </ul>

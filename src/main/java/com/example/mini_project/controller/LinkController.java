@@ -25,23 +25,26 @@ public class LinkController {
             linkTable.setLINK("http://".concat(linkTable.getLINK()));
         }
         linkService.addLink(linkTable);
-        return "redirect:/";
+        return "redirect:/iduser_link";
     }
 
     @GetMapping("/delete_link")
     public String delLink(@RequestParam("LID") int LID){
         linkService.delLink(LID);
-        return "redirect:/";
+        return "redirect:/iduser_link";
     }
 
     @GetMapping("/myLinkAdd")
     public String myLinkAdd(@RequestParam("LINK") String LINK, @RequestParam("no") long no) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        LinkTable linkTable = new LinkTable();
-        linkTable.setNO(user.getNo());
-        linkTable.setLINK(LINK);
-        linkService.addLink(linkTable);
-        return "redirect:/user_link?no="+no;
+        if(httpSession.getAttribute("user") != null) {
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            LinkTable linkTable = new LinkTable();
+            linkTable.setNO(user.getNo());
+            linkTable.setLINK(LINK);
+            linkService.addLink(linkTable);
+            return "redirect:/user_link?no=" + no;
+        }else
+            return "/";
     }
 
 

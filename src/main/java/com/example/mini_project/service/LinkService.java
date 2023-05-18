@@ -17,6 +17,14 @@ public class LinkService {
         return linkMapper.getLinkList(no);
     } //링크리스트 출력
 
+    public List<LinkTable> getbestLinkList(){
+        return linkMapper.getbestLinkList();
+    }
+
+    public List<LinkTable> getdateLinkList(){
+        return linkMapper.getdateLinkList();
+    }
+
     public void addLink(LinkTable linkTable) { // 링크추가
         linkTable.link_rs(linkTable.getLINK());
         if(!(linkTable.getLINK().equals("유효하지 않은 링크")))

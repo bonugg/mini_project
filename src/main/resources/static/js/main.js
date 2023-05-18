@@ -28,6 +28,7 @@ $('#autoComplete').autocomplete({
                 ); //response
             }
             ,error : function(){ //실패
+                console.log("1")
                 alert("오류가 발생했습니다.");
             }
         });

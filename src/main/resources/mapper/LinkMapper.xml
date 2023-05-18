@@ -6,6 +6,33 @@
         SELECT *
         FROM T_LINK
         WHERE NO= #{no}
+        ORDER BY LID DESC
+    </select>
+    <select id="getbestLinkList" resultType="com.example.mini_project.link_user.LinkTable">
+        SELECT LINK,
+               TITLE,
+               CONTENTS,
+               IMAGE
+        FROM (
+                 SELECT T.LINK,
+                        T.TITLE,
+                        T.CONTENTS,
+                        T.IMAGE,
+                        COUNT(*) CT
+                 FROM T_LINK T
+                 GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
+                 ORDER BY CT DESC
+             )
+        WHERE ROWNUM <![CDATA[<=]]> 3
+    </select>
+    <select id="getdateLinkList" resultType="com.example.mini_project.link_user.LinkTable">
+        SELECT *
+        FROM (
+        SELECT *
+        FROM T_LINK T
+        ORDER BY T.ADDDATE DESC
+        )
+        WHERE ROWNUM <![CDATA[<=]]> 8
     </select>
     <!-- 링크추가 -->
     <insert id="addLink" parameterType="com.example.mini_project.link_user.LinkTable">
