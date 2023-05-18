@@ -16,10 +16,14 @@
         DELETE FROM T_LINK WHERE LID=#{LID}
     </delete>
     <select id="autocomplete" parameterType="map" resultType="map">
-        SELECT
+        SELECT A.*
+        FROM
+        (SELECT
             NO
              ,USERNAME
         FROM T_MEMBER_LINK
         WHERE USERNAME LIKE  '%'|| #{value} || '%'
+        ORDER BY USERNAME) A
+        WHERE ROWNUM <![CDATA[<=]]> 5
     </select>
 </mapper>

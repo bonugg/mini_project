@@ -1,18 +1,17 @@
 body {
     margin: 0;
     background-color: whitesmoke;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 .search_td{
     border-radius: 10px;
 }
 span {
-    font-family: sans-serif;
     color: white;
     font-size: 15px;
     margin-top: 11.5px;
 }
 .span_user {
-    font-family: sans-serif;
     color: black;
     font-size: 15px;
     font-weight: bold;
@@ -21,7 +20,6 @@ span {
     margin-left: auto;
 }
 .span_search {
-    font-family: sans-serif;
     color: white;
     margin-left: 30px;
     margin-top: 8px;
@@ -33,9 +31,9 @@ span {
     background-color: rgb(28, 18, 88);
     border-radius: 5px;
     font-size: 5px;
-    font-family: sans-serif;
     padding: 7px;
     margin-left: 5px;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 .user_btn:hover {
     background-color: rgb(56, 43, 129);
@@ -60,10 +58,11 @@ nav li {
     margin-left: 20px;
 }
 nav a {
+    font-family : fantasy;
     color: black;
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     text-transform: uppercase;
     padding-right: 10px;
     padding-left: 10px;
@@ -72,12 +71,11 @@ nav a:hover {
     color: #3c3c3c;
 }
 .search-input {
-    font-family: sans-serif;
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: whitesmoke;
     color: #000;
     padding: 10px;
     font-size: 12px;
-    font-family: sans-serif;
     height: 10px;
     width: 150px;
     border-bottom-left-radius: 10px;

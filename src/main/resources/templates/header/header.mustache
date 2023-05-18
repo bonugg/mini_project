@@ -6,6 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/header_style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
@@ -22,7 +25,8 @@
                     <button class="search-btn" type="submit">S</button>
                 </form>
             </span>
-            <span class="span_user">{{user.username}}님 환영합니다</span>
+            {{#user.username}}
+            <span class="span_user">{{user.username}}님</span>
             <span>
                 {{#user.name}}
                     <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
@@ -42,6 +46,7 @@
                     <button type="submit" class="user_btn">로그아웃</button>
                 </form>
             </span>
+            {{/user.username}}
         </ul>
     </nav>
 </header>

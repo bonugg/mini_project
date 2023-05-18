@@ -6,10 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>링크트리</title>
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/main_style.css">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<body">
+<body>
 {{>header/header}}
 <div style="margin-top: 40px; text-align: center;">
     <form action="/add" method="post">
@@ -20,16 +21,16 @@
     </form>
 </div>
 {{#linkList}}
-    <table align="center" border="1" onClick="window.open('{{LINK}}')">
+    <table align="center" border="1">
         <tr>
-            <td rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
-            <td class="title_td">{{TITLE}}</td>
+            <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
+            <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
             <td rowspan="2" class="del_td">
                 <button onclick="deleteID('{{LID}}')" class="del_button">DEL</button>
             </td>
         </tr>
         <tr>
-            <td class="contents_td">{{CONTENTS}}</td>
+            <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
         </tr>
     </table>
 {{/linkList}}

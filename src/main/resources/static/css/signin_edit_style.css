@@ -39,18 +39,19 @@ h6{
     text-align: center;
 }
 .input_text_passwd {
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: whitesmoke;
     color: black;
     border-width: 0px 0px 1px 0px;
     border-style: solid;
     padding: 10px;
-    font-family: sans-serif;
     border-radius: 10px;
     width: 256px;
     height: 20px;
     margin-top: 10px;
 }
 .check_btn{
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: rgb(28, 18, 88);
     color: white;
     border: none;
@@ -65,7 +66,7 @@ h6{
     color: white;
 }
 .btn{
-    font-family: sans-serif;
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: rgb(28, 18, 88);
     color: white;
     border: none;
@@ -80,7 +81,7 @@ h6{
     color: white;
 }
 button[disabled='disabled']{
-    font-family: sans-serif;
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: rgb(19, 13, 58);
     color: gray;
     border: none;
