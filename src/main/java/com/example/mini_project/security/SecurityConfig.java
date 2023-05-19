@@ -19,7 +19,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 //csrf 제외
-                .csrf().ignoringAntMatchers("/idCheck", "/get/test")
+                .csrf().ignoringAntMatchers("/idCheck", "/get/test", "/userlike", "/userdislike", "/likeshow")
                 .and()
                 .headers().frameOptions().disable()
                 .and()
@@ -40,7 +40,8 @@ public class SecurityConfig {
                 .permitAll()
                 .loginProcessingUrl("/auth")    // POST 요청
                 .usernameParameter("id")
-                .passwordParameter("password");
+                .passwordParameter("password")
+                .failureUrl("/login");
 
         http
                 .logout()

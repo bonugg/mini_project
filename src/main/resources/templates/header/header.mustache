@@ -18,47 +18,41 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/">LINK TREE</a></li>
-            <span class="span_search">
-                <form action="/user_search" method="get">
-                    <input class="search-input" type="text" name="username" id="autoComplete" placeholder="유저를 검색하세요">
-                    <button class="search-btn" type="submit">S</button>
+            <li id="li_linktree"><a href="/">LINK TREE</a></li>
+            <li id="li_search_form">
+                <form action="/user_search" method="get" id="search_form">
+                    <div id="div_search">
+                        <input class="search-input" type="text" name="username" id="autoComplete"
+                               placeholder="유저를 검색하세요"/>
+                        <button class="search-btn" type="submit">S</button>
+                    </div>
                 </form>
-            </span>
+            </li>
             {{#user.username}}
-            <span class="span_user">{{user.username}}님</span>
-            <span>
-                <button type="button" onclick="location.href='iduser_link'" class="user_btn">내 링크보기</button>
-            </span>
-            <span>
-                {{#user.name}}
-                    <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
-                {{/user.name}}
-            </span>
-            <span>
-                {{#user.name}}
-                    <form action="/delete" method="post">
-                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-                    <button type="submit" class="user_btn">탈퇴하기</button>
-                </form>
-                {{/user.name}}
-            </span>
-            <span>
-                <form action="/logout" method="post">
-                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-                    <button type="submit" class="user_btn">로그아웃</button>
-                </form>
-            </span>
+                <li class="li_text">
+                    <span class="a_text">{{user.username}}님</span>
+                    <button type="button" onclick="location.href='iduser_link'" class="user_btn">내 링크보기</button>
+                    {{#user.name}}
+                        <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
+                    {{/user.name}}
+                    {{#user.name}}
+                        <form action="/delete" method="post" class="li_btn_form">
+                            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+                            <button type="submit" class="user_btn">탈퇴하기</button>
+                        </form>
+                    {{/user.name}}
+
+                    <form action="/logout" method="post" class="li_btn_form">
+                        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+                        <button type="submit" class="user_btn">로그아웃</button>
+                    </form>
+                </li>
             {{/user.username}}
             {{^user.username}}
-                <span class="span_user">로그인해주세요.</span>
-                </span>
-                <span>
+                <li class="li_text"><span class="a_text">로그인해주세요</span>
                     <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
-                </span>
-                <span>
                     <button type="button" onclick="location.href='signup'" class="user_btn">회원가입</button>
-            </span>
+                </li>
             {{/user.username}}
         </ul>
     </nav>

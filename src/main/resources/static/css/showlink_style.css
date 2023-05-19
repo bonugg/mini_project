@@ -1,3 +1,6 @@
+body{
+    font-family: 'Gowun Dodum', sans-serif;
+}
 td {
     background-color: white;
     border-left: none;
@@ -8,11 +11,37 @@ td {
 table {
     cursor: pointer;
     border: 1px solid lightgray;
-    margin-top: 40px;
     border-spacing: 0px;
     border-radius: 10px;
-    width: 530px;
     table-layout: fixed;
+    margin: auto;
+    width: 100%;
+}
+#fullscreen{
+    width: 100vw;
+    height: 93vh;
+}
+#screen1{
+    width: 30%;
+    height: 400px;
+    margin: auto;
+}
+#screen1-1{
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#screen1-2{
+    width: 100%;
+    height: 120px;
+    float: left;
+}
+#screen2{
+    width: 80%;
+    height: 450px;
+    margin: 20px auto auto;
 }
 .input_link {
     font-family: 'Gowun Dodum', sans-serif;
@@ -32,10 +61,15 @@ table {
     width: 80px;
     height: 80px;
 }
-
+#img_picture {
+    border-radius: 100%;
+    max-width: 100px;
+    height: 100px;
+}
 .img_td {
     border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px
+    border-top-left-radius: 10px;
+    width: 80px;
 }
 
 .title_td {
@@ -43,19 +77,17 @@ table {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 350px;
     color: black;
     font-size: 15px;
     font-weight: bold;
     text-align: center;
-    padding: 10px
+    padding: 10px;
 }
-
 .del_td {
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     padding: 10px;
-    width: 50px;
+    width: 40px;
 }
 .contents_td {
     color: black;
@@ -97,4 +129,61 @@ input[type="submit"]:hover {
 .del_button:hover {
     background-color: rgb(56, 43, 129);
     color: white;
+}
+
+.like_button {
+    cursor: pointer;
+    color: black;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: sans-serif;
+    padding: 10px;
+    box-shadow: 2px 2px gray;
+    margin-left: 20px;
+}
+.like_button:hover {
+    background-color: rgb(56, 43, 129);
+    color: black;
+}
+.grid-container {
+    width: 100%;
+    display: grid;
+    grid: '. . .';
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 30px;
+    column-gap: 10px;
+}
+.item {
+    padding: 0px;
+}
+.user_txt{
+    text-align: left;
+    margin-left: 20px;
+    font-size: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#add_form{
+    text-align: center;
+}
+
+.test{
+    margin-left: 30px;
+}
+.likeon_img {
+    width: 30px;
+    height: 30px;
+    background-image: url("../images/likeon.png");
+    background-size: cover;
+    background-position: center center;
+}
+.likeoff_img {
+    width: 30px;
+    height: 30px;
+    background-image: url("../images/likeoff.png");
+    background-size: cover;
+    background-position: center center;
 }

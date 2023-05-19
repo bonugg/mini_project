@@ -3,6 +3,8 @@ package com.example.mini_project.controller;
 import com.example.mini_project.link_user.LinkTable;
 import com.example.mini_project.link_user.SessionUser;
 import com.example.mini_project.link_user.User;
+import com.example.mini_project.link_user.UserLike;
+import com.example.mini_project.oauth.UserLikeRepository;
 import com.example.mini_project.oauth.UserRepository;
 import com.example.mini_project.service.LinkService;
 import lombok.RequiredArgsConstructor;
@@ -33,11 +35,12 @@ public class UserController {
     @Autowired
     private HttpSession httpSession;
     private final UserRepository userRepository;
+    private final UserLikeRepository userLikeRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping("/")
     public String home(Model model) { //로그인 성공 시 출력 페이지
-        if(httpSession.getAttribute("user") != null){
+        if (httpSession.getAttribute("user") != null) {
             SessionUser user = (SessionUser) httpSession.getAttribute("user");
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
@@ -45,7 +48,7 @@ public class UserController {
         List<LinkTable> linkTableList = linkService.getbestLinkList();
         model.addAttribute("linkBestList", linkTableList);
         List<LinkTable> linkTableList_2 = linkService.getdateLinkList();
-        for(int i = 0; i< linkTableList_2.size(); i++){
+        for (int i = 0; i < linkTableList_2.size(); i++) {
             linkTableList_2.get(i).setUsername(userRepository.findByUsername(linkTableList_2.get(i).getNO()));
         }
         model.addAttribute("linkDateList", linkTableList_2);
@@ -53,7 +56,7 @@ public class UserController {
     }
 
     @GetMapping("/iduser_link")
-    public String showiduserlink(Model model) { //로그인 성공 시 출력 페이지
+    public String showiduserlink(Model model) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         user.setUsername(userRepository.findUsername_str(user.getNo()));
         model.addAttribute("user", user);
@@ -99,7 +102,7 @@ public class UserController {
             e.printStackTrace();
             return "redirect:/signup?error_code=-99";
         }
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @ResponseBody
@@ -108,6 +111,32 @@ public class UserController {
         int count = 0;
         if (id != null)
             count = userRepository.idCheck(id);
+        return count;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/userlike", method = RequestMethod.POST) //좋아요
+    public void userlike(@RequestParam("no") String no, @RequestParam("uno") String uno) throws Exception {
+        UserLike userLike = new UserLike();
+        userLike.setNouser(Long.parseLong(no));
+        userLike.setNolikeuser(Long.parseLong(uno));
+        userLikeRepository.save(userLike);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/userdislike", method = RequestMethod.POST) //좋아요
+    public void userdislike(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
+        UserLike userLike = new UserLike();
+        userLike.setUserlikeid(userLikeRepository.findByUserLikeId(uno, no));
+        userLike.setNouser(no);
+        userLike.setNolikeuser(uno);
+        userLikeRepository.delete(userLike);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/likeshow", method = RequestMethod.POST) //좋아요
+    public int likeshow(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
+        int count = 0;
+        count = userLikeRepository.LikeidCheck(uno, no);
         return count;
     }
 
@@ -135,7 +164,7 @@ public class UserController {
 
     @GetMapping("/user_search")
     public String userSearchPage(String username, Model model) { // 검색 리스트 출력 페이지
-        if(httpSession.getAttribute("user") != null) {
+        if (httpSession.getAttribute("user") != null) {
             SessionUser user = (SessionUser) httpSession.getAttribute("user");
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
@@ -147,7 +176,7 @@ public class UserController {
 
     @GetMapping("/user_link")
     public String showUserLink(@RequestParam("no") long no, Model model) {
-        if(httpSession.getAttribute("user") != null) {
+        if (httpSession.getAttribute("user") != null) {
             SessionUser user = (SessionUser) httpSession.getAttribute("user");
             if (user.getNo() == no) {
                 return "redirect:/iduser_link";
@@ -156,7 +185,13 @@ public class UserController {
             model.addAttribute("user", user);
         }
         List<LinkTable> linkTableList = linkService.getLinkList(no);
+        LinkTable linkTable = new LinkTable();
+        linkTable.setNO(no);
+        linkTable.setUsername(userRepository.findByUsername(no));
+        linkTable.setPicture(userRepository.findByPicture(no));
+
         model.addAttribute("linkList", linkTableList);
+        model.addAttribute("usernamePictureNo", linkTable);
         return "showUserLinkPage";
     }
 

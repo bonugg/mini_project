@@ -9,7 +9,7 @@ body{
 #screen1{
     width: 35%;
     height: 800px;
-    margin-top: 15px;
+    margin-top: 30px;
     margin-left: 40px;
     float: left;
 }
@@ -23,7 +23,7 @@ body{
     margin: auto;
     display: flex;
     justify-content: center;
-    border: 0px solid lightgray;
+    border: 0px solid #c8c8c8;
     border-bottom-width: 1px;
 }
 #screen1-1-2{
@@ -38,8 +38,8 @@ body{
 #screen2{
     width: 35%;
     height: 800px;
-    margin-top: 15px;
-    margin-left: 40px;
+    margin-top: 30px;
+    margin-left: 3px;
     float: left;
 }
 #screen2-1{
@@ -48,7 +48,7 @@ body{
     margin: auto;
     display: flex;
     justify-content: center;
-    border: 0px solid lightgray;
+    border: 0px solid #c8c8c8;
     border-bottom-width: 1px;
 }
 #screen2-2{
@@ -58,7 +58,8 @@ body{
 .span_text{
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 20px;
-    color: black;
+    color: #646464;
+    font-weight: bold;
     margin-left: fill;
 }
 td {

@@ -11,7 +11,7 @@
 //        String url = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 //
 //        Pattern p = Pattern.compile(url);
-//        String con = "http://naver.com";
+//        String con = "http://tistory.com";
 //        String TITLE = "";
 //        String CONTENTS = "";
 //        String IMAGE = "";
@@ -52,7 +52,9 @@
 //                    }
 //                }
 //                if (!(IMAGE.contains("https://")) && !(IMAGE.contains("http://"))) {
-//                    IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+//                    if(!(IMAGE.contains("tistory"))){
+//                        IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+//                    }
 //                }
 //                System.out.println(TITLE);
 //                System.out.println(CONTENTS);

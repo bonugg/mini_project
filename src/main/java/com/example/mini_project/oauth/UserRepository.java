@@ -13,6 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUsernameContaining(String username);
     @Query(value = "SELECT USERNAME FROM T_MEMBER_LINK T WHERE T.NO = :no", nativeQuery = true)
     String findByUsername(long no);
+    @Query(value = "SELECT PICTURE FROM T_MEMBER_LINK T WHERE T.NO = :no", nativeQuery = true)
+    String findByPicture(long no);
     @Query(value = "SELECT T.USERNAME FROM T_MEMBER_LINK T WHERE T.NO = :no", nativeQuery = true)
     String findUsername_str(long no);
     @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LINK T WHERE T.ID = :id", nativeQuery = true)

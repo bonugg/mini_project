@@ -7,27 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>유저 링크보기</title>
     <link rel="icon" href="/images/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/main_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/showlink_style.css">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <body>
 {{>header/header}}
-{{#linkList}}
-    <table align="center" border="1">
-        <tr>
-            <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
-            <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
-            <td rowspan="2" class="del_td">
-                {{#user.username}}
-                <button onclick="myLinkAdd('{{LINK}}','{{NO}}')" class="del_button">my link</button>
-                {{/user.username}}
-            </td>
-        </tr>
-        <tr>
-            <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
-        </tr>
-    </table>
-{{/linkList}}
+<div id="fullscreen">
+{{#usernamePictureNo}}
+    <div id="screen1">
+        <div id="screen1-1">
+            <img src="{{picture}}" id="img_picture">
+            <h2 class="user_txt">{{username}}님의 링크</h2>
+            <h2 class="user_txt" style="font-size: 10px">좋아요 : </h2>
+            {{#user.username}}
+                <input type="hidden" name="uno" id="uno" value="{{NO}}">
+                <input type="hidden" name="no" id="no" value="{{user.no}}">
+                <div class="test"></div>
+            {{/user.username}}
+        </div>
+    </div>
+    {{/usernamePictureNo}}
+    <div id="screen2">
+        <div class="grid-container">
+            {{#linkList}}
+                <div class="item">
+                    <table>
+                        <tr>
+                            <td rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
+                            <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
+                            <td rowspan="2" class="del_td">
+                                {{#user.username}}
+                                    <button onclick="myLinkAdd('{{LINK}}','{{NO}}')" class="del_button">my link</button>
+                                {{/user.username}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
+                        </tr>
+                    </table>
+                </div>
+            {{/linkList}}
+        </div>
+    </div>
+</div>
+<script src="js/like.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -5,11 +5,10 @@ td {
     border-bottom: none;
     background-color: white;
 }
-
 table {
     cursor: pointer;
     border: 1px solid lightgray;
-    margin-top: 50px;
+    margin-top: 10px;
     border-spacing: 0px;
     border-radius: 10px;
     width: 300px;
@@ -20,11 +19,17 @@ table {
     width: 80px;
     height: 80px;
 }
+img{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .img_td {
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
+
 
 .username_td {
     width: 250px;
@@ -32,6 +37,7 @@ table {
     font-size: 15px;
     text-align: center;
     padding: 10px;
+    font-weight: bold;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
 }

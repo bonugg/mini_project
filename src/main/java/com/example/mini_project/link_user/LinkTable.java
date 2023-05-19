@@ -17,6 +17,7 @@ public class LinkTable {
     private long NO;
     private String DATE;
     private String username;
+    private String picture;
 
 
     public void link_rs(String link){
@@ -65,7 +66,9 @@ public class LinkTable {
                     }
                 }
                 if(!(IMAGE.contains("https://")) && !(IMAGE.contains("http://"))){
-                    IMAGE ="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+                    if(!(IMAGE.contains("tistory"))){
+                        IMAGE = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930";
+                    }
                 }
                 System.out.println(TITLE);
                 System.out.println(CONTENTS);

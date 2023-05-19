@@ -4,6 +4,7 @@ import com.example.mini_project.oauth.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -36,6 +37,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column
     private Role role;
+    @Column
+    @ColumnDefault("0")
+    private long userlike;
 
     @Builder
     public User(String name, String id, String username, String email, String password, String address, String phone, String provider, String picture, Role role) {
