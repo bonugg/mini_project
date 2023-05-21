@@ -32,7 +32,7 @@
         FROM T_LINK T
         ORDER BY T.ADDDATE DESC
         )
-        WHERE ROWNUM <![CDATA[<=]]> 8
+        WHERE ROWNUM <![CDATA[<=]]> 7
     </select>
     <!-- 링크추가 -->
     <insert id="addLink" parameterType="com.example.mini_project.link_user.LinkTable">

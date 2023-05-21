@@ -71,30 +71,24 @@ td {
 }
 #table_best {
     cursor: pointer;
-    border: 1px solid lightgray;
     border-radius: 10px;
     border-spacing: 0px;
     width: 80%;
     table-layout: fixed;
-    margin: 10px auto auto;
 }
 #table_bestuser {
     cursor: pointer;
-    border: 1px solid lightgray;
     border-spacing: 0px;
     border-radius: 10px;
     width: 80%;
     table-layout: fixed;
-    margin: 10px auto auto;
 }
 #table_date {
     cursor: pointer;
-    border: 1px solid lightgray;
     border-spacing: 0px;
     border-radius: 10px;
     width: 80%;
     table-layout: fixed;
-    margin: 10px auto auto;
 }
 .img_list {
     border-top-left-radius: 10px;
