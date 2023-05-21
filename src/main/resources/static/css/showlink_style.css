@@ -169,9 +169,18 @@ input[type="submit"]:hover {
 #add_form{
     text-align: center;
 }
-
-.test{
-    margin-left: 30px;
+a2{
+    font-size: 11px;
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+}
+a3{
+    font-size: 11px;
+}
+.like{
+    margin-left: 15px;
+    cursor: pointer;;
 }
 .likeon_img {
     width: 30px;

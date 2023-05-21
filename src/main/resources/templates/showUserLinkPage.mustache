@@ -21,12 +21,14 @@
         <div id="screen1-1">
             <img src="{{picture}}" id="img_picture">
             <h2 class="user_txt">{{username}}님의 링크</h2>
-            <h2 class="user_txt" style="font-size: 10px">좋아요 : </h2>
-            {{#user.username}}
-                <input type="hidden" name="uno" id="uno" value="{{NO}}">
-                <input type="hidden" name="no" id="no" value="{{user.no}}">
-                <div class="test"></div>
-            {{/user.username}}
+                <a2>좋아요&nbsp;
+                    <a3 id="likeCount"></a3>
+                {{#user.username}}
+                    <input type="hidden" name="uno" id="uno" value="{{NO}}">
+                    <input type="hidden" name="no" id="no" value="{{user.no}}">
+                    <div class="like"></div>
+                {{/user.username}}
+                </a2>
         </div>
     </div>
     {{/usernamePictureNo}}

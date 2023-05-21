@@ -1,13 +1,16 @@
-//package com.example.mini_project.link_user;
-//
-//import org.jsoup.Jsoup;
-//import org.jsoup.nodes.Document;
-//
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
-//
-//public class linktest {
-//    public static void main(String[] args) {
+package com.example.mini_project.link_user;
+
+import com.example.mini_project.oauth.UserLikeRepository;
+import lombok.RequiredArgsConstructor;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class linktest {
+    public static void main(String[] args) {
+
 //        String url = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 //
 //        Pattern p = Pattern.compile(url);
@@ -67,5 +70,5 @@
 //        } else {
 //            con = "유효하지 않은 링크";
 //        }
-//    }
-//}
+    }
+}

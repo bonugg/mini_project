@@ -25,7 +25,7 @@
             </div>
             <div id="screen1-1-2">
                 {{#linkBestList}}
-                    <table align="center" border="1" id="table_best">
+                    <table id="table_best">
                         <tr>
                             <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
                             <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
@@ -44,6 +44,15 @@
                 </span>
             </div>
             <div id="screen1-1-2">
+                {{#bestUser}}
+                    <table id="table_bestuser" onclick="showUserList('{{no}}')">
+                        <tr>
+                            <td class="img_td"><img src="{{picture}}" alt="유저 프로필 이미지" class="img_list"/></td>
+                            <td id="bestuser_td">{{username}}</td>
+                            <td id="userlike_td">좋아요 {{userlike}}</td>
+                        </tr>
+                    </table>
+                {{/bestUser}}
             </div>
         </div>
     </div>
@@ -55,7 +64,7 @@
         </div>
         <div id="screen2-2">
             {{#linkDateList}}
-                <table align="center" border="1" id="table_date">
+                <table id="table_date">
                     <tr>
                         <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
                         <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>

@@ -1,34 +1,35 @@
-let test = document.querySelector(".test");
-
-let isOn = false;
+let like = document.querySelector(".like");
 const uno = $('#uno').val();
 const no = $('#no').val();
+let isOn = false;
 
-$.ajax({
-    type : 'POST',
-    async: false,
-    data: {
-        no: no,
-        uno: uno
-    },
-    url: '/likeshow',
-    success: function(count) {
-        if(count > 0) {
-            console.log("on");
-            isOn=true;
-            test.classList.remove("likeoff_img");
-            test.classList.add("likeon_img");
+updateLikeCount();
+function updateLikeCount() {
+    $.ajax({
+        type: 'POST',
+        async: false,
+        data: {
+            no: no,
+            uno: uno
+        },
+        url: '/likeshow',
+        success: function (likecc) {
+            $('#likeCount').text(likecc.likeCount);
+            if (likecc.count > 0) {
+                isOn = true;
+                like.classList.remove("likeoff_img");
+                like.classList.add("likeon_img");
 
-        } else {
-            console.log("off");
-            isOn=false;
-            test.classList.remove("likeon_img");
-            test.classList.add("likeoff_img");
+            } else {
+                isOn = false;
+                like.classList.remove("likeon_img");
+                like.classList.add("likeoff_img");
+            }
         }
-    }
-});
+    });
+}
 
-test.onclick = function (){
+like.onclick = function (){
     isOn = !isOn;
     if (isOn) {
         $.ajax({
@@ -39,8 +40,7 @@ test.onclick = function (){
                 uno: uno
             },
             success: function() {
-                test.classList.remove("likeoff_img");
-                test.classList.add("likeon_img");
+                updateLikeCount();
             }
         });
     } else {
@@ -52,8 +52,7 @@ test.onclick = function (){
                 uno: uno
             },
             success: function() {
-                test.classList.remove("likeon_img");
-                test.classList.add("likeoff_img");
+                updateLikeCount();
             }
         });
     }

@@ -22,7 +22,7 @@
             <li id="li_search_form">
                 <form action="/user_search" method="get" id="search_form">
                     <div id="div_search">
-                        <input class="search-input" type="text" name="username" id="autoComplete"
+                        <input class="search-input" type="text" name="username" id="search"
                                placeholder="유저를 검색하세요"/>
                         <button class="search-btn" type="submit">S</button>
                     </div>
@@ -33,7 +33,7 @@
                     <span class="a_text">{{user.username}}님</span>
                     <button type="button" onclick="location.href='iduser_link'" class="user_btn">내 링크보기</button>
                     {{#user.name}}
-                        <button type="button" onclick="location.href='update'" class="user_btn">정보수정</button>
+                        <button type="button" onclick="location.href='update'" class="user_btn" style="margin-left: 5px">정보수정</button>
                     {{/user.name}}
                     {{#user.name}}
                         <form action="/delete" method="post" class="li_btn_form">
@@ -51,7 +51,7 @@
             {{^user.username}}
                 <li class="li_text"><span class="a_text">로그인해주세요</span>
                     <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
-                    <button type="button" onclick="location.href='signup'" class="user_btn">회원가입</button>
+                    <button type="button" onclick="location.href='signup'" class="user_btn" style="margin-left: 5px">회원가입</button>
                 </li>
             {{/user.username}}
         </ul>

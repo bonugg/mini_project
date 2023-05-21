@@ -1,15 +1,13 @@
 package com.example.mini_project.controller;
 
-import com.example.mini_project.link_user.LinkTable;
-import com.example.mini_project.link_user.SessionUser;
-import com.example.mini_project.link_user.User;
-import com.example.mini_project.link_user.UserLike;
+import com.example.mini_project.link_user.*;
 import com.example.mini_project.oauth.UserLikeRepository;
 import com.example.mini_project.oauth.UserRepository;
 import com.example.mini_project.service.LinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,13 +44,15 @@ public class UserController {
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
         }
-        List<LinkTable> linkTableList = linkService.getbestLinkList();
-        model.addAttribute("linkBestList", linkTableList);
-        List<LinkTable> linkTableList_2 = linkService.getdateLinkList();
-        for (int i = 0; i < linkTableList_2.size(); i++) {
-            linkTableList_2.get(i).setUsername(userRepository.findByUsername(linkTableList_2.get(i).getNO()));
+        List<LinkTable> linkBestList = linkService.getbestLinkList();
+        model.addAttribute("linkBestList", linkBestList);
+        List<LinkTable> linkDateList = linkService.getdateLinkList();
+        for (int i = 0; i < linkDateList.size(); i++) {
+            linkDateList.get(i).setUsername(userRepository.findByUsername(linkDateList.get(i).getNO()));
         }
-        model.addAttribute("linkDateList", linkTableList_2);
+        model.addAttribute("linkDateList", linkDateList);
+        List<User> bestUser = userRepository.bestLikeList();
+        model.addAttribute("bestUser", bestUser);
         return "homePage";
     }
 
@@ -116,28 +117,39 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/userlike", method = RequestMethod.POST) //좋아요
-    public void userlike(@RequestParam("no") String no, @RequestParam("uno") String uno) throws Exception {
+    public void userlike(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
         UserLike userLike = new UserLike();
-        userLike.setNouser(Long.parseLong(no));
-        userLike.setNolikeuser(Long.parseLong(uno));
+        userLike.setNouser(no);
+        userLike.setNolikeuser(uno);
+        User user = userRepository.findByNo(uno).get();
+        user.plusLike();
+        userRepository.save(user);
         userLikeRepository.save(userLike);
     }
     @ResponseBody
-    @RequestMapping(value = "/userdislike", method = RequestMethod.POST) //좋아요
+    @RequestMapping(value = "/userdislike", method = RequestMethod.POST) //좋아요 삭제
     public void userdislike(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
         UserLike userLike = new UserLike();
         userLike.setUserlikeid(userLikeRepository.findByUserLikeId(uno, no));
         userLike.setNouser(no);
         userLike.setNolikeuser(uno);
+        User user = userRepository.findByNo(uno).get();
+        user.minusLike();
+        userRepository.save(user);
         userLikeRepository.delete(userLike);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/likeshow", method = RequestMethod.POST) //좋아요
-    public int likeshow(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
+    @RequestMapping(value = "/likeshow", method = RequestMethod.POST) //좋아요 체크 및 좋아요 수
+    public Map<String, Integer> likeshow(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
         int count = 0;
+        int likeCount = userLikeRepository.LikeCount(uno);
         count = userLikeRepository.LikeidCheck(uno, no);
-        return count;
+
+        Map<String, Integer> likecc = new HashMap<>();
+        likecc.put("count", count);
+        likecc.put("likeCount", likeCount);
+        return likecc;
     }
 
     @GetMapping("/update")
@@ -197,10 +209,9 @@ public class UserController {
 
     @RequestMapping(value = "/get/test")
     public @ResponseBody Map<String, Object> autocomplete(@RequestParam Map<String, Object> paramMap) throws Exception {
-        System.out.println(paramMap);
         List<Map<String, Object>> resultList = linkService.autocomplete(paramMap);
-        System.out.println(resultList);
         paramMap.put("resultList", resultList);
+        System.out.println(resultList);
         return paramMap;
     }
 

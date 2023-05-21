@@ -72,11 +72,20 @@ td {
 #table_best {
     cursor: pointer;
     border: 1px solid lightgray;
-    margin-top: 10px;
+    border-radius: 10px;
+    border-spacing: 0px;
+    width: 80%;
+    table-layout: fixed;
+    margin: 10px auto auto;
+}
+#table_bestuser {
+    cursor: pointer;
+    border: 1px solid lightgray;
     border-spacing: 0px;
     border-radius: 10px;
     width: 80%;
     table-layout: fixed;
+    margin: 10px auto auto;
 }
 #table_date {
     cursor: pointer;
@@ -85,7 +94,7 @@ td {
     border-radius: 10px;
     width: 80%;
     table-layout: fixed;
-    margin-top: 10px;
+    margin: 10px auto auto;
 }
 .img_list {
     border-top-left-radius: 10px;
@@ -119,6 +128,25 @@ td {
     vertical-align: top;
     padding: 10px;
     text-align: center;
+}
+#bestuser_td {
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#userlike_td {
+    width: 20%;
+    color: black;
+    font-size: 10px;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .username_td{
     border-bottom-right-radius: 10px;

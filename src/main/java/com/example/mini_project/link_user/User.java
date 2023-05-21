@@ -64,4 +64,12 @@ public class User {
     public String getRoleKey() {
         return this.role.getKey();
     }
+
+    public void plusLike(){
+        this.userlike++;
+    }
+
+    public void minusLike(){
+        this.userlike--;
+    }
 }

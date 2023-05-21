@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmailAndProvider(String email, String provider);
     Optional<User> findByIdAndProvider(String id, String provider);
+    Optional<User> findByNo(long no);
     List<User> findByUsernameContaining(String username);
     @Query(value = "SELECT USERNAME FROM T_MEMBER_LINK T WHERE T.NO = :no", nativeQuery = true)
     String findByUsername(long no);
@@ -19,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     String findUsername_str(long no);
     @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LINK T WHERE T.ID = :id", nativeQuery = true)
     int idCheck(String id);
+    @Query(value = "SELECT * FROM (SELECT * FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC) WHERE ROWNUM <= 3 AND USERLIKE >= 1", nativeQuery = true)
+    List<User> bestLikeList();
 }

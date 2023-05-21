@@ -9,7 +9,11 @@ const showUserList = (no) => {
     location.href = "/user_link?no=" + no;
 }
 
-$('#autoComplete').autocomplete({
+const $autoComplete = document.querySelector(".autocomplete");
+
+// 현재 가르키고 있는 검색어 순번
+let nowIndex = 0;
+$('#search').autocomplete({
     source: function (request, response) { //source: 입력시 보일 목록
         $.ajax({
             url: "/get/test"

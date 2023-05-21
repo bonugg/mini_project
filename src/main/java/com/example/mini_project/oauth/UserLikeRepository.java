@@ -15,4 +15,8 @@ public interface UserLikeRepository extends JpaRepository<UserLike, Long> {
     @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LIKE T WHERE T.NOLIKEUSER = :nolikeuser AND T.NOUSER = :nouser", nativeQuery = true)
     int LikeidCheck(long nolikeuser, long nouser);
 
+    @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LIKE T WHERE T.NOLIKEUSER = :nolikeuser", nativeQuery = true)
+    int LikeCount(long nolikeuser);
+
+
 }
