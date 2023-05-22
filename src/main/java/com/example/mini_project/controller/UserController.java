@@ -49,8 +49,6 @@ public class UserController {
             linkDateList.get(i).setUsername(userRepository.findByUsername(linkDateList.get(i).getNO()));
         }
         model.addAttribute("linkDateList", linkDateList);
-        List<User> bestUser = userRepository.bestLikeList();
-        model.addAttribute("bestUser", bestUser);
         return "homePage";
     }
 

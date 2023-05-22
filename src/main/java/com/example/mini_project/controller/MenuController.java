@@ -2,6 +2,8 @@ package com.example.mini_project.controller;
 
 import com.example.mini_project.link_user.LinkTable;
 import com.example.mini_project.link_user.SessionUser;
+import com.example.mini_project.link_user.User;
+import com.example.mini_project.link_user.UserInterface;
 import com.example.mini_project.oauth.UserLikeRepository;
 import com.example.mini_project.oauth.UserRepository;
 import com.example.mini_project.service.LinkService;
@@ -35,8 +37,25 @@ public class MenuController {
         List<LinkTable> linkBestList = linkService.getbestLinkList();
         model.addAttribute("linkBestList", linkBestList);
         List<LinkTable> linkBestList2 = linkService.getbestLinkList2();
-        System.out.println(linkBestList2);
         model.addAttribute("linkBestList2", linkBestList2);
         return "bestLinkPage";
+    }
+
+    @GetMapping("/bestUser")
+    public String bestUser(Model model){
+        if (httpSession.getAttribute("user") != null) {
+            SessionUser user = (SessionUser) httpSession.getAttribute("user");
+            user.setUsername(userRepository.findUsername_str(user.getNo()));
+            model.addAttribute("user", user);
+        }
+        List<User> bestUser = userRepository.bestLikeList();
+        model.addAttribute("bestUser", bestUser);
+        List<UserInterface> bestUser2 = userRepository.bestLikeList2();
+        System.out.println(bestUser2.get(0).getRn());
+        model.addAttribute("bestUser2", bestUser2);
+
+        List<LinkTable> linkBestList2 = linkService.getbestLinkList2();
+        model.addAttribute("linkBestList2", linkBestList2);
+        return "bestUserPage";
     }
 }

@@ -9,10 +9,7 @@
         ORDER BY LID DESC
     </select>
     <select id="getbestLinkList" resultType="com.example.mini_project.link_user.LinkTable">
-        SELECT LINK,
-               TITLE,
-               CONTENTS,
-               IMAGE
+        SELECT *
         FROM (
                  SELECT T.LINK,
                         T.TITLE,
@@ -46,7 +43,7 @@
         FROM T_LINK T
         GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
         ) T
-        WHERE ROWNUM <![CDATA[<=]]> 11g
+        WHERE ROWNUM <![CDATA[<=]]> 11
         )
         WHERE RN <![CDATA[>=]]> 4
     </select>

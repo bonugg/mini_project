@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>베스트 유저</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/best_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+{{>header/header}}
+<div id="fullscreen">
+    <div id="screen1">
+        <div id="screen1-1">
+            <img src="images/best.png" width="50px" height="50px" style="margin-left: 5px">
+        </div>
+        <div id="screen1-2">
+            {{#bestUser}}
+                <table id="table_best_user_1">
+                    <tr>
+                        <td rowspan="2" id="link_image_td">
+                            <img src="{{picture}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                        </td>
+                        <td rowspan="2" id="link_title_td">
+                            {{username}}
+                        </td>
+                        <td rowspan="2" id="link_bestcount_td">
+                            좋아요<br>
+                            <span style="font-size: 20px; font-weight: bold">{{userlike}}</span>
+                        </td>
+                    </tr>
+                </table>
+            {{/bestUser}}
+        </div>
+    </div>
+    <div id="screen2">
+        <div class="grid-container">
+            {{#bestUser2}}
+                <div class="item">
+                    <table id="table_3">
+                        <tr>
+                            <td>
+                                {{Rn}}위
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="table_best_user_1">
+                        <tr>
+                            <td rowspan="2" id="link_image_td">
+                                <img src="{{picture}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                            </td>
+                            <td rowspan="2" id="link_title_td">
+                                {{username}}
+                            </td>
+                            <td rowspan="2" id="link_bestcount_td">
+                                좋아요<br>
+                                <span style="font-size: 20px; font-weight: bold">{{userlike}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            {{/bestUser2}}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

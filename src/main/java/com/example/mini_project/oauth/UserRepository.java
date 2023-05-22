@@ -1,6 +1,7 @@
 package com.example.mini_project.oauth;
 
 import com.example.mini_project.link_user.User;
+import com.example.mini_project.link_user.UserInterface;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -22,4 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     int idCheck(String id);
     @Query(value = "SELECT * FROM (SELECT * FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC) WHERE ROWNUM <= 3 AND USERLIKE >= 1", nativeQuery = true)
     List<User> bestLikeList();
+    @Query(value = "SELECT * FROM (SELECT T.*, ROW_NUMBER() OVER (ORDER BY USERLIKE DESC) AS Rn FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC) WHERE Rn >= 4 AND USERLIKE >= 1", nativeQuery = true)
+    List<UserInterface> bestLikeList2();
 }

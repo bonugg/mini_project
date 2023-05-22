@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck").permitAll()
-                .antMatchers("/bestLink").permitAll()
+                .antMatchers("/bestLink", "/bestUser").permitAll()
                 .anyRequest().authenticated();
 
         http
@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/auth")    // POST 요청
                 .usernameParameter("id")
                 .passwordParameter("password")
-                .failureUrl(    "/login");
+                .failureUrl("/login");
 
         http
                 .logout()
