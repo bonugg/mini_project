@@ -4,6 +4,7 @@ const no = $('#no').val();
 let isOn = false;
 
 updateLikeCount();
+
 function updateLikeCount() {
     $.ajax({
         type: 'POST',

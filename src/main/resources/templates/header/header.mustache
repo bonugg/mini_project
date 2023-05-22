@@ -28,32 +28,36 @@
                 <a href="/bestUser" class="menu_text">Best&nbsp;User</a>
             </li>
             <li class="li_menulist">
-                <a class="menu_text">Today&nbsp;Link</a>
+                <a href="/dateLink" class="menu_text">Today&nbsp;Link</a>
             </li>
             <li id="li_search_form">
-                <form action="/user_search" method="get" id="search_form">
-                    <div id="div_search">
-                        <input class="search-input" type="text" name="username" id="search"
-                               placeholder="유저를 검색하세요"/>
-                        <button class="search-btn" type="submit">S</button>
-                    </div>
-                </form>
+                <div class="dropdown" style="margin-right: 30px">
+                    <div style="cursor: pointer; width: 40px; text-align: right;"><img src="images/search.png"></div>
+                    <ul class="dropdown-menu" id="dropdown-search">
+                        <li>
+                            <form action="/user_search" method="get" id="search_form">
+                                <div id="div_search">
+                                    <input class="search-input" type="text" name="username" id="search"
+                                           placeholder="유저를 검색하세요"/>
+                                    <button class="search-btn" type="submit"></button>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </li>
             {{#user.username}}
                 <li class="li_text">
                     <img src="{{user.picture}}" id="img_picture">
                     <span class="a_text">{{user.username}}님</span>
-                    <div class="menu">
-                        <div style="display: flex; justify-content: center; align-items: center;">
-                            <span>&nbsp;</span>
-                            <img src="images/usermenu.png" width="15px" height="15px">
-                        </div>
-                        <ul class="sub">
-                            <li style="border: 1px solid lightgray;border-bottom-width: 0px;">
-                                <a class="dropdown-item" href="/iduser_link">내 링크보기</a>
-                            </li>
+                    <div class="dropdown">
+                        <a>
+                            <img src="images/usermenu.png" width="15px" height="15px" style="margin-left: 10px">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/iduser_link">내 링크보기</a></li>
                             <li>
-                                {{#user.name}}
+g                                {{#user.name}}
                                     <a class="dropdown-item" href="/update">정보수정</a>
                                 {{/user.name}}
                             </li>
@@ -68,12 +72,15 @@
                                 </span>
                                 {{/user.name}}
                             </li>
-                            <li style="border: 1px solid lightgray;border-top-width: 0px;">
+                            <li>
+                                <span class="dropdown-item" href="#">
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-                                    <button type="button" class="logout_delete" onclick="this.form.submit();">로그아웃
+                                    <button type="button" class="logout_delete" onclick="this.form.submit();">
+                                        로그아웃
                                     </button>
                                 </form>
+                                </span>
                             </li>
                         </ul>
                     </div>

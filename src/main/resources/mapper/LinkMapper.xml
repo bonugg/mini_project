@@ -10,42 +10,31 @@
     </select>
     <select id="getbestLinkList" resultType="com.example.mini_project.link_user.LinkTable">
         SELECT *
-        FROM (
-                 SELECT T.LINK,
-                        T.TITLE,
-                        T.CONTENTS,
-                        T.IMAGE,
-                        COUNT(*) CT
-                 FROM T_LINK T
-                 GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
-                 ORDER BY CT DESC
-             )
-        WHERE ROWNUM <![CDATA[<=]]> 3
-    </select>
-    <select id="getbestLinkList2" resultType="com.example.mini_project.link_user.LinkTable">
-        SELECT LINK,
-        TITLE,
-        CONTENTS,
-        IMAGE,
-        RN
-        FROM (
-        SELECT T.LINK,
-        T.TITLE,
-        T.CONTENTS,
-        T.IMAGE,
-        ROW_NUMBER() OVER (ORDER BY CT DESC) RN
-        FROM (
-        SELECT T.LINK,
+        FROM (SELECT A.*,
+        ROW_NUMBER() OVER (ORDER BY CT DESC, TITLE) AS Rn
+        FROM (SELECT T.LINK,
         T.TITLE,
         T.CONTENTS,
         T.IMAGE,
         COUNT(*) CT
         FROM T_LINK T
         GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
-        ) T
-        WHERE ROWNUM <![CDATA[<=]]> 11
-        )
-        WHERE RN <![CDATA[>=]]> 4
+        ) A)
+        WHERE Rn <![CDATA[<=]]> 3
+    </select>
+    <select id="getbestLinkList2" resultType="com.example.mini_project.link_user.LinkTable">
+        SELECT *
+        FROM (SELECT A.*,
+                     ROW_NUMBER() OVER (ORDER BY CT DESC, TITLE) AS Rn
+              FROM (SELECT T.LINK,
+                           T.TITLE,
+                           T.CONTENTS,
+                           T.IMAGE,
+                           COUNT(*) CT
+                    FROM T_LINK T
+                    GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
+                   ) A)
+        WHERE Rn <![CDATA[>=]]>  4
     </select>
     <select id="getdateLinkList" resultType="com.example.mini_project.link_user.LinkTable">
         SELECT *

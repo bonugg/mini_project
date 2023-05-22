@@ -44,11 +44,6 @@ public class UserController {
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
         }
-        List<LinkTable> linkDateList = linkService.getdateLinkList();
-        for (int i = 0; i < linkDateList.size(); i++) {
-            linkDateList.get(i).setUsername(userRepository.findByUsername(linkDateList.get(i).getNO()));
-        }
-        model.addAttribute("linkDateList", linkDateList);
         return "homePage";
     }
 

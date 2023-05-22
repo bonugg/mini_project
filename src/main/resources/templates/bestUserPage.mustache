@@ -22,10 +22,10 @@
         </div>
         <div id="screen1-2">
             {{#bestUser}}
-                <table id="table_best_user_1">
+                <table id="table_best_user_1" onclick="showUserList('{{no}}')">
                     <tr>
                         <td rowspan="2" id="link_image_td">
-                            <img src="{{picture}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                            <img src="{{picture}}" alt="유저 프로필 이미지" id="link_image"/></td>
                         </td>
                         <td rowspan="2" id="link_title_td">
                             {{username}}
@@ -39,8 +39,8 @@
             {{/bestUser}}
         </div>
     </div>
-    <div id="screen2">
-        <div class="grid-container">
+    <div id="screen2_user">
+        <div id="grid-container_user">
             {{#bestUser2}}
                 <div class="item">
                     <table id="table_3">
@@ -50,10 +50,10 @@
                             </td>
                         </tr>
                     </table>
-                    <table id="table_best_user_1">
+                    <table id="table_best_user_2" onclick="showUserList('{{no}}')">
                         <tr>
                             <td rowspan="2" id="link_image_td">
-                                <img src="{{picture}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                                <img src="{{picture}}" alt="유저 프로필 이미지" id="link_image"/></td>
                             </td>
                             <td rowspan="2" id="link_title_td">
                                 {{username}}
@@ -70,6 +70,6 @@
     </div>
 
 </div>
-
+<script src="js/main.js"></script>
 </body>
 </html>

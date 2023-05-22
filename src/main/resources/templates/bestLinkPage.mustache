@@ -22,9 +22,9 @@
         </div>
         <div id="screen1-2">
         {{#linkBestList}}
-            <table id="table_1">
+            <table id="table_1" onClick="window.open('{{LINK}}')">
                 <tr>
-                    <td rowspan="2" id="link_image_td" onClick="window.open('{{LINK}}')" id="link_image_td">
+                    <td rowspan="2" id="link_image_td" id="link_image_td">
                         <img src="{{IMAGE}}" alt="링크 미리보기 이미지" id="link_image"/></td>
                     </td>
                     <td id="link_title_td">
@@ -55,7 +55,7 @@
                             </td>
                         </tr>
                     </table>
-                    <table id="table_2">
+                    <table id="table_2" onClick="window.open('{{LINK}}')">
                     <tr>
                         <td rowspan="2" id="link_image_td" onClick="window.open('{{LINK}}')" id="link_image_td">
                             <img src="{{IMAGE}}" alt="링크 미리보기 이미지" id="link_image"/></td>

@@ -21,9 +21,9 @@
         <div id="screen1-1">
             <img src="{{picture}}" id="img_pictures">
             <h2 class="user_txt">{{username}}님의 링크</h2>
+                {{#user.username}}
                 <a2>좋아요&nbsp;
                     <a3 id="likeCount"></a3>
-                {{#user.username}}
                     <input type="hidden" name="uno" id="uno" value="{{NO}}">
                     <input type="hidden" name="no" id="no" value="{{user.no}}">
                     <div class="like"></div>

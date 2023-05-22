@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>최근 추가 링크</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/home_style.css">
+</head>
+<body>
+{{>header/header}}
+<div id="fullscreen">
+    <div id="screen2">
+        <div id="screen2-1">
+            <span class="span_text">
+                최근 추가 링크
+            </span>
+        </div>
+        <div id="screen2-2">
+            {{#linkDateList}}
+                <table id="table_date">
+                    <tr>
+                        <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
+                        <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
+                        <td rowspan="2" class="username_td"><h3 id="username_text" onclick="showUserList('{{NO}}')">{{username}}</h3></td>
+                    </tr>
+                    <tr>
+                        <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
+                    </tr>
+                </table>
+            {{/linkDateList}}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

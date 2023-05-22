@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck").permitAll()
-                .antMatchers("/bestLink", "/bestUser").permitAll()
+                .antMatchers("/bestLink", "/bestUser" ,"/dateLink").permitAll()
                 .anyRequest().authenticated();
 
         http

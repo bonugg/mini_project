@@ -63,7 +63,6 @@ nav a:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-    margin-right: 10px;
 }
 #li_linktree{
 }
@@ -77,8 +76,8 @@ nav a:hover {
 }
 #li_search_form{
     display: flex;
-    justify-content: left;
-    width: 30%;
+    justify-content: right;
+    width: 20%;
 }
 .li_text{
     width: 10%;
@@ -98,31 +97,23 @@ nav a:hover {
     font-size: 12px;
     height: 28px;
     width: 200px;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
     border: 1px solid lightgray;
 }
 .search-input:focus{
-    border: 0px solid #c8c8c8;
-    border-bottom-width: 1px;
+    border: 1px solid #c8c8c8;
     outline: none;
-    box-shadow: 0px 2px 3px grey;
 }
 .search-btn {
-    cursor: pointer;
-    background-color: rgb(28, 18, 88);
-    color: #fff;
+    background-color: white;
     border: none;
-    height: 28px;
-    width: 35px;
-    font-size: 15px;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-right: 20px;
+    height: 0px;
+    width: 0px;
 }
 .search-btn:hover {
-    background-color: rgb(56, 43, 129);
-    color: white;
+    border: 1px solid black;
+    outline: none;
+    background-color: white;
+    color: black;
 }
 
 .ui-autocomplete {
@@ -132,7 +123,6 @@ nav a:hover {
     padding: 5px;
     margin: 0;
     max-height: 250px;
-    border-radius: 10px;
 }
 
 .ui-autocomplete li{
@@ -140,29 +130,45 @@ nav a:hover {
     font-family: 'Gowun Dodum', sans-serif;
 }
 
-.ui-state-active {
-    border-radius: 10px;
-}
 .dropdown {
-    width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
 }
-.dropdown-menu{
+
+.dropdown-menu {
+    min-width: 120px;
+    max-width: 40px;
+    position: absolute;
+    top: 80%;
+    left: -380%;
+    z-index: 1;
     display: none;
     /* 추가: 슬라이드 다운 애니메이션 */
-    animation-name: slide_down;
+    animation-name: down;
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    transform-origin: top; /* 아래쪽을 중심으로 세로 축 회전 */
 }
+#dropdown-search{
+    outline: none;
+    border: none;
+    width: 200px;
+    position: absolute;
+    top: -75%;
+    left: -340%;
+    animation-name: left;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: right; /* 아래쪽을 중심으로 세로 축 회전 */
+}
+ /*마우스 호버 시, .dropdown-menu 보이도록 조정*/
 .dropdown:hover .dropdown-menu {
     display: block;
-    padding: 0px;
-    min-width: 10px;
+    animation-fill-mode: forwards;
 }
-@keyframes slide-down {
+/* 슬라이드 다운 애니메이션을 위한 @keyframes 정의 */
+@keyframes down {
     from {
         transform: scaleY(0);
     }
@@ -170,21 +176,43 @@ nav a:hover {
         transform: scaleY(1);
     }
 }
-.dropdown-item{
-    text-align: center;
+@keyframes left {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.dropdown-item {
     font-size: 13px;
     font-family: 'Gowun Dodum', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
+.dropdown-item:hover {
+    background-color: #cccccc; /* 마우스 호버 시 배경색 변경 */
+}
+
+
 .logout_delete {
+    width: 100%;
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 13px;
     font-family: 'Gowun Dodum', sans-serif;
-}
-.logout_delete:focus{
     outline: none;
 }
+.logout_delete:focus {
+    outline: none;
+}
+.logout_delete:active{
+    color: white;
+}
+
 table{
     box-shadow: 0 1px 4px gray;
     margin: 15px auto auto;
@@ -194,67 +222,4 @@ table{
     max-width: 30px;
     height: 30px;
     margin-right: 5px;
-}
-
-.menu{
-    width:15px;
-    height:40px;
-    text-align:center;
-    line-height: 40px;
-    position: relative;
-    cursor: pointer;
-    margin-right: 20px;
-}
-
-.menu>.sub{
-    width:120px;
-    display:none;
-    height:auto;
-    list-style:none;
-    overflow:hidden;
-    position: absolute;
-    top: 100%;
-    left: -700%;
-}
-
-.menu>.sub li{
-    background-color: #ebebeb;
-    border: 0px solid lightgray;
-    border-left-width: 1px;
-    border-right-width: 1px;
-}
-
-.menu>.sub li>a{
-    text-decoration:none;
-    color:black;
-}
-
-.menu>.sub.up{
-    height:0px;
-    animation-name:slide_up;
-    animation-duration:0.3s;
-}
-
-.menu>.sub.down{
-    height:auto;
-    animation-name:slide_down;
-    animation-duration:0.3s;
-}
-
-@keyframes slide_up{
-    0%{
-        height:auto;
-    }
-    100%{
-        height:0px;
-    }
-}
-
-@keyframes slide_down{
-    0%{
-        height:0px;
-    }
-    100%{
-        height:auto;
-    }
 }
