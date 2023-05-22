@@ -44,8 +44,6 @@ public class UserController {
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
         }
-        List<LinkTable> linkBestList = linkService.getbestLinkList();
-        model.addAttribute("linkBestList", linkBestList);
         List<LinkTable> linkDateList = linkService.getdateLinkList();
         for (int i = 0; i < linkDateList.size(); i++) {
             linkDateList.get(i).setUsername(userRepository.findByUsername(linkDateList.get(i).getNO()));
@@ -65,13 +63,6 @@ public class UserController {
         model.addAttribute("linkList", linkTableList);
         return "showIdUserLinkPage";
     }
-
-//    @GetMapping("/userList")
-//    public String getUserList(Model model) {
-//        List<User> userList = userService.getUserList();
-//        model.addAttribute("list", userList);
-//        return "userListPage";
-//    }
 
     @GetMapping("/login")
     public String loginPage(HttpServletRequest request) {
@@ -115,43 +106,6 @@ public class UserController {
         return count;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/userlike", method = RequestMethod.POST) //좋아요
-    public void userlike(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
-        UserLike userLike = new UserLike();
-        userLike.setNouser(no);
-        userLike.setNolikeuser(uno);
-        User user = userRepository.findByNo(uno).get();
-        user.plusLike();
-        userRepository.save(user);
-        userLikeRepository.save(userLike);
-    }
-    @ResponseBody
-    @RequestMapping(value = "/userdislike", method = RequestMethod.POST) //좋아요 삭제
-    public void userdislike(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
-        UserLike userLike = new UserLike();
-        userLike.setUserlikeid(userLikeRepository.findByUserLikeId(uno, no));
-        userLike.setNouser(no);
-        userLike.setNolikeuser(uno);
-        User user = userRepository.findByNo(uno).get();
-        user.minusLike();
-        userRepository.save(user);
-        userLikeRepository.delete(userLike);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/likeshow", method = RequestMethod.POST) //좋아요 체크 및 좋아요 수
-    public Map<String, Integer> likeshow(@RequestParam("no") long no, @RequestParam("uno") long uno) throws Exception {
-        int count = 0;
-        int likeCount = userLikeRepository.LikeCount(uno);
-        count = userLikeRepository.LikeidCheck(uno, no);
-
-        Map<String, Integer> likecc = new HashMap<>();
-        likecc.put("count", count);
-        likecc.put("likeCount", likeCount);
-        return likecc;
-    }
-
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
@@ -169,6 +123,12 @@ public class UserController {
     @PostMapping("/delete")
     public String withdraw() { // 회원 탈퇴
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        List<UserLike> userdellike = userLikeRepository.userdelLikeCount(user.getNo());
+        for(int i = 0; i< userdellike.size(); i++){
+            User usersel = userRepository.findByNo(userdellike.get(i).getNolikeuser()).get();
+            usersel.minusLike();
+            userRepository.save(usersel);
+        }
         userRepository.deleteById(user.getNo());
         SecurityContextHolder.clearContext();
         return "redirect:/";

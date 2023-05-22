@@ -10,6 +10,7 @@ import java.util.Map;
 public interface LinkMapper {
     List<LinkTable> getLinkList(long no); // 링크 리스트 가져오기
     List<LinkTable> getbestLinkList(); // 베스트 링크 리스트 가져오기
+    List<LinkTable> getbestLinkList2(); // 베스트 링크 리스트 가져오기
     List<LinkTable> getdateLinkList(); // 시간 순으로 링크 리스트 가져오기
 
     void addLink(LinkTable linkTable); // 링크 추가

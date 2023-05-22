@@ -24,13 +24,11 @@ public class SecurityConfig {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                // image 폴더를 login 없이 허용
                 .antMatchers("/images/**").permitAll()
-                // css 폴더를 login 없이 허용
                 .antMatchers("/css/**").permitAll()
-                // js 폴더를 login 없이 허용
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck").permitAll()
+                .antMatchers("/bestLink").permitAll()
                 .anyRequest().authenticated();
 
         http
@@ -41,7 +39,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/auth")    // POST 요청
                 .usernameParameter("id")
                 .passwordParameter("password")
-                .failureUrl("/login");
+                .failureUrl(    "/login");
 
         http
                 .logout()

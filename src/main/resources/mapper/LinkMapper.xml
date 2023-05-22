@@ -25,6 +25,31 @@
              )
         WHERE ROWNUM <![CDATA[<=]]> 3
     </select>
+    <select id="getbestLinkList2" resultType="com.example.mini_project.link_user.LinkTable">
+        SELECT LINK,
+        TITLE,
+        CONTENTS,
+        IMAGE,
+        RN
+        FROM (
+        SELECT T.LINK,
+        T.TITLE,
+        T.CONTENTS,
+        T.IMAGE,
+        ROW_NUMBER() OVER (ORDER BY CT DESC) RN
+        FROM (
+        SELECT T.LINK,
+        T.TITLE,
+        T.CONTENTS,
+        T.IMAGE,
+        COUNT(*) CT
+        FROM T_LINK T
+        GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
+        ) T
+        WHERE ROWNUM <![CDATA[<=]]> 11g
+        )
+        WHERE RN <![CDATA[>=]]> 4
+    </select>
     <select id="getdateLinkList" resultType="com.example.mini_project.link_user.LinkTable">
         SELECT *
         FROM (

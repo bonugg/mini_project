@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>베스트 링크</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/best_style.css">
+</head>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<body>
+{{>header/header}}
+<div id="fullscreen">
+    <div id="screen1">
+        <div id="screen1-1">
+            Best Link
+            <img src="images/best.png" width="50px" height="50px" style="margin-left: 5px">
+        </div>
+        <div id="screen1-2">
+        {{#linkBestList}}
+            <table id="table_1">
+                <tr>
+                    <td rowspan="2" id="link_image_td" onClick="window.open('{{LINK}}')" id="link_image_td">
+                        <img src="{{IMAGE}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                    </td>
+                    <td id="link_title_td">
+                        {{TITLE}}
+                    </td>
+                    <td rowspan="2" id="link_bestcount_td">
+                        추가된 링크 수
+                    </td>
+                </tr>
+                <tr>
+                    <td id="link_contents_td">
+                        {{CONTENTS}}
+                    </td>
+                </tr>
+            </table>
+        {{/linkBestList}}
+        </div>
+    </div>
+    <div id="screen2">
+        <div class="grid-container">
+            {{#linkBestList2}}
+            <div class="item">
+                    <table id="table_3">
+                        <tr>
+                            <td>
+                               {{RN}}위
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="table_2">
+                    <tr>
+                        <td rowspan="2" id="link_image_td" onClick="window.open('{{LINK}}')" id="link_image_td">
+                            <img src="{{IMAGE}}" alt="링크 미리보기 이미지" id="link_image"/></td>
+                        </td>
+                        <td id="link_title_td">
+                            {{TITLE}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="link_contents_td">
+                            {{CONTENTS}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {{/linkBestList2}}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -18,6 +18,7 @@ public class LinkTable {
     private String DATE;
     private String username;
     private String picture;
+    private int RN;
 
 
     public void link_rs(String link){

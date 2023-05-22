@@ -21,6 +21,15 @@
     <nav>
         <ul>
             <li id="li_linktree"><a href="/" style="margin-left: 30px; margin-right: 30px">LINK TREE</a></li>
+            <li class="li_menulist">
+                <a href="/bestLink" class="menu_text">Best&nbsp;Link</a>
+            </li>
+            <li class="li_menulist">
+                <a class="menu_text">Best&nbsp;User</a>
+            </li>
+            <li class="li_menulist">
+                <a class="menu_text">Today&nbsp;Link</a>
+            </li>
             <li id="li_search_form">
                 <form action="/user_search" method="get" id="search_form">
                     <div id="div_search">
@@ -71,7 +80,8 @@
                 </li>
             {{/user.username}}
             {{^user.username}}
-                <li class="li_text" style="margin-top: 14px"><span class="a_text" style="margin-right: 5px">로그인해주세요</span>
+                <span class="a_text" style="margin-right: 5px">로그인해주세요</span>
+                <li class="li_text">
                     <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
                     <button type="button" onclick="location.href='signup'" class="user_btn" style="margin-left: 5px">
                         회원가입

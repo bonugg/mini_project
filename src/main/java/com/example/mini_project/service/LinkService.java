@@ -21,6 +21,10 @@ public class LinkService {
         return linkMapper.getbestLinkList();
     }
 
+    public List<LinkTable> getbestLinkList2(){
+        return linkMapper.getbestLinkList2();
+    }
+
     public List<LinkTable> getdateLinkList(){
         return linkMapper.getdateLinkList();
     }

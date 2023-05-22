@@ -66,10 +66,10 @@ public class User {
     }
 
     public void plusLike(){
-        this.userlike++;
+        userlike++;
     }
 
     public void minusLike(){
-        this.userlike--;
+        userlike--;
     }
 }
