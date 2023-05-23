@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/header_style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -20,7 +23,7 @@
 <header>
     <nav>
         <ul>
-            <li id="li_linktree"><a href="/" style="margin-left: 30px; margin-right: 30px">LINK TREE</a></li>
+            <li id="li_linktree"><a href="/" style="margin-left: 30px; margin-right: 30px">LINK SPACE</a></li>
             <li class="li_menulist">
                 <a href="/bestLink" class="menu_text">Best&nbsp;Link</a>
             </li>
@@ -35,7 +38,7 @@
                     <div style="cursor: pointer; width: 40px; text-align: right;"><img src="images/search.png"></div>
                     <ul class="dropdown-menu" id="dropdown-search">
                         <li>
-                            <form action="/user_search" method="get" id="search_form">
+                            <form action="/user_search" method="get">
                                 <div id="div_search">
                                     <input class="search-input" type="text" name="username" id="search"
                                            placeholder="유저를 검색하세요"/>
@@ -57,7 +60,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/iduser_link">내 링크보기</a></li>
                             <li>
-g                                {{#user.name}}
+                                {{#user.name}}
                                     <a class="dropdown-item" href="/update">정보수정</a>
                                 {{/user.name}}
                             </li>
@@ -87,7 +90,7 @@ g                                {{#user.name}}
                 </li>
             {{/user.username}}
             {{^user.username}}
-                <span class="a_text" style="margin-right: 5px">로그인해주세요</span>
+                <span class="a_text" style="margin-right: 15px">로그인해주세요</span>
                 <li class="li_text">
                     <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
                     <button type="button" onclick="location.href='signup'" class="user_btn" style="margin-left: 5px">

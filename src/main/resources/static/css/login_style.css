@@ -1,22 +1,48 @@
 body {
     font-size:0;
-    background-color: whitesmoke;
+    background-image: url("../images/background_showLink.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /* 사이즈를 조절하고 싶은 경우 */
+    margin: 0px;
+}
+h1{
+    font-family: 'Russo One', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 90px;
 }
 h3{
     font-family: sans-serif;
     font-size: 15px;
-    color: gray;
+    color: black;
+}
+.div_fullscreen{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .div_outter {
+    background:rgb(255,255,255,0.6);
     width :400px;
     height : 630px;
-    background-color: white;
-    box-shadow: 1px 1px 5px 2px gainsboro;
-    border-radius: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 2px black;
+    border-radius: 5px;
+    /*transform: translate(-50%, -50%);*/
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideUp 0.5s ease-out 0.1s forwards;
+}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .div_inner {
     width : 280px;
@@ -29,29 +55,34 @@ h3{
 }
 .input_text_passwd {
     font-family: 'Gowun Dodum', sans-serif;
-    background-color: whitesmoke;
-    color: black;
-    border-width: 0px 0px 1px 0px;
-    border-style: solid;
+    background:rgb(0,0,0,0.5);
+    color: white;
     padding: 10px;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 4px;
+    border: none;
     width: 180px;
     height: 20px;
     margin-bottom: 8px;
 }
+.input_text_passwd:focus{
+    outline: 1px solid black;
+}
+.input_text_passwd::placeholder{
+    color: lightgray;
+}
 .login_siginin_btn{
     font-family: 'Gowun Dodum', sans-serif;
-    background-color: rgb(28, 18, 88);
+    background-color: black;
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 4px;
     height: 40px;
     width: 95px;
     cursor:pointer;
 }
 .login_siginin_btn:hover{
-    background-color: rgb(56, 43, 129);
+    background-color: #1c1c1c;
     color: white;
 }
 .google_btn{
@@ -64,7 +95,6 @@ h3{
     width: 196px;
     height: 45px;
     margin-bottom: 5px;
-
 }
 .naver_btn{
     width: 196px;

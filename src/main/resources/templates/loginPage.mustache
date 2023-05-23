@@ -11,12 +11,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/login_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="div_fullscreen">
 <div class="div_outter">
     <form action="/auth" method="post">
         <div class="div_inner">
-            <img src="images/Link_Tree.png" alt="링크트리 아이콘" style="width: 150px; height: 150px; border-radius: 100px; margin-bottom: 30px;">
+            <h1>LINK SPACE</h1>
             <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
             <input class="input_text_passwd" type="text" name="id" placeholder="아이디"/>
             <input class="input_text_passwd" type="password" name="password" placeholder="비밀번호"/>
@@ -34,6 +38,7 @@
                 <img class="naver_btn" src="images/naver_login_btn.png" alt="네이버 로그인 이미지"></a>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>

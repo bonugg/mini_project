@@ -10,33 +10,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/home_style.css">
+    <link rel="stylesheet" type="text/css" href="css/search_style.css">
 </head>
 <body>
 {{>header/header}}
 <div id="fullscreen">
-    <div id="screen2">
-        <div id="screen2-1">
-            <span class="span_text">
-                최근 추가 링크
-            </span>
-        </div>
-        <div id="screen2-2">
-            {{#linkDateList}}
-                <table id="table_date">
-                    <tr>
-                        <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/></td>
-                        <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
-                        <td rowspan="2" class="username_td"><h3 id="username_text" onclick="showUserList('{{NO}}')">{{username}}</h3></td>
-                    </tr>
-                    <tr>
-                        <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
-                    </tr>
-                </table>
-            {{/linkDateList}}
+    <div id="subscreen">
+        <div id="screen1_todaylink">
+            <div id="screen1-1">
+                <div class="grid-container">
+                    {{#linkDateList}}
+                        <div class="item">
+                            <table id="table_date">
+                                <tr>
+                                    <td onClick="window.open('{{LINK}}')" rowspan="2" class="img_td"><img
+                                            src="{{IMAGE}}" alt="링크 미리보기 이미지" class="img_list"/>
+                                    </td>
+                                    <td onClick="window.open('{{LINK}}')" class="title_td">{{TITLE}}</td>
+                                    <td rowspan="2" class="username_td"><h3 id="username_text" onclick="showUserList('{{NO}}')">{{username}}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td onClick="window.open('{{LINK}}')" class="contents_td">{{CONTENTS}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    {{/linkDateList}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -11,10 +11,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/home_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <body>
 {{>header/header}}
+<div class="div_homescreen">
+    <div class="div_homescreen_sub">
+        <div class="div_text">
+            <div class="div_text_sub">
+                <h1>ADD</h1>
+                <h1>Your, Link</h1>
+            </div>
+        </div>
+        <div class="div_form">
+            <form action="/" method="post" id="input_form">
+                <input type="text" placeholder="링크를 입력하세요." name="link" id="input_text">
+                <button type="submit" id="input_btn">ADD</button>
+            </form>
+        </div>
+    </div>
+
+</div>
 
 <script src="js/main.js"></script>
 </body>

@@ -1,21 +1,100 @@
+body{
+    background-image: url("../images/background_showLink.jpg");
+    background-repeat: repeat;
+    background-size: cover; /* 사이즈를 조절하고 싶은 경우 */
+}
+#fullscreen{
+    width: 100vw;
+    height: 93.8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#subscreen{
+    background:rgb(255,255,255,0.3);
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:auto;
+}
+#screen1{
+    box-shadow: 0 2px 2px black;
+    background:rgb(50,50,50,0.5);
+    border-radius: 4px;
+    width: 30%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#screen1_todaylink{
+    box-shadow: 0 2px 2px black;
+    background:rgb(50,50,50,0.5);
+    border-radius: 4px;
+    width: 50%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#screen1-1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+.grid-container {
+    width: 90%;
+    height: 80px;
+    display: grid;
+    grid: '.';
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    grid-row-gap: 0px;
+}
+.item {
+    padding: 10px;
+}
+#screen1-1::-webkit-scrollbar {
+    width: 8px;
+    height: 0px;
+}
+
+#screen1-1::-webkit-scrollbar-thumb {
+    background:rgb(255,255,255,0.5); /* 스크롤바 트랙 색상 */
+    border-radius: 10px;
+}
+
+#screen1-1::-webkit-scrollbar-thumb:hover {
+    background:rgb(255,255,255,0.6); /* 스크롤바 트랙 색상 */
+}
+
+#screen1-1::-webkit-scrollbar-track {
+    background:rgb(255,255,255,0.2); /* 스크롤바 트랙 색상 */
+    border-radius: 10px;
+}
 td {
     border-left: none;
     border-right: none;
     border-top: none;
     border-bottom: none;
-    background-color: white;
 }
-table {
-    cursor: pointer;
-    border: 1px solid lightgray;
-    margin-top: 10px;
-    border-spacing: 0px;
-    border-radius: 10px;
-    width: 300px;
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 0.8;
+        transform: translateX(0);
+    }
 }
 .img_list {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 3px;
     width: 80px;
     height: 80px;
 }
@@ -24,20 +103,60 @@ img{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-.img_td {
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+table {
+    cursor: pointer;
+    border: 0px;
+    margin-top: 10px;
+    border-spacing: 0px;
+    border-radius: 3px;
+    table-layout: fixed;
+    width: 90%;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideUp 0.5s ease-out 0.1s forwards;
 }
 
+.img_td {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    width: 80px;
+}
+.title_td {
+    width: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 20px 5px 20px;
+}
+.contents_td {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 5px;
+    vertical-align: top;
+    padding: 10px;
+    text-align: center;
+}
 
+#username_text{
+    font-size: 15px;
+    border: none;
+    color: white;
+}
+#username_text:hover{
+    color: gray;
+}
 .username_td {
-    width: 250px;
-    color: black;
+    color: white;
     font-size: 15px;
     text-align: center;
     padding: 10px;
     font-weight: bold;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
 }
