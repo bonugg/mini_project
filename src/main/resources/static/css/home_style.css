@@ -2,51 +2,158 @@ body{
     background-image: url("../images/background_showLink.jpg");
     background-repeat: repeat;
     background-size: cover; /* 사이즈를 조절하고 싶은 경우 */
+    margin: 0;
+    padding: 0;
+    font-size: 0px;
     font-family: 'Gowun Dodum', sans-serif;
 }
 .div_homescreen{
     width: 100vw;
-    height: 93.8vh;
+    height: 100vh; /* 화면 높이의 50%로 지정 */
+    display: flex;
+    align-items: center;
+}
+.div_homescreen_sub{
+    width: 550px;
+    height: 400px;
+    margin-left: 10%;
+}
+.div_text{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+.div_text_sub{
+    width: 100%;
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    color: white;
+    font-size: 100px;
+    text-align: left;
+    font-family: 'Russo One', sans-serif;
+    text-decoration: none;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.div_text_sub2{
+    width: 100%;
+    height: 270px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    color: white;
+    font-size: 100px;
+    text-align: left;
+    font-family: 'Russo One', sans-serif;
+    text-decoration: none;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media (max-width: 1300px) {
+    .div_homescreen_sub {
+        width: 500px;
+        margin-left: 8%;
+    }
+    .div_text_sub {
+        font-size: 90px; /* 화면 크기에 따른 글자 크기 */
+    }
+}
+@media (max-width: 1150px) {
+    .div_homescreen_sub {
+        width: 400px;
+        margin-left: 8%;
+    }
+    .div_text_sub {
+        font-size: 80px; /* 화면 크기에 따른 글자 크기 */
+    }
+}
+@media (max-width: 900px) {
+    .div_homescreen{
+        justify-content: center;
+        align-items: center;
+    }
+    .div_homescreen_sub {
+        width: 450px;
+        margin-left: 0px;
+    }
+    .div_text{
+        height: 100px;
+    }
+    .div_text_sub {
+        display: none;
+    }
+    .div_text_sub2 {
+        display: flex;
+        font-size: 59px;
+    }
+    .div_form{
+        width: 100%;
+        height: 100px;
+        margin-top: -20px;
+    }
+    .div_form_sub{
+        width: 100%;
+        height: 50px;
+    }
+}
+/*@media (max-width: 1410px) {*/
+/*    .div_text_sub {*/
+/*        font-size: 60px; !* 화면 크기에 따른 글자 크기 *!*/
+/*    }*/
+/*}*/
+/*!* 문서의 전체적인 화면 크기에 따라 글자 크기 변경 *!*/
+/*@media (max-width: 768px) {*/
+/*    .div_text_sub {*/
+/*        font-size: 18px; !* 화면 크기에 따른 글자 크기 *!*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 420px) {*/
+/*    .div_text_sub {*/
+/*        font-size: 14px; !* 화면 크기에 따른 글자 크기 *!*/
+/*    }*/
+/*}*/
+.div_form{
+    width: 100%;
     display: flex;
     justify-content: left;
     align-items: center;
 }
-.div_homescreen_sub{
-    width: 40%;
-    height: 50%;
-    margin-left: 2%;
-}
-.div_text{
+.div_form_sub{
     width: 100%;
-    height: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-.div_form{
-    width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-#input_form{
-    width: 75%;
     height: 50px;
     display: flex;
     align-items: center;
-
+    justify-content: center;
+}
+#input_form{
+    width: 92%;
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 #input_text{
     width: 80%;
     height: 100%;
     padding: 10px;
-    color: gray;
+    color: black;
     font-size: 15px;
     font-family: 'Gowun Dodum', sans-serif;
     border: none;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    opacity: 0.8;
 }
 #input_text:focus{
     outline: none;
@@ -67,152 +174,4 @@ body{
 }
 #input_btn:hover{
     background-color: #3c3c3c;
-}
-.div_text_sub{
-    width: 70%;
-    height: 80%;
-    margin-left: 140px;
-
-}
-.div_text_sub>h1{
-    font-weight: bold;
-    color: white;
-    font-size: 100px;
-    text-align: left;
-    font-family: 'Russo One', sans-serif;
-    text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    opacity: 0.8;
-}
-#fullscreen{
-    width: 100vw;
-    height: 93vh;
-}
-#screen1{
-    width: 35%;
-    height: 800px;
-    margin-top: 30px;
-    margin-left: 40px;
-    float: left;
-}
-#screen1-1{
-    width: 100%;
-    height: 380px;
-}
-#screen1-1-1{
-    width: 80%;
-    height: 50px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    border: 0px solid #c8c8c8;
-    border-bottom-width: 1px;
-}
-#screen1-1-2{
-    width: 100%;
-    height: 330px;
-}
-#screen1-2{
-    width: 100%;
-    height: 380px;
-    margin-top: 40px;
-}
-#screen2{
-    width: 35%;
-    height: 800px;
-    margin-top: 30px;
-    margin-left: 3px;
-    float: left;
-}
-#screen2-1{
-    width: 80%;
-    height: 50px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    border-bottom-width: 1px;
-}
-#screen2-2{
-    width: 100%;
-    height: 750px;
-}
-.span_text{
-    font-family: 'Gowun Dodum', sans-serif;
-    font-size: 20px;
-    color: #646464;
-    font-weight: bold;
-    margin-left: fill;
-}
-td {
-    background-color: white;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
-}
-.img_list {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    width: 80px;
-    height: 80px;
-}
-.img_td {
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    width: 80px;
-}
-.title_td {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-}
-.contents_td {
-    color: black;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 5px;
-    vertical-align: top;
-    padding: 10px;
-    text-align: center;
-}
-#bestuser_td {
-    color: black;
-    font-size: 15px;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-}
-#userlike_td {
-    width: 20%;
-    color: black;
-    font-size: 10px;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-}
-.username_td{
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center;
-    width: 120px;
-}
-#username_text{
-    font-size: 15px;
-    border: none;
-    color: gray;
-}
-#username_text:hover{
-    color: #000;
 }

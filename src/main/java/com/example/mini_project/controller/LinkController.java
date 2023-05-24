@@ -21,6 +21,9 @@ public class LinkController {
 
     @PostMapping("/add")
     public String addLink(LinkTable linkTable){
+        if(linkTable.getNO() == 0){
+            return "redirect:/login";
+        }
         if(!(linkTable.getLINK().contains("https://")) && !(linkTable.getLINK().contains("http://"))){
             linkTable.setLINK("http://".concat(linkTable.getLINK()));
         }

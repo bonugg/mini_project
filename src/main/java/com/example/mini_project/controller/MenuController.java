@@ -48,10 +48,9 @@ public class MenuController {
             user.setUsername(userRepository.findUsername_str(user.getNo()));
             model.addAttribute("user", user);
         }
-        List<User> bestUser = userRepository.bestLikeList();
+        List<UserInterface> bestUser = userRepository.bestLikeList();
         model.addAttribute("bestUser", bestUser);
         List<UserInterface> bestUser2 = userRepository.bestLikeList2();
-        System.out.println(bestUser2.get(0).getRn());
         model.addAttribute("bestUser2", bestUser2);
 
         List<LinkTable> linkBestList2 = linkService.getbestLinkList2();

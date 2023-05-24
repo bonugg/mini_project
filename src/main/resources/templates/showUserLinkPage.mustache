@@ -24,12 +24,12 @@
                         <img src="{{picture}}" id="img_pictures">
                         <h2 class="user_txt">{{username}}님의 링크</h2>
                         {{#user.username}}
-                        <a2>좋아요&nbsp;
-                            <a3 id="likeCount"></a3>
-                            <input type="hidden" name="uno" id="uno" value="{{NO}}">
-                            <input type="hidden" name="no" id="no" value="{{user.no}}">
-                            <div class="like"></div>
-                        </a2>
+                            <a2>좋아요&nbsp;
+                                <a3 id="likeCount"></a3>
+                                <input type="hidden" name="uno" id="uno" value="{{NO}}">
+                                <input type="hidden" name="no" id="no" value="{{user.no}}">
+                                <div class="like"></div>
+                            </a2>
                         {{/user.username}}
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="grid-container">
                     {{#linkList}}
                         <div class="item">
-                            <table style="box-shadow: 0 2px 2px black;">
+                            <table style="box-shadow: 0 2px 2px black;" class="ta">
                                 <tr>
                                     <td rowspan="2" class="img_td"><img src="{{IMAGE}}" alt="링크 미리보기 이미지"
                                                                         class="img_list"/></td>
@@ -63,6 +63,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="js/like.js"></script>
 <script src="js/main.js"></script>

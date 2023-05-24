@@ -22,15 +22,23 @@
     <div class="div_homescreen_sub">
         <div class="div_text">
             <div class="div_text_sub">
-                <h1>ADD</h1>
-                <h1>Your, Link</h1>
+                ADD<br>Your, Link
+            </div>
+            <div class="div_text_sub2">
+                ADD Your, Link
             </div>
         </div>
         <div class="div_form">
-            <form action="/" method="post" id="input_form">
-                <input type="text" placeholder="링크를 입력하세요." name="link" id="input_text">
-                <button type="submit" id="input_btn">ADD</button>
-            </form>
+            <div class="div_form_sub">
+                <form action="/add" method="post" id="input_form">
+                    {{#user.username}}
+                        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+                        <input type="hidden" name="NO" value="{{user.no}}">
+                    {{/user.username}}
+                    <input type="text" placeholder="링크를 입력하세요." name="LINK" id="input_text">
+                    <button type="submit" id="input_btn">ADD</button>
+                </form>
+            </div>
         </div>
     </div>
 

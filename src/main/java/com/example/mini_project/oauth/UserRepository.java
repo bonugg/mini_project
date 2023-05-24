@@ -21,8 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     String findUsername_str(long no);
     @Query(value = "SELECT COUNT(*) FROM T_MEMBER_LINK T WHERE T.ID = :id", nativeQuery = true)
     int idCheck(String id);
-    @Query(value = "SELECT * FROM (SELECT * FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC) WHERE ROWNUM <= 3 AND USERLIKE >= 1", nativeQuery = true)
-    List<User> bestLikeList();
-    @Query(value = "SELECT * FROM (SELECT T.*, ROW_NUMBER() OVER (ORDER BY USERLIKE DESC) AS Rn FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC) WHERE Rn <= 11 AND Rn >= 4 AND USERLIKE >= 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM (SELECT T.*, ROW_NUMBER() OVER (ORDER BY USERLIKE DESC, USERNAME) AS Rn FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC ) WHERE Rn <= 3 AND USERLIKE >= 1", nativeQuery = true)
+    List<UserInterface> bestLikeList();
+    @Query(value = "SELECT * FROM (SELECT T.*, ROW_NUMBER() OVER (ORDER BY USERLIKE DESC) AS Rn FROM T_MEMBER_LINK T ORDER BY T.USERLIKE DESC, T.USERNAME) WHERE Rn <= 10 AND Rn >= 4 AND USERLIKE >= 1", nativeQuery = true)
     List<UserInterface> bestLikeList2();
 }

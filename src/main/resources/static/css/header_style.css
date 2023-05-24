@@ -1,7 +1,4 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-size: 0px;
+body{
     font-family: 'Gowun Dodum', sans-serif;
 }
 .user_btn {
@@ -9,12 +6,17 @@ body {
     border: none;
     color: #fff;
     background-color: black;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 5px;
     padding: 7px;
     height: 28px;
-    width: 60px;
+    width: 50px;
     font-family: 'Gowun Dodum', sans-serif;
+}
+@media (max-width: 680px) {
+    .user_btn  {
+        display: none;
+    }
 }
 .user_btn:hover {
         background-color: #3c3c3c;
@@ -24,16 +26,19 @@ body {
     outline: none;
 }
 header {
+    position: absolute;
     background:rgb(255,255,255,0.7);
-    height: 60px;
     width: 100vw;
+    height: 60px;
     display: flex;
     align-items: center;
 }
 nav{
+    height: 100%;
 }
 nav ul {
     width: 100vw;
+    height: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -41,6 +46,7 @@ nav ul {
     justify-content: center; /* 수평으로 가운데정렬 */
     align-items: center; /* 수직으로 가운데 정렬 */
 }
+
 nav a {
     font-family: 'Russo One', sans-serif;
     color: black;
@@ -51,11 +57,25 @@ nav a {
     text-overflow: ellipsis;
     text-transform: uppercase;
 }
+@media (max-width: 900px) {
+    nav a {
+        font-size: 20px;
+    }
+}
+@media (max-width: 680px) {
+    nav a {
+        font-size: 15px;
+    }
+}
+
+
+
 nav a:hover {
     color: #3c3c3c;
     text-decoration: none;
 }
-.a_text{
+#login_text{
+    margin-right: 15px;
     font-weight: bold;
     font-size: 15px;
     font-family: 'Gowun Dodum', sans-serif;
@@ -64,32 +84,64 @@ nav a:hover {
     text-overflow: ellipsis;
     text-align: center;
 }
+@media (max-width: 1440px) {
+    #login_text{
+        display: none;
+    }
+}
 #li_linktree{
 }
 .li_menulist{
+    margin-left:5px;
+    margin-right: 10px;
+}
+.menu_logo{
     margin-left: 10px;
     margin-right: 20px;
+}
+#search_image{
+    margin-right: -10px;
 }
 .menu_text {
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 15px;
 }
+@media (max-width: 900px) {
+    .menu_text {
+        font-size: 13px;
+    }
+}
+@media (max-width: 680px) {
+    .menu_text {
+        font-size: 10px;
+    }
+}
 #li_search_form{
     display: flex;
     justify-content: right;
-    width: 20%;
+    width: 30%;
+    height: 100%;
+    align-items: center;
 }
+#login_logout_form{
+    display: flex;
+    align-items: center;
+}
+
+
 .li_text{
     width: 10%;
     display: flex;
     justify-content: left;
     align-items: center;
+    margin-right: 30px;
 }
 #div_search{
     width: 100%;
     display: flex;
 }
 .search-input {
+    border-radius: 3px;
     opacity: 0.5;
     font-family: 'Gowun Dodum', sans-serif;
     background-color: white;
@@ -97,7 +149,7 @@ nav a:hover {
     padding: 10px;
     font-size: 12px;
     height: 28px;
-    width: 200px;
+    width: 100%;
     border: 1px solid lightgray;
 }
 .search-input:focus{
@@ -133,7 +185,16 @@ nav a:hover {
 }
 
 .dropdown {
-    position: relative;
+    height: 100%;
+    width: 100%;
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+#dropdown_2{
+    width: 25px;
+    position : relative;
 }
 
 .dropdown-menu {
@@ -150,28 +211,26 @@ nav a:hover {
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     transform-origin: top; /* 아래쪽을 중심으로 세로 축 회전 */
-    background:rgb(255,255,255,1);
 }
 #dropdown-search{
-    background:rgb(255,255,255,0);
+    margin-top: 15px;
+    min-width: 90%;
+    max-width: 1px;
+    position: static;
+    background: rgb(255, 255, 255, 0);
     outline: none;
     border: none;
-    width: 2    00px;
-    position: absolute;
-    top: -75%;
-    left: -340%;
     animation-name: left;
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     transform-origin: right; /* 아래쪽을 중심으로 세로 축 회전 */
+    transition: all 0.2s ease-in-out; /* 모든 속성이 0.2초에 걸쳐 부드럽게 변화되도록 함 */
 }
- /*마우스 호버 시, .dropdown-menu 보이도록 조정*/
 .dropdown:hover .dropdown-menu {
     display: block;
     animation-fill-mode: forwards;
 }
-/* 슬라이드 다운 애니메이션을 위한 @keyframes 정의 */
 @keyframes down {
     from {
         transform: scaleY(0);
@@ -190,6 +249,7 @@ nav a:hover {
 }
 
 .dropdown-item {
+    background-color: white;
     font-size: 13px;
     font-family: 'Gowun Dodum', sans-serif;
     text-align: center;
@@ -199,7 +259,9 @@ nav a:hover {
 .dropdown-item:hover {
     background-color: #cccccc; /* 마우스 호버 시 배경색 변경 */
 }
-
+#search_click:hover{
+    cursor: pointer;
+}
 
 .logout_delete {
     width: 100%;

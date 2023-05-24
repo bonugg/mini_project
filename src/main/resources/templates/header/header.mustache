@@ -23,7 +23,7 @@
 <header>
     <nav>
         <ul>
-            <li id="li_linktree"><a href="/" style="margin-left: 30px; margin-right: 30px">LINK SPACE</a></li>
+            <li id="li_linktree"><a href="/" class="menu_logo">LINK SPACE</a></li>
             <li class="li_menulist">
                 <a href="/bestLink" class="menu_text">Best&nbsp;Link</a>
             </li>
@@ -33,49 +33,48 @@
             <li class="li_menulist">
                 <a href="/dateLink" class="menu_text">Today&nbsp;Link</a>
             </li>
-            <li id="li_search_form">
-                <div class="dropdown" style="margin-right: 30px">
-                    <div style="cursor: pointer; width: 40px; text-align: right;"><img src="images/search.png"></div>
-                    <ul class="dropdown-menu" id="dropdown-search">
-                        <li>
-                            <form action="/user_search" method="get">
-                                <div id="div_search">
-                                    <input class="search-input" type="text" name="username" id="search"
-                                           placeholder="유저를 검색하세요"/>
-                                    <button class="search-btn" type="submit"></button>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
+        <li id="li_search_form">
+            <div class="dropdown" style="margin-right: 30px;">
+                <ul class="dropdown-menu" id="dropdown-search">
+                    <li>
+                        <form action="/user_search" method="get">
+                            <div id="div_search">
+                                <input class="search-input" type="text" name="username" id="search"
+                                       placeholder="유저를 검색하세요"/>
+                                <button class="search-btn" type="submit"></button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <div id="search_image">
+                    <img src="images/search.png" id="search_click">
                 </div>
-            </li>
+            </div>
             {{#user.username}}
-                <li class="li_text">
-                    <img src="{{user.picture}}" id="img_picture">
-                    <span class="a_text">{{user.username}}님</span>
-                    <div class="dropdown">
-                        <a>
-                            <img src="images/usermenu.png" width="15px" height="15px" style="margin-left: 10px">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/iduser_link">내 링크보기</a></li>
-                            <li>
-                                {{#user.name}}
-                                    <a class="dropdown-item" href="/update">정보수정</a>
-                                {{/user.name}}
-                            </li>
-                            <li>
-                                {{#user.name}}
-                                    <span class="dropdown-item" href="#">
+                <img src="{{user.picture}}" id="img_picture">
+                <div class="dropdown" id="dropdown_2">
+                    <a>
+                        <img src="images/usermenu.png" width="15px" height="15px" style="margin-left: 10px">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/iduser_link">내 링크보기</a></li>
+                        <li>
+                            {{#user.name}}
+                                <a class="dropdown-item" href="/update">정보수정</a>
+                            {{/user.name}}
+                        </li>
+                        <li>
+                            {{#user.name}}
+                                <span class="dropdown-item" href="#">
                                     <form action="/delete" method="post">
                                         <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
                                         <button type="button" class="logout_delete" onclick="this.form.submit();">탈퇴하기
                                         </button>
                                     </form>
                                 </span>
-                                {{/user.name}}
-                            </li>
-                            <li>
+                            {{/user.name}}
+                        </li>
+                        <li>
                                 <span class="dropdown-item" href="#">
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
@@ -84,23 +83,45 @@
                                     </button>
                                 </form>
                                 </span>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                        </li>
+                    </ul>
+                </div>
             {{/user.username}}
             {{^user.username}}
-                <span class="a_text" style="margin-right: 15px">로그인해주세요</span>
-                <li class="li_text">
+                <div id="login_logout_form">
+                <span id="login_text">로그인해주세요</span>
                     <button type="button" onclick="location.href='login'" class="user_btn">로그인</button>
                     <button type="button" onclick="location.href='signup'" class="user_btn" style="margin-left: 5px">
                         회원가입
                     </button>
-                </li>
+                </div>
             {{/user.username}}
+            </li>
+
         </ul>
     </nav>
 </header>
-</body>
+<!--<script>-->
+<!--    let subToggle = false;-->
+
+<!--    $('#search_click').click((event) => {-->
+<!--        event.stopPropagation(); // 이벤트 전파 중지-->
+<!--        subToggle = !subToggle;-->
+<!--        if (subToggle) {-->
+<!--            $('#dropdown-search').css('display', 'block');-->
+<!--        } else {-->
+<!--            $('#dropdown-search').css('display', 'none');-->
+<!--        }-->
+
+<!--    });-->
+<!--    $('#search').click(function(event) {-->
+<!--        event.stopPropagation(); // 검색창에서의 이벤트 전파 중지-->
+<!--    });-->
+
+<!--    $(document).click(() => {-->
+<!--        $('#dropdown-search').css('display', 'none');-->
+<!--        subToggle = false;-->
+<!--    });-->
+<!--</script>-->
 <script src="js/usermenu.js"></script>
 </html>

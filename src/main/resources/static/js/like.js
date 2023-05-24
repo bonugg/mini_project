@@ -3,7 +3,9 @@ const uno = $('#uno').val();
 const no = $('#no').val();
 let isOn = false;
 
-updateLikeCount();
+if(uno != null){
+    updateLikeCount()
+}
 
 function updateLikeCount() {
     $.ajax({
@@ -30,33 +32,35 @@ function updateLikeCount() {
     });
 }
 
-like.onclick = function (){
-    isOn = !isOn;
-    if (isOn) {
-        $.ajax({
-            type: 'POST',
-            url: '/userlike',
-            data: {
-                no: no,
-                uno: uno
-            },
-            success: function() {
-                updateLikeCount();
-            }
-        });
-    } else {
-        $.ajax({
-            type: 'POST',
-            url: '/userdislike',
-            data: {
-                no: no,
-                uno: uno
-            },
-            success: function() {
-                updateLikeCount();
-            }
-        });
+if(like != null){
+    like.onclick = function (){
+        isOn = !isOn;
+        if (isOn) {
+            $.ajax({
+                type: 'POST',
+                url: '/userlike',
+                data: {
+                    no: no,
+                    uno: uno
+                },
+                success: function() {
+                    updateLikeCount();
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/userdislike',
+                data: {
+                    no: no,
+                    uno: uno
+                },
+                success: function() {
+                    updateLikeCount();
+                }
+            });
+        }
     }
-
 }
+
 

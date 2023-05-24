@@ -35,6 +35,7 @@
                     GROUP BY T.LINK, T.TITLE, T.CONTENTS, T.IMAGE
                    ) A)
         WHERE Rn <![CDATA[>=]]>  4
+        AND Rn <![CDATA[<=]]>  10
     </select>
     <select id="getdateLinkList" resultType="com.example.mini_project.link_user.LinkTable">
         SELECT *
