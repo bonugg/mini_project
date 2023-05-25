@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<style>
+    p{
+        font-size: 10px;
+        color: black;
+    }
+</style>
+<script>
+    const windowWidth = 700;
+    const windowHeight = 350;
+    const leftPosition = (window.screen.width / 2) - ((windowWidth / 2) + 10);
+    const topPosition = (window.screen.height / 2) - ((windowHeight / 2) + 50);
+    if (${isNewWindow}) {
+        window.open('/iduser_link','_blank');
+    }
+</script>
+<body>
+{{#lt}}
+<p>        {{LINK}}<br>
+    {{TITLE}}<br>
+    {{CONTENTS}}</p>
+
+    {{/lt}}
+
+
+</body>
+
+</html>

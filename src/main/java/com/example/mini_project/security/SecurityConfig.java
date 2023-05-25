@@ -19,7 +19,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 //csrf 제외
-                .csrf().ignoringAntMatchers("/idCheck", "/get/test", "/userlike", "/userdislike", "/likeshow", "/add")
+                .csrf().ignoringAntMatchers("/idCheck", "/get/test", "/userlike", "/userdislike", "/likeshow", "/add","/ws","/app","/topic","/sendMessage","/topic/public")
                 .and()
                 .headers().frameOptions().disable()
                 .and()
@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck").permitAll()
+                .antMatchers("/" ,"/get/test" ,"/login" ,"/signup" ,"/user_search" ,"/user_link" ,"/myLinkAdd" ,"/idCheck", "/chat").permitAll()
                 .antMatchers("/bestLink", "/bestUser" ,"/dateLink", "/add").permitAll()
                 .anyRequest().authenticated();
 

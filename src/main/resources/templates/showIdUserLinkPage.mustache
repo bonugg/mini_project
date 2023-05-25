@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="css/showlink_style.css">
 </head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <body>
 {{>header/header}}
 <div id="fullscreen">
@@ -32,7 +34,7 @@
                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
                     <input type="text" name="LINK" placeholder="링크를 입력해주세요." class="input_link">
                     <input type="hidden" name="NO" value="{{user.no}}">
-                    <input type="submit" value="ADD" id="add_btn">
+                    <button type="submit" id="add_btn">ADD</button>
                 </form>
             </div>
         </div>
@@ -61,6 +63,7 @@
         </div>
     </div>
 </div>
+<!--<script src="js/app.js" charset="UTF-8"></script>-->
 <script src="js/like.js"></script>
 <script src="js/main.js"></script>
 </body>

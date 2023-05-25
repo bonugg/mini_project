@@ -5,6 +5,7 @@ import com.example.mini_project.link_user.SessionUser;
 import com.example.mini_project.service.LinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,27 @@ public class LinkController {
         }
         linkService.addLink(linkTable);
         return "redirect:/iduser_link";
+    }
+
+//    @PostMapping("/add")
+//    public String addLink(LinkTable linkTable, Model model){
+//        if(linkTable.getNO() == 0){
+//            return "redirect:/login";
+//        }
+//        if(!(linkTable.getLINK().contains("https://")) && !(linkTable.getLINK().contains("http://"))){
+//            linkTable.setLINK("http://".concat(linkTable.getLINK()));
+//        }
+//        LinkTable lt = new LinkTable();
+//        lt.link_rs(linkTable.getLINK());
+//        model.addAttribute("lt", lt);
+//        model.addAttribute("isNewWindow", true); // 새 창 띄울 것임을 알림
+////        linkService.addLink(linkTable);
+//        System.out.println(lt);
+//        return "linkcheck";
+//    }
+    @GetMapping("/linkcheck")
+    public String lc(){
+        return "linkcheck";
     }
 
     @GetMapping("/delete_link")

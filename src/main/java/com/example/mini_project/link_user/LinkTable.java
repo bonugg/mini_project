@@ -20,6 +20,7 @@ public class LinkTable {
     private String picture;
     private int RN;
     private int CT;
+    private String Kategorie;
 
 
     public void link_rs(String link){

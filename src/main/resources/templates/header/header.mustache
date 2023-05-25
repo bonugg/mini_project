@@ -101,27 +101,27 @@
         </ul>
     </nav>
 </header>
-<!--<script>-->
-<!--    let subToggle = false;-->
+<script>
+    let subToggle = false;
 
-<!--    $('#search_click').click((event) => {-->
-<!--        event.stopPropagation(); // 이벤트 전파 중지-->
-<!--        subToggle = !subToggle;-->
-<!--        if (subToggle) {-->
-<!--            $('#dropdown-search').css('display', 'block');-->
-<!--        } else {-->
-<!--            $('#dropdown-search').css('display', 'none');-->
-<!--        }-->
+    $('#search_click').click((event) => {
+        event.stopPropagation(); // 이벤트 전파 중지
+        subToggle = !subToggle;
+        if (subToggle) {
+            $('#dropdown-search').slideDown(100);
+        } else {
+            $('#dropdown-search').css('display', 'none');
+        }
 
-<!--    });-->
-<!--    $('#search').click(function(event) {-->
-<!--        event.stopPropagation(); // 검색창에서의 이벤트 전파 중지-->
-<!--    });-->
+    });
+    $('#search').click(function(event) {
+        event.stopPropagation(); // 검색창에서의 이벤트 전파 중지
+    });
 
-<!--    $(document).click(() => {-->
-<!--        $('#dropdown-search').css('display', 'none');-->
-<!--        subToggle = false;-->
-<!--    });-->
-<!--</script>-->
+    $(document).click(() => {
+        $('#dropdown-search').css('display', 'none');
+        subToggle = false;
+    });
+</script>
 <script src="js/usermenu.js"></script>
 </html>
